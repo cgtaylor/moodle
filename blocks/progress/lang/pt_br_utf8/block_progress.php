@@ -1,0 +1,81 @@
+<?PHP // $Id: block_progress.php,v 1.6 2010/04/05 11:23:58 deraadt Exp $ 
+      // block_progress.php - created with Moodle 1.9.3+ (Build: 20081105) (2007101530)
+      // local modifications from http://localhost/moodle
+
+
+$string['activity'] = 'Atividade';
+$string['assignment'] = 'Tarefa';
+$string['assignment_submitted'] = 'submetida';
+$string['book'] = 'Livro'; 
+$string['book_viewed'] = 'visualizado';
+$string['chat'] = 'Chat';
+$string['chat_posted_to'] = 'postado em';
+$string['choice'] = 'Escolha';
+$string['choice_answered'] = 'realizada';
+$string['config_header_action'] = 'Ação';
+$string['config_header_colour'] = 'Cor';
+$string['config_header_expected'] = 'Esperado em';
+$string['config_header_icon'] = 'Ícone';
+$string['config_header_locked'] = 'Bloqueio do <br />prazo';
+$string['config_header_monitored'] = 'Monitorado';
+$string['config_header_name'] = 'Nome';
+$string['config_header_status'] = 'Estatuto';
+$string['config_header_type'] = 'Tipo';
+$string['config_icons'] = 'Usar ícones';
+$string['config_now'] = 'Usar';
+$string['data'] = 'Database';
+$string['data_viewed'] = 'visualizado';
+$string['date_format'] = '%%a %%d %%b, %%I:%%M %%p';
+$string['default_colour'] = 'Cor padrão';
+$string['default_title'] = 'Barra de Progresso';
+$string['feedback'] = 'Feedback';
+$string['feedback_responded_to'] = 'respondido';
+$string['forum'] = 'Fórum';
+$string['forum_posted_to'] = 'postado em';
+$string['glossary'] = 'Glossary';
+$string['glossary_viewed'] = 'visualizado';
+$string['lesson'] = 'Lição';
+$string['lesson_attempted'] = 'tentado';
+$string['mouse_over_prompt'] = 'Passe com o mouse para obter informações';
+$string['no_events_config_message'] = 'Não existem atividades ou recursos a serem monitorados. Crie primeiro atividades e/ou recursos e retorne depois a este bloco.';
+$string['no_events_message'] = 'Sem eventos a serem monitorados. Use a Configuração para adicionar eventos.';
+$string['no_visible_events_message'] = 'Nenhum dos eventos selecionados se encontra atualmente visível.';
+$string['none'] = 'nenhum';
+$string['not_assignment_submitted'] = 'não foi submetida';
+$string['not_book_viewed'] = 'não foi visualizado';
+$string['not_chat_posted_to'] = 'não foi postado';
+$string['not_choice_answered'] = 'não foi respondida';
+$string['not_data_viewed'] = 'não foi visualizado';
+$string['not_feedback_responded_to'] = 'não foi respondido';
+$string['not_forum_posted_to'] = 'não foi postado';
+$string['not_glossary_viewed'] = 'não foi visualizado';
+$string['not_lesson_attempted'] = 'sem tentativa';
+$string['not_quiz_attempted'] = 'sem tentativa';
+$string['not_resource_viewed'] = 'não foi visualizado';
+$string['not_scorm_attempted'] = 'sem tentativa';
+$string['not_wiki_viewed'] = 'não foi visualizado';
+$string['now_indicator'] = 'AGORA';
+$string['quiz'] = 'Questionário';
+$string['quiz_attempted'] = 'realizado';
+$string['resource'] = 'Recurso';
+$string['resource_viewed'] = 'visualizado';
+$string['scorm'] = 'Scorm';
+$string['scorm_attempted'] = 'tentado';
+$string['setting_title'] = 'definir o título';
+$string['status_attempted'] = 'Tentado/Postado/Submetido/Visualizado';
+$string['status_future_not_attempted'] = 'Evento futuro';
+$string['status_not_attempted'] = 'Não tentado/postado/submetido/visualizado';
+$string['time_expected'] = 'Esperado';
+$string['title'] = 'Título desta instância de bloco';
+$string['what_actions_can_be_monitored'] = 'Quais as ações podem ser monitoradas';
+$string['what_can_be_monitored'] = 'O que pode ser monitorado';
+$string['what_does_monitored_mean'] = 'O que significa \"monitoriado\"';
+$string['what_expected_by_means'] = 'O que significa esperado por';
+$string['what_locked_means'] = 'O que significa bloquear o prazo';
+$string['why_change_colours'] = 'Por que poderá querer alterar as cores';
+$string['why_use_icons'] = 'Por que poderá querer usar ícones';
+$string['why_display_now'] = 'Por que você pode querer esconder / mostrar o indicador AGORA';
+$string['wiki'] = 'Wiki';
+$string['wiki_viewed'] = 'visualizado';
+
+?>

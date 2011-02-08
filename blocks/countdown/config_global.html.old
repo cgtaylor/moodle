@@ -1,0 +1,58 @@
+<table cellpadding="9" cellspacing="0">
+<tr valign="top">
+    <td align="right"><?php print_string('width', 'block_countdown') ?></td>
+    <td>
+    <input name="block" type="hidden" value="<?php echo intval($_REQUEST['block']); ?>" />
+    <input name="block_countdown_swfWidth" type="text" size="3" value="<?php 
+    if(isset($CFG->block_countdown_swfWidth)) {
+        p($CFG->block_countdown_swfWidth);
+    } else {
+        p(135);
+    } ?>" />
+    </td>
+    <td colspan="2">
+    (<?php print_string('default', 'block_countdown') ?> = 135)
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right"><?php print_string('height', 'block_countdown') ?></td>
+    <td>
+    <input name="block_countdown_swfHeight" type="text" size="3" value="<?php 
+    if(isset($CFG->block_countdown_swfHeight)) {
+        p($CFG->block_countdown_swfHeight);
+    } else {
+        p(85);
+    } ?>" />
+    </td>
+    <td colspan="2">
+	(<?php print_string('default', 'block_countdown') ?> = 85)
+    </td>
+</tr>
+<tr>
+<td align="right"><?php print_string('startyear', 'block_countdown') ?></td>
+    <td>
+    <input name="block_countdown_startyear" type="text" size="4" value="<?php 
+    if(isset($CFG->block_countdown_startyear)) {
+        p($CFG->block_countdown_startyear);
+    } else {
+        p(2008);
+    } ?>" />
+    </td>
+<td align="right"><?php print_string('endyear', 'block_countdown') ?></td>
+    <td>
+    <input name="block_countdown_endyear" type="text" size="4" value="<?php 
+    if(isset($CFG->block_countdown_endyear)) {
+        p($CFG->block_countdown_endyear);
+    } else {
+        p(2010);
+    } ?>" />
+    </td>
+</tr>
+
+
+
+<tr>
+    <td colspan="3" align="center">
+    <input type="submit" value="<?php print_string('savechanges') ?>" /></td>
+</tr>
+</table>

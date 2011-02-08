@@ -1,0 +1,186 @@
+<?php $usehtmleditor = can_use_html_editor(); 
+global $CFG;
+   if (!isset($this->config->servertime)) {
+       $this->config->servertime="user";
+   }
+   if (!isset($this->config->clockStyle)) {
+       $this->config->clockStyle="default.swf";
+   }
+   if (!isset($this->config->da)) {
+       $this->config->da=1;
+   }
+   if (!isset($this->config->mo)) {
+       $this->config->mo=1;
+   }
+   if (!isset($this->config->ho)) {
+       $this->config->ho=1;
+   }
+   if (!isset($this->config->mi)) {
+       $this->config->mi=1;
+   }
+   if (!isset($this->config->yr)) {
+       $this->config->yr=2010;
+   }
+?>
+<script language=JavaScript src="<?php echo "$CFG->wwwroot/blocks/".$this->name()."/tigra/picker.js"?>" ></script>
+<table cellpadding="9" cellspacing="0">
+<tr valign="top">
+    <td align="right"><?php print_string('configtitle', 'block_countdown'); ?>:</td>
+    <td colspan="3"><input type="text" name="title" size="30" value="<?php echo isset($this->config->title)?($this->config->title):''; ?>" /> (<?php print_string('leaveblanktohide', 'block_html'); ?>)</td>
+</tr>
+<tr valign="top">
+	<td align="right"><?php print_string('configtimesource', 'block_countdown'); ?>:</td>
+	<td colspan="3">
+	<input type="radio" name="servertime" value="server" <?php if($this->config->servertime=="server"){echo 'checked="checked"';}?>><?php print_string('server', 'block_countdown'); ?><br>
+	<input type="radio" name="servertime" value="user" <?php if($this->config->servertime=="user"){echo 'checked="checked"';}?>><?php print_string('usercomputer', 'block_countdown'); ?><br>
+	</td>
+</tr>
+<tr valign="top">
+	<td align="right"><?php print_string('clock', 'block_countdown'); ?>:</td>
+	<td colspan="3">
+
+<?php 
+$path=$CFG->dirroot.'/blocks/'.$this->name().'/clocks/';
+$dir=opendir($path);
+while(false !== ($filename = readdir($dir))) {
+if ($filename != "." && $filename != "..") {
+$clockPath = $CFG->wwwroot.'/blocks/'.$this->name().'/clocks/'.$filename;
+echo '<input type="radio" name="clockStyle" value="'.$filename.'" ';
+if($this->config->clockStyle==$filename){echo 'checked="checked"';}
+echo '><object width="150" height="85" data="'.$clockPath.'?dayText=days&minutesText=mins&secondsText=secs&hoursText=hrs" type="application/x-shockwave-flash">';
+echo '<param name="movie" value="'.$clockPath.'?dayText=days&minutesText=mins&secondsText=secs&hoursText=hrs" /><param name="bgcolor" value="#" /></object><br>';
+
+}
+
+}
+closedir($dir);	
+?>	
+	
+</td>
+</tr>
+<tr>
+<tr valign="top">
+    <td align="right"><?php print_string('configcontentabove', 'block_countdown'); ?>:</td>
+    <td  colspan="3"><?php print_textarea($usehtmleditor, 12, 50, 0, 0, 'text1', isset($this->config->text1)?$this->config->text1:'') ?></td>
+</tr>
+<tr valign="top">
+<td></td>
+	<td><?php print_string('configdate', 'block_countdown'); ?>:</td>
+	<td><?php print_string('configmonth', 'block_countdown'); ?>:</td>
+	<td><?php print_string('configyear', 'block_countdown'); ?>:</td>
+</tr>
+<tr>
+	<td></td>
+	<td>
+<select name="da">
+<?php for($counter=1;$counter<=31;$counter++){
+	echo "<option value='$counter' ";
+	if ($counter==$this->config->da){echo 'selected';}
+	echo "> $counter</option>";	
+}
+?>
+     </select>
+</td>
+	<td>
+<select name="mo">
+<?php for($counter=1;$counter<=12;$counter++){
+	echo "<option value='$counter' ";
+	if ($counter==$this->config->mo){echo 'selected';}
+	echo "> $counter</option>";	
+}
+?>
+     </select>
+</td>
+<td>
+<select name="yr">
+	
+<?php 
+if(!isset($CFG->block_countdown_startyear)){$CFG->block_countdown_startyear="2008";}
+if(!isset($CFG->block_countdown_endyear)){$CFG->block_countdown_endyear="2010";}
+for($counter=$CFG->block_countdown_startyear;$counter<=$CFG->block_countdown_endyear;$counter++){
+	echo "<option value='$counter' ";
+	if ($this->config->yr==$counter){echo 'selected';}
+	echo "> $counter</option>";
+}?>
+<option value='annual' <?php if ($this->config->yr=="annual"){echo 'selected';}?>> <?php print_string('annual', 'block_countdown'); ?></option>	
+
+     </select>
+</td>
+</tr>
+</tr>
+<tr>
+<td></td>
+	<td><?php print_string('confighour', 'block_countdown'); ?>:</td>
+	<td><?php print_string('configminute', 'block_countdown'); ?>:</td>
+</tr>
+<tr>
+<td></td>
+	<td>
+<select name="ho">
+<?php for($counter=0;$counter<=23;$counter++){
+	echo "<option value='$counter' ";
+	if ($counter==$this->config->ho){echo 'selected';}
+	echo "> $counter</option>";	
+}
+?>
+     </select>
+</td>
+	<td>
+<select name="mi">
+<?php for($counter=0;$counter<=59;$counter++){
+	echo "<option value='$counter' ";
+	if ($counter==$this->config->mi){echo 'selected';}
+	echo "> $counter</option>";	
+}
+?>
+     </select>
+</td>
+</td>
+<tr valign="top">
+    <td align="right"><?php print_string('finishtext', 'block_countdown'); ?>:</td>
+    <td colspan="3"><input type="text" name="finish" size="30" value="<?php echo isset($this->config->finish)?($this->config->finish):''; ?>" /> (<?php print_string('leaveblanktohide', 'block_html'); ?>)</td>
+</tr>
+</tr>
+<tr valign="top">
+    <td align="right"><?php print_string('configcontentbelow', 'block_countdown'); ?>:</td>
+    <td colspan="3"><?php print_textarea($usehtmleditor, 12, 50, 0, 0, 'text2', isset($this->config->text2)?$this->config->text2:'') ?></td>
+</tr>
+
+<tr>
+<td align="right"><?php print_string('configdigitcolor', 'block_countdown'); ?>:</td>
+<td>
+#<input type="text" name="digitcolor" size="6" maxlength="6" value="<?php echo isset($this->config->digitcolor)?($this->config->digitcolor):'ff0000'; ?>">
+<a href="javascript:TCP.popup(document.forms[0].elements['digitcolor'], 1 ,'<?php echo "$CFG->wwwroot/blocks/".$this->name()."/tigra/"?>')" ><img src='<?php echo "$CFG->wwwroot/blocks/".$this->name()."/tigra/img/sel.gif"?>'></a>
+</td>
+<td colspan="2"><?php print_string('configtextcolor', 'block_countdown'); ?>: 
+#<input type="text" name="textcolor" size="6" maxlength="6" value="<?php echo isset($this->config->textcolor)?($this->config->textcolor):'000000'; ?>">
+<a href="javascript:TCP.popup(document.forms[0].elements['textcolor'], 1 ,'<?php echo "$CFG->wwwroot/blocks/".$this->name()."/tigra/"?>')" ><img src='<?php echo "$CFG->wwwroot/blocks/".$this->name()."/tigra/img/sel.gif"?>'></a>
+</td>
+</tr>
+<tr>
+<td align="right"><?php print_string('configbgcolor', 'block_countdown'); ?>:</td>
+<td>
+#<input type="text" name="bgcolor" size="6" maxlength="6" value="<?php echo isset($this->config->bgcolor)?($this->config->bgcolor):''; ?>">
+<a href="javascript:TCP.popup(document.forms[0].elements['bgcolor'], 1 ,'<?php echo "$CFG->wwwroot/blocks/".$this->name()."/tigra/"?>')" ><img src='<?php echo "$CFG->wwwroot/blocks/".$this->name()."/tigra/img/sel.gif"?>'></a>
+</td>
+<td colspan="2"></td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+<tr>
+    <td colspan="4" align="center">
+    <input type="submit" value="<?php print_string('savechanges') ?>" /></td>
+</tr>
+</table>
+<?php if ($usehtmleditor) {
+          use_html_editor(); 
+      }
+?>
