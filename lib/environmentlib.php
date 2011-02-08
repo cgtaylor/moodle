@@ -716,7 +716,12 @@ function environment_check_php_settings($version, $env_select) {
         $result = new environment_results('php_setting');
         $result->setStatus(false);
         $result->setErrorCode(NO_VERSION_DATA_FOUND);
+<<<<<<< HEAD
         return $result;
+=======
+        $results[] = $result;
+        return $results;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
 /// Extract the php_setting part

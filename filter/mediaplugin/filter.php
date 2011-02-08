@@ -125,6 +125,12 @@ class filter_mediaplugin extends moodle_text_filter {
 
             $search = '/<a[^>]*href="([^<]*)youtube.com\/v\/([^"]*)"[^>]*>(.*?)<\/a>/is';
             $newtext = preg_replace_callback($search, 'filter_mediaplugin_youtube_callback', $newtext);
+<<<<<<< HEAD
+=======
+
+            $search = '/<a(\s+[^>]+?)?\s+href="((([^"]+)youtube\.com)\/view_play_list\?p=([^"]*))"[^>]*>(.*?)<\/a>/is';
+            $newtext = preg_replace_callback($search, 'filter_mediaplugin_youtube_playlist_callback', $newtext);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
 
         if (!empty($CFG->filter_mediaplugin_enable_img)) {
@@ -350,6 +356,28 @@ function filter_mediaplugin_youtube_callback($link, $autostart=false) {
 }
 
 /**
+<<<<<<< HEAD
+=======
+ * Change Youtube playlist into embedded Youtube playlist videos
+ */
+function filter_mediaplugin_youtube_playlist_callback($link, $autostart=false) {
+
+    $site = s($link[4]);
+    $param = s($link[5]);
+    $info = s($link[6]);
+
+    return '<object title="'.$info.'"
+                    class="mediaplugin mediaplugin_youtube" type="application/x-shockwave-flash"
+                    data="'.$site.'youtube.com/p/'.$param.'&amp;fs=1&amp;rel=0" width="400" height="320">'.
+           '<param name="movie" value="'.$site.'youtube.com/p/'.$param.'&amp;fs=1&amp;rel=0" />'.
+           '<param name="FlashVars" value="playerMode=embedded" />'.
+           '<param name="wmode" value="transparent" />'.
+           '<param name="allowFullScreen" value="true" />'.
+           '</object>';
+}
+
+/**
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * Change links to images into embedded images
  */
 function filter_mediaplugin_img_callback($link, $autostart=false) {

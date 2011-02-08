@@ -28,15 +28,32 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+<<<<<<< HEAD
 $string['admindirname'] = 'Adresář pro správu (admin)';
 $string['availablelangs'] = 'Dostupné jazykové balíčky';
 $string['chooselanguagehead'] = 'Vyberte jazyk';
 $string['chooselanguagesub'] = 'Zvolte si jazyk PRO INSTALOVÁNÍ. Jazyk pro stránky Moodlu a pro uživatele budete moci vybrat později.';
 $string['clialreadyinstalled'] = 'Soubor config.php již existuje. Spusťte admin/cli/upgrade.php, pokud chcete provést upgrade vašich stránek.';
+=======
+$string['admindirname'] = 'Adresář se soubory pro správu serveru';
+$string['availablelangs'] = 'Dostupné jazykové balíčky';
+$string['chooselanguagehead'] = 'Vyberte jazyk';
+$string['chooselanguagesub'] = 'Zvolte si jazyk tohoto průvodce instalací. Vybraný jazyk bude též nastaven jako výchozí jazyk stránek, ale to půjde případně později změnit.';
+$string['clialreadyinstalled'] = 'Soubor config.php již existuje. Spusťte admin/cli/upgrade.php, pokud chcete provést upgrade vašich stránek.';
+$string['cliinstallheader'] = 'Moodle {$a} - průvodce instalací z příkazové řádky';
+$string['databasehost'] = 'Databázový server';
+$string['databasename'] = 'Název databáze';
+$string['databasetypehead'] = 'Vyberte databázový ovladač';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['dataroot'] = 'Datový adresář';
 $string['dbprefix'] = 'Předpona tabulek';
 $string['dirroot'] = 'Adresář Moodlu';
 $string['environmenthead'] = 'Kontrola programového prostředí...';
+<<<<<<< HEAD
+=======
+$string['environmentsub2'] = 'Každé vydání Moodle vyžaduje určitou minimální verzi PHP a několik povinných rozšíření PHP. Plná kontrola prostředí se provádí před každým instalací a upgrade. Prosím, kontaktujte správce serveru, pokud nevíte, jak nainstalovat novou verzi, nebo povolit rozšíření PHP.';
+$string['errorsinenvironment'] = 'Kontrola serverového prostředí selhala!';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['installation'] = 'Instalace';
 $string['langdownloaderror'] = 'Bohužel, jazyk "{$a}" se nepodařilo nainstalovat. Instalace bude pokračovat v angličtine.';
 $string['memorylimithelp'] = '<p>Limit paměti pro PHP skripty je na vašem serveru momentálně nastaven na hodnotu {$a}.</p>
@@ -53,6 +70,14 @@ na hodnotu blízkou 40M. Nemáte-li taková práva, požádejte správce vašeho
 <p><blockquote>php_value memory_limit 40M</blockquote></p>
 <p>Bohužel, v některých případech tím vyřadíte z provozu <b>všechny</b> PHP stránky (při jejich prohlížení uvidíte chybová hlášení), takže budete muset soubor .htaccess zase odstranit.</li>
 </ol>';
+<<<<<<< HEAD
+=======
+$string['paths'] = 'Cesty';
+$string['pathserrcreatedataroot'] = 'Datový adresář ({$a->dataroot}) nemůže být tímto průvodcem instalací vytvořen.';
+$string['pathshead'] = 'Potvrdit cesty';
+$string['pathsrodataroot'] = 'Do datového adresáře nelze zapisovat.';
+$string['pathsroparentdataroot'] = 'Do nadřazeného adresáře ({$a->parent}) nelze zapisovat. Datový adresář ({$a->dataroot}) nemůže být tímto průvodcem instalací vytvořen.';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['phpversion'] = 'Verze PHP';
 $string['phpversionhelp'] = '<p>Moodle vyžaduje PHP alespoň verze 4.3.0 nebo 5.1.0 (PHP 5.0.x obsahuje množství chyb).</p>
 <p>Nyní používáte PHP verze {$a}.</p>

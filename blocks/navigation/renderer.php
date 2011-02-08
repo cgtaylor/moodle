@@ -21,13 +21,25 @@ class block_navigation_renderer extends plugin_renderer_base {
         // array of nested li elements
         $lis = array();
         foreach ($items as $item) {
+<<<<<<< HEAD
             if (!$item->display) {
+=======
+            if (!$item->display && !$item->contains_active_node()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 continue;
             }
             $content = $item->get_content();
             $title = $item->get_title();
+<<<<<<< HEAD
             $isbranch = ($item->type !== $expansionlimit && ($item->children->count() > 0 || ($item->nodetype == navigation_node::NODETYPE_BRANCH && $item->children->count()==0 && (isloggedin() || $item->type <= navigation_node::TYPE_CATEGORY))));
             $hasicon = ((!$isbranch || $item->type == navigation_node::TYPE_ACTIVITY)&& $item->icon instanceof renderable);
+=======
+
+            $isexpandable = (empty($expansionlimit) || ($item->type > navigation_node::TYPE_ACTIVITY || $item->type < $expansionlimit) || ($item->contains_active_node() && $item->children->count() > 0));
+            $isbranch = $isexpandable && ($item->children->count() > 0 || ($item->has_children() && (isloggedin() || $item->type <= navigation_node::TYPE_CATEGORY)));
+
+            $hasicon = ((!$isbranch || $item->type == navigation_node::TYPE_ACTIVITY )&& $item->icon instanceof renderable);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
             if ($hasicon) {
                 $icon = $this->output->render($item->icon);
@@ -91,7 +103,14 @@ class block_navigation_renderer extends plugin_renderer_base {
             if (!empty($item->id)) {
                 $divattr['id'] = $item->id;
             }
+<<<<<<< HEAD
             $content = html_writer::tag('p', $content, $divattr) . $this->navigation_node($item->children, array(), $expansionlimit, $options, $depth+1);
+=======
+            $content = html_writer::tag('p', $content, $divattr);
+            if ($isexpandable) {
+                $content .= $this->navigation_node($item->children, array(), $expansionlimit, $options, $depth+1);
+            }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             if (!empty($item->preceedwithhr) && $item->preceedwithhr===true) {
                 $content = html_writer::empty_tag('hr') . $content;
             }

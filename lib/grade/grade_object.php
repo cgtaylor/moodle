@@ -184,6 +184,7 @@ abstract class grade_object {
         }
 
         global $DB;
+<<<<<<< HEAD
         if ($datas = $DB->get_records_select($table, $wheresql, $newparams)) {
 
             $result = array();
@@ -198,6 +199,24 @@ abstract class grade_object {
 
             return false;
         }
+=======
+        $rs = $DB->get_recordset_select($table, $wheresql, $newparams);
+        //returning false rather than empty array if nothing found
+        if (!$rs->valid()) {
+            $rs->close();
+            return false;
+        }
+
+        $result = array();
+        foreach($rs as $data) {
+            $instance = new $classname();
+            grade_object::set_properties($instance, $data);
+            $result[$instance->id] = $instance;
+        }
+        $rs->close();
+
+        return $result;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     /**

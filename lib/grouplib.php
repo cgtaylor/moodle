@@ -199,7 +199,14 @@ function groups_get_user_groups($courseid, $userid=0) {
              WHERE gm.userid = ? AND g.courseid = ?";
     $params = array($userid, $courseid);
 
+<<<<<<< HEAD
     if (!$rs = $DB->get_recordset_sql($sql, $params)) {
+=======
+    $rs = $DB->get_recordset_sql($sql, $params);
+
+    if (!$rs->valid()) {
+        $rs->close(); // Not going to iterate (but exit), close rs
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         return array('0' => array());
     }
 

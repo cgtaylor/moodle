@@ -363,7 +363,11 @@ EOD;
                 $header .= "Connection: close\n";
                 $header .= "Date: ".date('r')."\n";
                 $header .= "Server: Moodle\n";
+<<<<<<< HEAD
                 $header .= "Content-Type: text/html\n";
+=======
+                $header .= "Content-Type: text/html; charset=utf-8\n";
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 $header .= "Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT\n";
                 $header .= "Cache-Control: no-cache, must-revalidate\n";
                 $header .= "Expires: Wed, 4 Oct 1978 09:32:45 GMT\n";
@@ -383,7 +387,11 @@ EOD;
                 $header .= "Connection: close\n";
                 $header .= "Date: ".date('r')."\n";
                 $header .= "Server: Moodle\n";
+<<<<<<< HEAD
                 $header .= "Content-Type: text/html\n";
+=======
+                $header .= "Content-Type: text/html; charset=utf-8\n";
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 $header .= "Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT\n";
                 $header .= "Cache-Control: no-cache, must-revalidate\n";
                 $header .= "Expires: Wed, 4 Oct 1978 09:32:45 GMT\n";
@@ -461,7 +469,11 @@ EOD;
                 $header .= "Connection: close\n";
                 $header .= "Date: ".date('r')."\n";
                 $header .= "Server: Moodle\n";
+<<<<<<< HEAD
                 $header .= "Content-Type: text/html\n";
+=======
+                $header .= "Content-Type: text/html; charset=utf-8\n";
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 $header .= "Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT\n";
                 $header .= "Cache-Control: no-cache, must-revalidate\n";
                 $header .= "Expires: Wed, 4 Oct 1978 09:32:45 GMT\n";

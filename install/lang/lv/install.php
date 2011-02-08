@@ -31,7 +31,12 @@
 $string['admindirname'] = 'Administratora direktorijs';
 $string['availablelangs'] = 'Pieejamās valodu pakotnes';
 $string['chooselanguagehead'] = 'Valodas izvēle';
+<<<<<<< HEAD
 $string['chooselanguagesub'] = 'Lūdzu, izvēlieties valodu, kas tiks lietota TIKAI instalēšanas laikā. Vietni un lietotājiem pieejamās valodas vēlāk varēsit izvēlēties citā ekrānā.';
+=======
+$string['chooselanguagesub'] = 'Lūdzu izvēlieties šīs instalācijas valodu. Izvēlētā valoda tiks izmantota arī kā noklusētā šīs vietnes valoda, lai gan tā var tikt nomainīta vēlāk.';
+$string['databasetypehead'] = 'Izvēlēties datubāzes draiveru';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['dataroot'] = 'Datu direktorijs';
 $string['dbprefix'] = 'Tabulu prefikss';
 $string['dirroot'] = 'Moodle direktorijs';
@@ -43,6 +48,7 @@ $string['memorylimithelp'] = '<p>Pašlaik iestatītais PHP atmiņas apjoma ierob
 <p>Sistēmā Moodle tas vēlāk var izraisīt atmiņas izmantošanas problēmas, it īpaši tad, 
    ja būsit iespējojis lielu skaitu moduļu un/vai lietotāju.</p>
 
+<<<<<<< HEAD
 <p>Ieteicams konfigurēt PHP ar pēc iespējas lielāku atmiņas apjomu, piemēram, 40 MB.  
    Ir vairāki veidi, kā to var izdarīt, piemēram:</p>
 <ol>
@@ -56,6 +62,16 @@ $string['memorylimithelp'] = '<p>Pašlaik iestatītais PHP atmiņas apjoma ierob
     <p><blockquote>php_value memory_limit 40M</blockquote></p>
     <p>Tomēr dažos serveros tas neļaus darboties <b>nevienai</b> PHP lapai 
     (atverot šīs lapas, tiks parādīti kļūdas ziņojumi), un fails .htaccess būs jānoņem.</p></li>
+=======
+<p>Ja iespējams, ieteicams konfigurēt PHP ar lielāku maksimālās atmiņas apjomu, piemēram, 40 MB. Ir vairāki veidi, kā to var izdarīt, piemēram:</p>
+<ol>
+<li>Ja iespējams, atkārtoti kompilējiet PHP, izmantojot <i>--enable-memory-limit</i>.  
+    Šādā gadījumā sistēma Moodle atmiņas apjoma ierobežojumu varēs iestatīt automātiski.</li>
+<li>Ja jums ir piekļuve php.ini failam, varat mainīt tajā esošo parametra <b>memory_limit</b> iestatījumu, piemēram, uz 40 MB.  Ja jums nav piekļuves šim failam, palūdziet to izdarīt administratoram.</li>
+<li>Dažos PHP serveros Moodle direktorijā var izveidot failu .htaccess, kurā ir šāda rinda:    <p><blockquote>php_value memory_limit 40M</blockquote></p>
+    <p>Tomēr dažos serveros tas neļaus darboties <b>nevienai</b> PHP lapai 
+(atverot šīs lapas, tiks parādīti kļūdas ziņojumi), un fails .htaccess būs jānoņem.</p></li>
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 </ol>';
 $string['phpversion'] = 'PHP versija';
 $string['phpversionhelp'] = '<p>Sistēmā Moodle jāizmanto PHP, kuras versija ir vismaz 4.3.0 vai 5.1.0 (versijai 5.0.x piemīt vairākas zināmas problēmas).</p>

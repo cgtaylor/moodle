@@ -12,6 +12,10 @@ require_once(dirname(__FILE__) . '/../config.php');
 require_once(dirname(__FILE__) . '/lib.php');
 require_once($CFG->dirroot . '/user/selector/lib.php');
 require_once($CFG->dirroot . '/course/lib.php');
+<<<<<<< HEAD
+=======
+require_once($CFG->libdir . '/filelib.php');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 $groupid = required_param('group', PARAM_INT);
 $cancel  = optional_param('cancel', false, PARAM_BOOL);

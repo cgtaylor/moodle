@@ -272,6 +272,17 @@ function upgrade_plugins($type, $startcallback, $endcallback, $verbose) {
     foreach ($plugs as $plug=>$fullplug) {
         $component = $type.'_'.$plug; // standardised plugin name
 
+<<<<<<< HEAD
+=======
+        // check plugin dir is valid name
+        $cplug = strtolower($plug);
+        $cplug = clean_param($cplug, PARAM_SAFEDIR);
+        $cplug = str_replace('-', '', $cplug);
+        if ($plug !== $cplug) {
+            throw new plugin_defective_exception($component, 'Invalid plugin directory name.');
+        }
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (!is_readable($fullplug.'/version.php')) {
             continue;
         }
@@ -279,6 +290,16 @@ function upgrade_plugins($type, $startcallback, $endcallback, $verbose) {
         $plugin = new stdClass();
         require($fullplug.'/version.php');  // defines $plugin with version etc
 
+<<<<<<< HEAD
+=======
+        // if plugin tells us it's full name we may check the location
+        if (isset($plugin->component)) {
+            if ($plugin->component !== $component) {
+                throw new plugin_defective_exception($component, 'Plugin installed in wrong folder.');
+            }
+        }
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (empty($plugin->version)) {
             throw new plugin_defective_exception($component, 'Missing version value in version.php');
         }
@@ -396,12 +417,28 @@ function upgrade_plugins_modules($startcallback, $endcallback, $verbose) {
 
     foreach ($mods as $mod=>$fullmod) {
 
+<<<<<<< HEAD
         if ($mod == 'NEWMODULE') {   // Someone has unzipped the template, ignore it
+=======
+        if ($mod === 'NEWMODULE') {   // Someone has unzipped the template, ignore it
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             continue;
         }
 
         $component = 'mod_'.$mod;
 
+<<<<<<< HEAD
+=======
+        // check module dir is valid name
+        $cmod = strtolower($mod);
+        $cmod = clean_param($cmod, PARAM_SAFEDIR);
+        $cmod = str_replace('-', '', $cmod);
+        $cmod = str_replace('_', '', $cmod); // modules MUST not have '_' in name and never will, sorry
+        if ($mod !== $cmod) {
+            throw new plugin_defective_exception($component, 'Invalid plugin directory name.');
+        }
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (!is_readable($fullmod.'/version.php')) {
             throw new plugin_defective_exception($component, 'Missing version.php');
         }
@@ -409,6 +446,16 @@ function upgrade_plugins_modules($startcallback, $endcallback, $verbose) {
         $module = new stdClass();
         require($fullmod .'/version.php');  // defines $module with version etc
 
+<<<<<<< HEAD
+=======
+        // if plugin tells us it's full name we may check the location
+        if (isset($module->component)) {
+            if ($module->component !== $component) {
+                throw new plugin_defective_exception($component, 'Plugin installed in wrong folder.');
+            }
+        }
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (empty($module->version)) {
             if (isset($module->version)) {
                 // Version is empty but is set - it means its value is 0 or ''. Let us skip such module.
@@ -426,6 +473,14 @@ function upgrade_plugins_modules($startcallback, $endcallback, $verbose) {
             }
         }
 
+<<<<<<< HEAD
+=======
+        // all modules must have en lang pack
+        if (!is_readable("$fullmod/lang/en/$mod.php")) {
+            throw new plugin_defective_exception($component, 'Missing mandatory en language pack.');
+        }
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $module->name = $mod;   // The name MUST match the directory
 
         $currmodule = $DB->get_record('modules', array('name'=>$module->name));
@@ -548,6 +603,17 @@ function upgrade_plugins_blocks($startcallback, $endcallback, $verbose) {
 
         $component = 'block_'.$blockname;
 
+<<<<<<< HEAD
+=======
+        // check block dir is valid name
+        $cblockname = strtolower($blockname);
+        $cblockname = clean_param($cblockname, PARAM_SAFEDIR);
+        $cblockname = str_replace('-', '', $cblockname);
+        if ($blockname !== $cblockname) {
+            throw new plugin_defective_exception($component, 'Invalid plugin directory name.');
+        }
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (!is_readable($fullblock.'/version.php')) {
             throw new plugin_defective_exception('block/'.$blockname, 'Missing version.php file.');
         }
@@ -557,6 +623,16 @@ function upgrade_plugins_blocks($startcallback, $endcallback, $verbose) {
         include($fullblock.'/version.php');
         $block = $plugin;
 
+<<<<<<< HEAD
+=======
+        // if plugin tells us it's full name we may check the location
+        if (isset($block->component)) {
+            if ($block->component !== $component) {
+                throw new plugin_defective_exception($component, 'Plugin installed in wrong folder.');
+            }
+        }
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (!empty($plugin->requires)) {
             if ($plugin->requires > $CFG->version) {
                 throw new upgrade_requires_exception($component, $plugin->version, $CFG->version, $plugin->requires);
@@ -617,7 +693,11 @@ function upgrade_plugins_blocks($startcallback, $endcallback, $verbose) {
             if ($conflictblock !== false) {
                 // Duplicate block titles are not allowed, they confuse people
                 // AND PHP's associative arrays ;)
+<<<<<<< HEAD
                 throw new plugin_defective_exception($component, get_string('blocknameconflict', '', (object)array('name'=>$block->name, 'conflict'=>$conflictblock)));
+=======
+                throw new plugin_defective_exception($component, get_string('blocknameconflict', 'error', (object)array('name'=>$block->name, 'conflict'=>$conflictblock)));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             }
             $startcallback($component, true, $verbose);
 

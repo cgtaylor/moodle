@@ -22,6 +22,10 @@
  */
 
 require_once($CFG->dirroot . '/mod/data/lib.php');
+<<<<<<< HEAD
+=======
+require_once($CFG->libdir . '/portfolio/caller.php');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 /**
  * The class to handle entry exports of a database module

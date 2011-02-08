@@ -20,6 +20,10 @@
         $url->param('state', $stateid);
     }
     $PAGE->set_url($url);
+<<<<<<< HEAD
+=======
+    $PAGE->set_pagelayout('popup');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     $attemptobj = quiz_attempt::create($attemptid);
 
@@ -27,10 +31,18 @@
     require_login($attemptobj->get_courseid(), false, $attemptobj->get_cm());
     $attemptobj->check_review_capability();
 
+<<<<<<< HEAD
+=======
+/// Create an object to manage all the other (non-roles) access rules.
+    $accessmanager = $attemptobj->get_access_manager(time());
+    $options = $attemptobj->get_review_options();
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 /// Permissions checks for normal users who do not have quiz:viewreports capability.
     if (!$attemptobj->has_capability('mod/quiz:viewreports')) {
     /// Can't review during the attempt - send them back to the attempt page.
         if (!$attemptobj->is_finished()) {
+<<<<<<< HEAD
             echo $OUTPUT->notification(get_string('cannotreviewopen', 'quiz'));
             echo $OUTPUT->close_window_button();
         }
@@ -44,6 +56,31 @@
             $accessmanager = $attemptobj->get_access_manager(time());
             echo $OUTPUT->notification($accessmanager->cannot_review_message($attemptobj->get_review_options()));
             echo $OUTPUT->close_window_button();
+=======
+            echo $OUTPUT->header();
+            echo $OUTPUT->notification(get_string('cannotreviewopen', 'quiz'));
+            echo $OUTPUT->close_window_button();
+            echo $OUTPUT->footer();
+            die;
+        }
+    /// Can't review other users' attempts.
+        if (!$attemptobj->is_own_attempt()) {
+            echo $OUTPUT->header();
+            echo $OUTPUT->notification(get_string('notyourattempt', 'quiz'));
+            echo $OUTPUT->close_window_button();
+            echo $OUTPUT->footer();
+            die;
+        }
+
+    /// Can't review unless Students may review -> Responses option is turned on.
+        if (!$options->responses) {
+            $accessmanager = $attemptobj->get_access_manager(time());
+            echo $OUTPUT->header();
+            echo $OUTPUT->notification($accessmanager->cannot_review_message($attemptobj->get_review_options()));
+            echo $OUTPUT->close_window_button();
+            echo $OUTPUT->footer();
+            die;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
     }
 

@@ -33,5 +33,10 @@ $string['cliansweryes'] = 'نعم';
 $string['cliincorrectvalueerror'] = 'خطأ، القيمة "{$a->value}" غير صحيحة من أجل "{$a->option}"';
 $string['cliincorrectvalueretry'] = 'قيمة غير صحيحة، حاول مرة أخرى';
 $string['clitypevalue'] = 'أدخل القيمة';
+<<<<<<< HEAD
+=======
+$string['clitypevaluedefault'] = 'ادخل القيم أو اضغط انتر (Enter) لإستخدام القيم الأفتراضية  ({$a})';
+$string['cliyesnoprompt'] = 'ادخل (Y) تعني نعم أو (N) تعني لأ';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['environmentrequireinstall'] = 'مطلوب تثبيته/تفيله';
 $string['environmentrequireversion'] = 'مطلوب الأصدار {$a->needed} ، وانت تستخدم الأصدار {$a->current}';

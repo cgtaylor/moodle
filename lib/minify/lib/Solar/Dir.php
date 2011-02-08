@@ -11,7 +11,11 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
+<<<<<<< HEAD
  * @version $Id: Dir.php,v 1.2 2010/12/14 17:36:06 moodlerobot Exp $
+=======
+ * @version $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * 
  */
 class Solar_Dir {

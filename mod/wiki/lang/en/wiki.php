@@ -77,6 +77,10 @@ $string['formatnwiki_help'] = 'Nwiki is the Mediawiki-like markup language used 
 To create a new page, type the new page name enclosed in double square brackets, for example [[Page 2]].';
 $string['formatnwiki_link'] = 'mod/wiki/nwiki';
 $string['history'] = 'History';
+<<<<<<< HEAD
+=======
+$string['history_help'] = 'The history lists links to previous versions of the page.';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['html'] = 'HTML';
 $string['insertcomment'] = 'Insert comment';
 $string['invalidlock'] = 'This page is already locked by another user.';
@@ -97,7 +101,13 @@ $string['modulename'] = 'Wiki';
 $string['modulenameplural'] = 'Wikis';
 $string['navigation'] = 'Navigation';
 $string['navigationfrom'] = 'This page comes from';
+<<<<<<< HEAD
 $string['navigationto'] = 'This page goes to';
+=======
+$string['navigationfrom_help'] = 'The wiki pages linking to this page';
+$string['navigationto'] = 'This page goes to';
+$string['navigationto_help'] = 'The links that included in this page';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['newpage'] = 'New';
 $string['newpagetitle'] = 'New page title';
 $string['noattachments'] = '<strong>No files attached</strong>';
@@ -131,9 +141,16 @@ $string['overridelocks'] = 'Override locks';
 $string['overridinglocks'] = 'Overriding locks...';
 $string['pageexists'] = 'This page already exists. Redirecting to it.';
 $string['pageindex'] = 'Page Index';
+<<<<<<< HEAD
 $string['pageislocked'] = 'Someone is editing this page right now. Try to edit it in a few minutes.';
 $string['pageindex'] = 'Page index';
 $string['pagelist'] = 'Page list';
+=======
+$string['pageindex_help'] = 'This wiki\'s page tree';
+$string['pageislocked'] = 'Someone is editing this page right now. Try to edit it in a few minutes.';
+$string['pagelist'] = 'Page list';
+$string['pagelist_help'] = 'Page list categorized by alphabetical order';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['peerreview'] = 'Peer review';
 $string['pluginadministration'] = 'Wiki administration';
 $string['pluginname'] = 'Wiki';
@@ -160,9 +177,17 @@ $string['searchresult'] = 'Search results:';
 $string['searchwikis'] = 'Search wikis';
 $string['special'] = 'Special';
 $string['tagsdeleted'] = 'Wiki tags have been deleted';
+<<<<<<< HEAD
 $string['teacherrating'] = 'Teacher rating';
 $string['timesrating']='This page has been rated  {$a->c} times with an average of: {$a->s}';
 $string['updatedpages'] = "Updated pages";
+=======
+$string['tagtitle'] = 'See the "{$a}" tag';
+$string['teacherrating'] = 'Teacher rating';
+$string['timesrating']='This page has been rated  {$a->c} times with an average of: {$a->s}';
+$string['updatedpages'] = "Updated pages";
+$string['updatedpages_help'] = "Recently updated wiki pages";
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['updatedwikipages'] = "Updated wiki pages";
 $string['upload'] = "Upload & Delete";
 $string['uploadname'] = "Filename";

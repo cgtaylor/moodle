@@ -431,7 +431,11 @@ function SCORMapi1_2() {
                     }
                 ?>
                 result = ('true' == result) ? 'true' : 'false';
+<<<<<<< HEAD
                 errorCode = (result ==' true')? '0' : '101';
+=======
+                errorCode = (result =='true')? '0' : '101';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 <?php 
                     if (scorm_debugging($scorm)) {
                         //echo 'alert("Finished SCORM 1.2");';

@@ -84,7 +84,10 @@ $string['everytime'] = 'Every time it\'s used';
 $string['exceededmaxattempts'] = 'You have reached the maximum number of attempts.';
 $string['exit'] = 'Exit course';
 $string['exitactivity'] = 'Exit activity';
+<<<<<<< HEAD
 $string['expcoll'] = 'Expand/Collide';
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['expired'] = 'Sorry, this activity closed on {$a} and is no longer available';
 $string['external'] = 'Update external packages timing';
 $string['failed'] = 'Failed';
@@ -98,6 +101,11 @@ $string['forcecompleteddesc'] = 'This preference sets the default value for the 
 $string['forcenewattempt'] = 'Force new attempt';
 $string['forcenewattempt_help'] = 'If enabled, each time a SCORM package is accessed will be counted as a new attempt.';
 $string['forcenewattemptdesc'] = 'This preference sets the default value for the force new attempt setting';
+<<<<<<< HEAD
+=======
+$string['forcejavascript'] = 'Force users to enable JavaScript';
+$string['forcejavascriptmessage'] = 'JavaScript is required to view this object, please enable JavaScript in your browser and try again.';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['found'] = 'Manifest found';
 $string['frameheight'] = 'This preference set the default height for stage frame or window';
 $string['framewidth'] = 'This preference set the default width for stage frame or window';

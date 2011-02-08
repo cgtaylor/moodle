@@ -18,7 +18,11 @@
 /**
  * Defines message providers (types of messages being sent)
  *
+<<<<<<< HEAD
  * @package mod-assignment
+=======
+ * @package mod-feedback
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * @copyright  2010 onwards  Aparup Banerjee  http://moodle.com
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

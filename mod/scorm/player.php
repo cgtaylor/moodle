@@ -56,6 +56,13 @@
         $url->param('newattempt', $newattempt);
     }
     $PAGE->set_url($url);
+<<<<<<< HEAD
+=======
+    $forcejs = get_config('scorm','forcejavascript');
+    if (!empty($forcejs)) {
+        $PAGE->add_body_class('forcejavascript');
+    }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     require_login($course->id, false, $cm);
 
@@ -106,7 +113,11 @@
     }
     $attemptstr = '&amp;attempt=' . $attempt;
 
+<<<<<<< HEAD
     $result = scorm_get_toc($USER, $scorm, 'structurelist', $currentorg, $scoid, $mode, $attempt, true, true);
+=======
+    $result = scorm_get_toc($USER, $scorm, $cm->id, TOCJSLINK, $currentorg, $scoid, $mode, $attempt, true, true);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $sco = $result->sco;
 
     if (($mode == 'browse') && ($scorm->hidebrowse == 1)) {
@@ -249,4 +260,10 @@ $PAGE->requires->js_init_call('M.mod_scorm.init', array($scorm->hidenav, $scorm-
 $completion=new completion_info($course);
 $completion->set_module_viewed($cm);
 
+<<<<<<< HEAD
+=======
+if (!empty($forcejs)) {
+    echo $OUTPUT->box(get_string("forcejavascriptmessage", "scorm"), "generalbox boxaligncenter forcejavascriptmessage");
+}
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 echo $OUTPUT->footer();

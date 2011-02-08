@@ -72,9 +72,12 @@ if($group===0 && $course->groupmode==SEPARATEGROUPS) {
 $reportsurl=$CFG->wwwroot.'/course/report.php?id='.$course->id;
 $completion=new completion_info($course);
 $activities=$completion->get_activities();
+<<<<<<< HEAD
 if(count($activities)==0) {
     print_error('err_noactivities','completion',$reportsurl);
 }
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 // Generate where clause
 $where = array();
@@ -96,6 +99,7 @@ $total = $completion->get_num_tracked_users(implode(' AND ', $where), $where_par
 // Total user count
 $grandtotal = $completion->get_num_tracked_users('', array(), $group);
 
+<<<<<<< HEAD
 // If no users in this course what-so-ever
 if (!$grandtotal) {
     echo $OUTPUT->box_start('errorbox errorboxcontent boxaligncenter boxwidthnormal');
@@ -106,6 +110,8 @@ if (!$grandtotal) {
     exit;
 }
 
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 // Get user data
 $progress = array();
 
@@ -120,7 +126,11 @@ if ($total) {
     );
 }
 
+<<<<<<< HEAD
 if($csv) {
+=======
+if($csv && $grandtotal && count($activities)>0) { // Only show CSV if there are some users/actvs
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     header('Content-Disposition: attachment; filename=progress.'.
         preg_replace('/[^a-z0-9-]/','_',strtolower($course->shortname)).'.csv');
     // Unicode byte-order mark for Excel
@@ -155,6 +165,22 @@ if($csv) {
     groups_print_course_menu($course,$CFG->wwwroot.'/course/report/progress/?course='.$course->id);
 }
 
+<<<<<<< HEAD
+=======
+if(count($activities)==0) {
+    echo $OUTPUT->container(get_string('err_noactivities', 'completion'), 'errorbox errorboxcontent');
+    echo $OUTPUT->footer();
+    exit;
+}
+
+// If no users in this course what-so-ever
+if (!$grandtotal) {
+    echo $OUTPUT->container(get_string('err_nousers', 'completion'), 'errorbox errorboxcontent');
+    echo $OUTPUT->footer();
+    exit;
+}
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 // Build link for paging
 $link = $CFG->wwwroot.'/course/report/progress/?course='.$course->id;
 if (strlen($sort)) {

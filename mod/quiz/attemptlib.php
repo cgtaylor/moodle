@@ -375,14 +375,22 @@ class quiz {
         $this->pagequestionids = array();
 
         // Get the appropriate layout string (from quiz or attempt).
+<<<<<<< HEAD
         $layout = $this->get_layout_string();
+=======
+        $layout = quiz_clean_layout($this->get_layout_string(), true);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (empty($layout)) {
             // Nothing to do.
             return;
         }
 
         // Break up the layout string into pages.
+<<<<<<< HEAD
         $pagelayouts = explode(',0', quiz_clean_layout($layout, true));
+=======
+        $pagelayouts = explode(',0', $layout);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         // Strip off any empty last page (normally there is one).
         if (end($pagelayouts) == '') {
@@ -536,7 +544,11 @@ class quiz_attempt extends quiz {
     public function load_specific_question_state($questionid, $stateid) {
         global $DB;
         $state = question_load_specific_state($this->questions[$questionid],
+<<<<<<< HEAD
                 $this->quiz, $this->attempt, $stateid);
+=======
+                $this->quiz, $this->attempt->uniqueid, $stateid);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if ($state === false) {
             throw new moodle_quiz_exception($this, 'invalidstateid');
         }

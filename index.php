@@ -166,7 +166,12 @@
                             $subtext = get_string('subscribe', 'forum');
                         }
                         echo $OUTPUT->heading($newsforum->name, 2, 'headingblock header');
+<<<<<<< HEAD
                         echo '<div class="subscribelink"><a href="mod/forum/subscribe.php?id='.$newsforum->id.'">'.$subtext.'</a></div>';
+=======
+                        $suburl = new moodle_url('/mod/forum/subscribe.php', array('id' => $newsforum->id, 'sesskey' => sesskey()));
+                        echo html_writer::tag('div', html_writer::link($suburl, $subtext), array('class' => 'subscribelink'));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                     } else {
                         echo $OUTPUT->heading($newsforum->name, 2, 'headingblock header');
                     }

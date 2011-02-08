@@ -179,12 +179,20 @@ class enrol_self_plugin extends enrol_plugin {
             return null;
         }
 
+<<<<<<< HEAD
         if ($instance->enrolstartdate != 0 and $instance->enrolstartdate < time()) {
+=======
+        if ($instance->enrolstartdate != 0 and $instance->enrolstartdate > time()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             //TODO: inform that we can not enrol yet
             return null;
         }
 
+<<<<<<< HEAD
         if ($instance->enrolenddate != 0 and $instance->enrolenddate > time()) {
+=======
+        if ($instance->enrolenddate != 0 and $instance->enrolenddate < time()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             //TODO: inform that enrolment is not possible any more
             return null;
         }
@@ -303,6 +311,10 @@ class enrol_self_plugin extends enrol_plugin {
             $contact = get_admin();
         }
 
+<<<<<<< HEAD
+=======
+        //directly emailing welcome message rather than using messaging
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         email_to_user($user, $contact, $subject, $message);
     }
 

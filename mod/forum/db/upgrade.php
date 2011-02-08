@@ -104,7 +104,12 @@ function xmldb_forum_upgrade($oldversion) {
 
         $count = $DB->count_records_sql("SELECT COUNT('x') $sqlfrom");
 
+<<<<<<< HEAD
         if ($rs = $DB->get_recordset_sql("SELECT p.id, p.attachment, p.userid, d.forum, f.course, cm.id AS cmid $sqlfrom ORDER BY f.course, f.id, d.id")) {
+=======
+        $rs = $DB->get_recordset_sql("SELECT p.id, p.attachment, p.userid, d.forum, f.course, cm.id AS cmid $sqlfrom ORDER BY f.course, f.id, d.id");
+        if ($rs->valid()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
             $pbar = new progress_bar('migrateforumfiles', 500, true);
 
@@ -146,8 +151,13 @@ function xmldb_forum_upgrade($oldversion) {
                 @rmdir("$CFG->dataroot/$post->course/$CFG->moddata/forum/$post->forum");
                 @rmdir("$CFG->dataroot/$post->course/$CFG->moddata/forum");
             }
+<<<<<<< HEAD
             $rs->close();
         }
+=======
+        }
+        $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         upgrade_mod_savepoint(true, 2008081900, 'forum');
     }

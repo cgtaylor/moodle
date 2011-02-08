@@ -461,8 +461,14 @@ function forum_cron() {
             // caching subscribed users of each forum
             if (!isset($subscribedusers[$forumid])) {
                 $modcontext = get_context_instance(CONTEXT_MODULE, $coursemodules[$forumid]->id);
+<<<<<<< HEAD
                 if ($subusers = forum_subscribed_users($courses[$courseid], $forums[$forumid], 0, $modcontext)) {
                     foreach ($subusers as $postuser) {
+=======
+                if ($subusers = forum_subscribed_users($courses[$courseid], $forums[$forumid], 0, $modcontext, "u.*")) {
+                    foreach ($subusers as $postuser) {
+                        unset($postuser->description); // not necessary
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                         // this user is subscribed to this forum
                         $subscribedusers[$forumid][$postuser->id] = $postuser->id;
                         // this user is a user we have to process later
@@ -530,6 +536,10 @@ function forum_cron() {
                 if (array_key_exists($post->userid, $users)) { // we might know him/her already
                     $userfrom = $users[$post->userid];
                 } else if ($userfrom = $DB->get_record('user', array('id' => $post->userid))) {
+<<<<<<< HEAD
+=======
+                    unset($userfrom->description); // not necessary
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                     $users[$userfrom->id] = $userfrom; // fetch only once, we can add it to user list, it will be skipped anyway
                 } else {
                     mtrace('Could not find user '.$post->userid);
@@ -918,6 +928,10 @@ function forum_cron() {
 
                 $attachment = $attachname='';
                 $usetrueaddress = true;
+<<<<<<< HEAD
+=======
+                //directly email forum digests rather than sending them via messaging
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 $mailresult = email_to_user($userto, $site->shortname, $postsubject, $posttext, $posthtml, $attachment, $attachname, $usetrueaddress, $CFG->forum_replytouser);
 
                 if (!$mailresult) {
@@ -1501,7 +1515,12 @@ function forum_upgrade_grades() {
     $sql = "SELECT f.*, cm.idnumber AS cmidnumber, f.course AS courseid
               FROM {forum} f, {course_modules} cm, {modules} m
              WHERE m.name='forum' AND m.id=cm.module AND cm.instance=f.id";
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql)) {
+=======
+    $rs = $DB->get_recordset_sql($sql);
+    if ($rs->valid()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $pbar = new progress_bar('forumupgradegrades', 500, true);
         $i=0;
         foreach ($rs as $forum) {
@@ -1510,8 +1529,13 @@ function forum_upgrade_grades() {
             forum_update_grades($forum, 0, false);
             $pbar->update($i, $count, "Updating Forum grades ($i/$count).");
         }
+<<<<<<< HEAD
         $rs->close();
     }
+=======
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 }
 
 /**
@@ -2796,9 +2820,16 @@ function forum_get_potential_subscribers($forumcontext, $groupid, $fields, $sort
  * @param forum $forum the forum
  * @param integer $groupid group id, or 0 for all.
  * @param object $context the forum context, to save re-fetching it where possible.
+<<<<<<< HEAD
  * @return array list of users.
  */
 function forum_subscribed_users($course, $forum, $groupid=0, $context = NULL) {
+=======
+ * @param string $fields requested user fields (with "u." table prefix)
+ * @return array list of users.
+ */
+function forum_subscribed_users($course, $forum, $groupid=0, $context = null, $fields = null) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     global $CFG, $DB;
     $params = array($forum->id);
 
@@ -2811,6 +2842,7 @@ function forum_subscribed_users($course, $forum, $groupid=0, $context = NULL) {
         $groupselect = '';
     }
 
+<<<<<<< HEAD
     $fields ="u.id,
               u.username,
               u.firstname,
@@ -2830,6 +2862,29 @@ function forum_subscribed_users($course, $forum, $groupid=0, $context = NULL) {
               u.lang,
               u.trackforums,
               u.mnethostid";
+=======
+    if (empty($fields)) {
+        $fields ="u.id,
+                  u.username,
+                  u.firstname,
+                  u.lastname,
+                  u.maildisplay,
+                  u.mailformat,
+                  u.maildigest,
+                  u.imagealt,
+                  u.email,
+                  u.city,
+                  u.country,
+                  u.lastaccess,
+                  u.lastlogin,
+                  u.picture,
+                  u.timezone,
+                  u.theme,
+                  u.lang,
+                  u.trackforums,
+                  u.mnethostid";
+    }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     if (forum_is_forcesubscribed($forum)) {
         if (empty($context)) {
@@ -3104,6 +3159,11 @@ function forum_print_post($post, $discussion, $forum, &$cm, $course, $ownpost=fa
                           $footer="", $highlight="", $postisread=null, $dummyifcantsee=true, $istracked=null, $return=false) {
     global $USER, $CFG, $OUTPUT;
 
+<<<<<<< HEAD
+=======
+    require_once($CFG->libdir . '/filelib.php');
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     // String cache
     static $str;
 
@@ -3149,7 +3209,11 @@ function forum_print_post($post, $discussion, $forum, &$cm, $course, $ownpost=fa
             return;
         }
         $output .= html_writer::tag('a', '', array('id'=>'p'.$post->id));
+<<<<<<< HEAD
         $output .= html_writer::start_tag('div', array('class'=>'forumpost clearfix '.$forumpostclass));
+=======
+        $output .= html_writer::start_tag('div', array('class'=>'forumpost clearfix'));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $output .= html_writer::start_tag('div', array('class'=>'row header'));
         $output .= html_writer::tag('div', '', array('class'=>'left picture')); // Picture
         if ($post->parent) {
@@ -3159,6 +3223,10 @@ function forum_print_post($post, $discussion, $forum, &$cm, $course, $ownpost=fa
         }
         $output .= html_writer::tag('div', get_string('forumsubjecthidden','forum'), array('class'=>'subject')); // Subject
         $output .= html_writer::tag('div', get_string('forumauthorhidden','forum'), array('class'=>'author')); // author
+<<<<<<< HEAD
+=======
+        $output .= html_writer::end_tag('div');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $output .= html_writer::end_tag('div'); // row
         $output .= html_writer::start_tag('div', array('class'=>'row'));
         $output .= html_writer::tag('div', '&nbsp;', array('class'=>'left side')); // Groups
@@ -4498,10 +4566,18 @@ function forum_get_subscribe_link($forum, $context, $messages = array(), $cantac
 
         if ($fakelink) {
             $PAGE->requires->js('/mod/forum/forum.js');
+<<<<<<< HEAD
             $PAGE->requires->js_function_call('forum_produce_subscribe_link', Array($forum->id, $backtoindexlink, $linktext, $linktitle));
             $link = "<noscript>";
         }
         $options ['id'] = $forum->id;
+=======
+            $PAGE->requires->js_function_call('forum_produce_subscribe_link', array($forum->id, $backtoindexlink, $linktext, $linktitle));
+            $link = "<noscript>";
+        }
+        $options['id'] = $forum->id;
+        $options['sesskey'] = sesskey();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $url = new moodle_url('/mod/forum/subscribe.php', $options);
         $link .= $OUTPUT->single_button($url, $linktext, 'get', array('title'=>$linktitle));
         if ($fakelink) {
@@ -7490,10 +7566,17 @@ function forum_extend_settings_navigation(settings_navigation $settingsnav, navi
     if ($canmanage) {
         $mode = $forumnode->add(get_string('subscriptionmode', 'forum'), null, navigation_node::TYPE_CONTAINER);
 
+<<<<<<< HEAD
         $allowchoice = $mode->add(get_string('subscriptionoptional', 'forum'), new moodle_url('/mod/forum/subscribe.php', array('id'=>$forumobject->id, 'mode'=>'0')), navigation_node::TYPE_SETTING);
         $forceforever = $mode->add(get_string("subscriptionforced", "forum"), new moodle_url('/mod/forum/subscribe.php', array('id'=>$forumobject->id, 'mode'=>'1')), navigation_node::TYPE_SETTING);
         $forceinitially = $mode->add(get_string("subscriptionauto", "forum"), new moodle_url('/mod/forum/subscribe.php', array('id'=>$forumobject->id, 'mode'=>'2')), navigation_node::TYPE_SETTING);
         $disallowchoice = $mode->add(get_string('subscriptiondisabled', 'forum'), new moodle_url('/mod/forum/subscribe.php', array('id'=>$forumobject->id, 'mode'=>'3')), navigation_node::TYPE_SETTING);
+=======
+        $allowchoice = $mode->add(get_string('subscriptionoptional', 'forum'), new moodle_url('/mod/forum/subscribe.php', array('id'=>$forumobject->id, 'mode'=>FORUM_CHOOSESUBSCRIBE, 'sesskey'=>sesskey())), navigation_node::TYPE_SETTING);
+        $forceforever = $mode->add(get_string("subscriptionforced", "forum"), new moodle_url('/mod/forum/subscribe.php', array('id'=>$forumobject->id, 'mode'=>FORUM_FORCESUBSCRIBE, 'sesskey'=>sesskey())), navigation_node::TYPE_SETTING);
+        $forceinitially = $mode->add(get_string("subscriptionauto", "forum"), new moodle_url('/mod/forum/subscribe.php', array('id'=>$forumobject->id, 'mode'=>FORUM_INITIALSUBSCRIBE, 'sesskey'=>sesskey())), navigation_node::TYPE_SETTING);
+        $disallowchoice = $mode->add(get_string('subscriptiondisabled', 'forum'), new moodle_url('/mod/forum/subscribe.php', array('id'=>$forumobject->id, 'mode'=>FORUM_DISALLOWSUBSCRIBE, 'sesskey'=>sesskey())), navigation_node::TYPE_SETTING);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         switch ($subscriptionmode) {
             case FORUM_CHOOSESUBSCRIBE : // 0
@@ -7538,7 +7621,11 @@ function forum_extend_settings_navigation(settings_navigation $settingsnav, navi
         } else {
             $linktext = get_string('subscribe', 'forum');
         }
+<<<<<<< HEAD
         $url = new moodle_url('/mod/forum/subscribe.php', array('id'=>$forumobject->id));
+=======
+        $url = new moodle_url('/mod/forum/subscribe.php', array('id'=>$forumobject->id, 'sesskey'=>sesskey()));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $forumnode->add($linktext, $url, navigation_node::TYPE_SETTING);
     }
 
@@ -7781,3 +7868,38 @@ class forum_existing_subscriber_selector extends forum_subscriber_selector_base 
     }
 
 }
+<<<<<<< HEAD
+=======
+
+/**
+ * Adds information about unread messages, that is only required for the course view page (and
+ * similar), to the course-module object.
+ * @param cm_info $cm Course-module object
+ */
+function forum_cm_info_view(cm_info $cm) {
+    global $CFG;
+
+    // Get tracking status (once per request)
+    static $initialised;
+    static $usetracking, $strunreadpostsone;
+    if (!isset($initialised)) {
+        if ($usetracking = forum_tp_can_track_forums()) {
+            $strunreadpostsone = get_string('unreadpostsone', 'forum');
+        }
+        $initialised = true;
+    }
+
+    if ($usetracking) {
+        if ($unread = forum_tp_count_forum_unread_posts($cm, $cm->get_course())) {
+            $out = '<span class="unread"> <a href="' . $cm->get_url() . '">';
+            if ($unread == 1) {
+                $out .= $strunreadpostsone;
+            } else {
+                $out .= get_string('unreadpostsnumber', 'forum', $unread);
+            }
+            $out .= '</a></span>';
+            $cm->set_after_link($out);
+        }
+    }
+}
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf

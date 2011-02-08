@@ -242,6 +242,10 @@ $string['mediafile_help'] = 'To include a pop-up window at the beginning of a le
 $string['mediafilepopup'] = 'Click here to view';
 $string['mediaheight'] = 'Popup window height:';
 $string['mediawidth'] = 'Popup window width:';
+<<<<<<< HEAD
+=======
+$string['messageprovider:graded_essay'] = 'Essay graded notification';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['minimumnumberofquestions'] = 'Minimum number of questions';
 $string['minimumnumberofquestions_help'] = 'This setting specifies the minimum number of questions that will be used to calculate a grade for the activity. If the lesson contains one or more content pages, the minimum number of questions should be set to zero.
 

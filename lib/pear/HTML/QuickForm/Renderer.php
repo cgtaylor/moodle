@@ -16,7 +16,11 @@
 // | Author: Alexey Borzov <borz_off@cs.msu.su>                           |
 // +----------------------------------------------------------------------+
 //
+<<<<<<< HEAD
 // $Id: Renderer.php,v 1.2 2010/12/14 17:35:23 moodlerobot Exp $
+=======
+// $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 /**
  * An abstract base class for QuickForm renderers

@@ -35,6 +35,7 @@ $string['cannotdownloadzipfile'] = 'Kan ikke downloade zip-fil';
 $string['cannotfindcomponent'] = 'Kan ikke finde komponent';
 $string['cannotsavemd5file'] = 'Kan ikke gemme md5-fil';
 $string['cannotsavezipfile'] = 'Kan ikke gemme zip-fil';
+<<<<<<< HEAD
 $string['cannotunzipfile'] = 'Kan ikke unzippe filen';
 $string['componentisuptodate'] = 'Komponenten er ajour';
 $string['downloadedfilecheckfailed'] = 'Downloadet fil-tjek fejlede';
@@ -43,3 +44,13 @@ $string['missingrequiredfield'] = 'Der mangler nogle obligatoriske felter';
 $string['wrongdestpath'] = 'Forkert destinationssti';
 $string['wrongsourcebase'] = 'Forkert kilde-URL';
 $string['wrongzipfilename'] = 'Forkert zip-filnavn.';
+=======
+$string['cannotunzipfile'] = 'Kan ikke pakke filen ud';
+$string['componentisuptodate'] = 'Komponenten er ajour';
+$string['downloadedfilecheckfailed'] = 'Downloadet fil-tjek fejlede';
+$string['invalidmd5'] = 'Tjekvariablen var forkert - prøv igen';
+$string['missingrequiredfield'] = 'Der mangler nogle obligatoriske felter';
+$string['wrongdestpath'] = 'Forkert destinationssti';
+$string['wrongsourcebase'] = 'Forkert kilde-URL';
+$string['wrongzipfilename'] = 'Forkert zip-filnavn';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf

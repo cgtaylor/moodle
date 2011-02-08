@@ -232,6 +232,7 @@ function survey_print_recent_activity($course, $viewfullnames, $timestart) {
 
     $slist = implode(',', $ids); // there should not be hundreds of glossaries in one course, right?
 
+<<<<<<< HEAD
     if (!$rs = $DB->get_recordset_sql("SELECT sa.userid, sa.survey, MAX(sa.time) AS time,
                                               u.firstname, u.lastname, u.email, u.picture
                                          FROM {survey_answers} sa
@@ -239,6 +240,17 @@ function survey_print_recent_activity($course, $viewfullnames, $timestart) {
                                         WHERE sa.survey IN ($slist) AND sa.time > ?
                                      GROUP BY sa.userid, sa.survey, u.firstname, u.lastname, u.email, u.picture
                                      ORDER BY time ASC", array($timestart))) {
+=======
+    $rs = $DB->get_recordset_sql("SELECT sa.userid, sa.survey, MAX(sa.time) AS time,
+                                         u.firstname, u.lastname, u.email, u.picture
+                                    FROM {survey_answers} sa
+                                    JOIN {user} u ON u.id = sa.userid
+                                   WHERE sa.survey IN ($slist) AND sa.time > ?
+                                GROUP BY sa.userid, sa.survey, u.firstname, u.lastname, u.email, u.picture
+                                ORDER BY time ASC", array($timestart));
+    if (!$rs->valid()) {
+        $rs->close(); // Not going to iterate (but exit), close rs
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         return false;
     }
 

@@ -1065,7 +1065,11 @@ class FirePHP {
    * @author      Brett Stimmerman <brettstimmerman[at]gmail[dot]com>
    * @author      Christoph Dorn <christoph@christophdorn.com>
    * @copyright   2005 Michal Migurski
+<<<<<<< HEAD
    * @version     CVS: $Id: FirePHP.php,v 1.2 2010/12/14 17:36:07 moodlerobot Exp $
+=======
+   * @version     CVS: $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
    * @license     http://www.opensource.org/licenses/bsd-license.php
    * @link        http://pear.php.net/pepr/pepr-proposal-show.php?id=198
    */

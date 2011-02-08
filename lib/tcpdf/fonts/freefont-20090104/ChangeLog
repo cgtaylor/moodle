@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 $Id: ChangeLog,v 1.2 2010/12/14 17:35:56 moodlerobot Exp $
+=======
+$Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 2009-01-04 Stevan_White
 	* FreeMono.sfd, FreeMonoBold.sfd, FreeMonoBoldOblique.sfd, FreeMonoOblique.sfd, FreeSans.sfd, FreeSansBold.sfd, FreeSansBoldOblique.sfd, FreeSansOblique.sfd, FreeSerif.sfd, FreeSerifBold.sfd, FreeSerifBoldItalic.sfd, FreeSerifItalic.sfd:
 

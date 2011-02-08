@@ -1225,12 +1225,22 @@ function get_question_states(&$questions, $cmoptions, $attempt, $lastattemptid =
  * @global object
  * @param array $question The question to load the state for.
  * @param object $cmoptions Options from the specifica activity module, e.g. $quiz.
+<<<<<<< HEAD
  * @param object $attempt The attempt for which the question sessions are to be loaded.
  * @param integer $stateid The id of a specific state of this question.
  * @return object the requested state. False on error.
  */
 function question_load_specific_state($question, $cmoptions, $attempt, $stateid) {
     global $DB;
+=======
+ * @param integer $attemptid The question_attempts this is part of.
+ * @param integer $stateid The id of a specific state of this question.
+ * @return object the requested state. False on error.
+ */
+function question_load_specific_state($question, $cmoptions, $attemptid, $stateid) {
+    global $DB;
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     // Load specified states for the question.
     // sess.sumpenalty is probably wrong here shoul really be a sum of penalties from before the one we are asking for.
     $sql = 'SELECT st.*, sess.sumpenalty, sess.manualcomment, sess.manualcommentformat,
@@ -1241,7 +1251,11 @@ function question_load_specific_state($question, $cmoptions, $attempt, $stateid)
                AND sess.attemptid = st.attempt
                AND st.question = ?
                AND sess.questionid = st.question';
+<<<<<<< HEAD
     $state = $DB->get_record_sql($sql, array($stateid, $attempt->id, $question->id));
+=======
+    $state = $DB->get_record_sql($sql, array($stateid, $attemptid, $question->id));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     if (!$state) {
         return false;
     }
@@ -1258,7 +1272,11 @@ function question_load_specific_state($question, $cmoptions, $attempt, $stateid)
                AND sess.questionid = st.question
                AND st.event IN ('.QUESTION_EVENTS_GRADED.') '.
            'ORDER BY st.seq_number DESC';
+<<<<<<< HEAD
     $gradedstates = $DB->get_records_sql($sql, array($state->seq_number, $attempt->id, $question->id), 0, 1);
+=======
+    $gradedstates = $DB->get_records_sql($sql, array($state->seq_number, $attemptid, $question->id), 0, 1);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     if (empty($gradedstates)) {
         $state->last_graded = clone($state);
     } else {
@@ -1534,7 +1552,11 @@ function regrade_question_in_attempt($question, $attempt, $cmoptions, $verbose=f
         $attempt->sumgrades -= $states[count($states)-1]->grade;
 
         // Initialise the replaystate
+<<<<<<< HEAD
         $replaystate = question_load_specific_state($question, $cmoptions, $attempt, $states[0]->id);
+=======
+        $replaystate = question_load_specific_state($question, $cmoptions, $attempt->uniqueid, $states[0]->id);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $replaystate->sumpenalty = 0;
         $replaystate->last_graded->sumpenalty = 0;
 

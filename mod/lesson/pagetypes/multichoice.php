@@ -57,7 +57,10 @@ class lesson_page_type_multichoice extends lesson_page {
     public function get_jumps() {
         global $DB;
         $jumps = array();
+<<<<<<< HEAD
         $params = array ("lessonid" => $this->lesson->id, "pageid" => $this->properties->id);
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if ($answers = $this->get_answers()) {
             foreach ($answers as $answer) {
                 if ($answer->answer === '') {
@@ -66,6 +69,13 @@ class lesson_page_type_multichoice extends lesson_page {
                 }
                 $jumps[] = $this->get_jump_name($answer->jumpto);
             }
+<<<<<<< HEAD
+=======
+        } else {
+            // We get here is the lesson was created on a Moodle 1.9 site and
+            // the lesson contains question pages without any answers.
+            $jumps[] = $this->get_jump_name($this->properties->nextpageid);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
         return $jumps;
     }

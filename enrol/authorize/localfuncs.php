@@ -194,7 +194,13 @@ function send_welcome_messages($orderdata) {
              WHERE e.id IN(" . implode(',', $orderdata) . ")
           ORDER BY e.userid";
 
+<<<<<<< HEAD
     if (!$rs = $DB->get_recordset_sql($sql)) {
+=======
+    $rs = $DB->get_recordset_sql($sql);
+    if (!$rs->valid()) {
+        $rs->close(); // Not going to iterate (but exit), close rs
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         return;
     }
 
@@ -247,7 +253,11 @@ function send_welcome_messages($orderdata) {
         }
         while ($ei);
 
+<<<<<<< HEAD
         $rs->close();
+=======
+        $rs->close(); // end of iteration, close rs
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 }
 

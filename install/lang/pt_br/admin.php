@@ -38,5 +38,9 @@ $string['cliunknowoption'] = 'Opções não reconhecidas:
   {$a}
 Por favor use a opção --help.';
 $string['cliyesnoprompt'] = 'digite y (sim) ou n (não)';
+<<<<<<< HEAD
 $string['environmentrequireinstall'] = 'deve ser instalado/habilitado';
+=======
+$string['environmentrequireinstall'] = 'deve ser instalado e habilitado';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['environmentrequireversion'] = 'a versão {$a->needed} é necessária e você está usando a versão {$a->current}';

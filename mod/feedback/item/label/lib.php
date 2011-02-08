@@ -112,7 +112,13 @@ class feedback_item_label extends feedback_item_base {
     }
 
     function print_item($item){
+<<<<<<< HEAD
         global $DB;
+=======
+        global $DB, $CFG;
+
+        require_once($CFG->libdir . '/filelib.php');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         //is the item a template?
         if(!$item->feedback AND $item->template) {

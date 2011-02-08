@@ -1206,6 +1206,7 @@ function grade_uninstalled_module($modname) {
              WHERE itemtype='mod' AND itemmodule=?";
 
     // go all items for this module and delete them including the grades
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql, array($modname))) {
         foreach ($rs as $item) {
             $grade_item = new grade_item($item, false);
@@ -1213,6 +1214,14 @@ function grade_uninstalled_module($modname) {
         }
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($sql, array($modname));
+    foreach ($rs as $item) {
+        $grade_item = new grade_item($item, false);
+        $grade_item->delete('moduninstall');
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 }
 
 /**
@@ -1260,6 +1269,7 @@ function grade_cron() {
                 SELECT 'x' FROM {grade_items} c WHERE c.itemtype='course' AND c.needsupdate=0 AND c.courseid=i.courseid)";
 
     // go through all courses that have proper final grades and lock them if needed
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql, array($now))) {
         foreach ($rs as $item) {
             $grade_item = new grade_item($item, false);
@@ -1268,6 +1278,15 @@ function grade_cron() {
         }
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($sql, array($now));
+    foreach ($rs as $item) {
+        $grade_item = new grade_item($item, false);
+        $grade_item->locked = $now;
+        $grade_item->update('locktime');
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     $grade_inst = new grade_grade();
     $fields = 'g.'.implode(',g.', $grade_inst->required_fields);
@@ -1278,6 +1297,7 @@ function grade_cron() {
                 SELECT 'x' FROM {grade_items} c WHERE c.itemtype='course' AND c.needsupdate=0 AND c.courseid=i.courseid)";
 
     // go through all courses that have proper final grades and lock them if needed
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql, array($now))) {
         foreach ($rs as $grade) {
             $grade_grade = new grade_grade($grade, false);
@@ -1286,6 +1306,15 @@ function grade_cron() {
         }
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($sql, array($now));
+    foreach ($rs as $grade) {
+        $grade_grade = new grade_grade($grade, false);
+        $grade_grade->locked = $now;
+        $grade_grade->update('locktime');
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     //TODO: do not run this cleanup every cron invocation
     // cleanup history tables

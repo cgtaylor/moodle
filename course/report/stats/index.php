@@ -37,9 +37,20 @@
 
     require_login($course);
     $context = get_context_instance(CONTEXT_COURSE, $course->id);
+<<<<<<< HEAD
 
     require_capability('coursereport/stats:view', $context);
 
+=======
+    require_capability('coursereport/stats:view', $context);
+
+    $PAGE->set_url(new moodle_url('/course/report/stats/index.php', array('course' => $course->id,
+                                                                          'report' => $report,
+                                                                          'time'   => $time,
+                                                                          'mode'   => $mode,
+                                                                          'userid' => $userid)));
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     add_to_log($course->id, "course", "report stats", "report/stats/index.php?course=$course->id", $course->id);
     stats_check_uptodate($course->id);
 
@@ -52,10 +63,15 @@
 
         $PAGE->set_title("$course->shortname: $strstats");
         $PAGE->set_heading($course->fullname);
+<<<<<<< HEAD
         //$PAGE->set_headingmenu();
         $PAGE->navbar->add($strreports, new moodle_url('/course/report.php', array('id'=>$course->id)));
         $PAGE->navbar->add($strstats);
         $PAGE->headingmenu(report_stats_mode_menu($course, $mode, $time, "$CFG->wwwroot/course/report/stats/index.php"));
+=======
+        $PAGE->set_pagelayout('report');
+        $PAGE->set_headingmenu(report_stats_mode_menu($course, $mode, $time, "$CFG->wwwroot/course/report/stats/index.php"));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         echo $OUTPUT->header();
     }
 

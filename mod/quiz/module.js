@@ -195,7 +195,10 @@ M.mod_quiz.secure_window = {
             // Left click on a button or similar. No worries.
             return;
         }
+<<<<<<< HEAD
         alert(M.str.quiz.functiondisabledbysecuremode);
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         e.halt();
     },
 

@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,4 +18,19 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+<<<<<<< HEAD
+=======
+/**
+ * Current user info block.
+ *
+ * @package    block
+ * @subpackage myprofile
+ * @copyright  2010 Remote-Learner.net
+ * @author     Olav Jordan <olav.jordan@remote-learner.ca>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+defined('MOODLE_INTERNAL') || die();
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $plugin->version = 2009123100;

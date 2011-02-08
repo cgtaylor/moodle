@@ -162,7 +162,11 @@ if (defined('WEB_CRON_EMULATED_CLI')) {
 // Detect CLI maintenance mode - this is useful when you need to mess with database, such as during upgrades
 if (file_exists("$CFG->dataroot/climaintenance.html")) {
     if (!CLI_SCRIPT) {
+<<<<<<< HEAD
         header('Content-type: text/html');
+=======
+        header('Content-type: text/html; charset=utf-8');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         /// Headers to make it not cacheable and json
         header('Cache-Control: no-store, no-cache, must-revalidate');
         header('Cache-Control: post-check=0, pre-check=0', false);
@@ -414,6 +418,10 @@ require_once($CFG->libdir .'/grouplib.php');        // Groups functions
 require_once($CFG->libdir .'/sessionlib.php');      // All session and cookie related stuff
 require_once($CFG->libdir .'/editorlib.php');       // All text editor related functions and classes
 require_once($CFG->libdir .'/messagelib.php');      // Messagelib functions
+<<<<<<< HEAD
+=======
+require_once($CFG->libdir .'/modinfolib.php');      // Cached information on course-module instances
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 // make sure PHP is not severly misconfigured
 setup_validate_php_configuration();
@@ -646,7 +654,10 @@ if (isset($_SERVER['PHP_SELF'])) {
 // initialise ME's
 initialise_fullme();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 // init session prevention flag - this is defined on pages that do not want session
 if (CLI_SCRIPT) {
     // no sessions in CLI scripts possible
@@ -669,6 +680,16 @@ session_get_instance();
 $SESSION = &$_SESSION['SESSION'];
 $USER    = &$_SESSION['USER'];
 
+<<<<<<< HEAD
+=======
+// include and start profiling if needed, and register profiling_stop as shutdown function
+if (!empty($CFG->profilingenabled)) {
+    require_once($CFG->libdir . '/xhprof/xhprof_moodle.php');
+    profiling_start();
+    register_shutdown_function('profiling_stop');
+}
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 // Process theme change in the URL.
 if (!empty($CFG->allowthemechangeonurl) and !empty($_GET['theme'])) {
     // we have to use _GET directly because we do not want this to interfere with _POST

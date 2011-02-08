@@ -409,6 +409,7 @@ function tag_get_id($tags, $return_value=null) {
 
     list($tag_string, $params) = $DB->get_in_or_equal($tags);
 
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql("SELECT * FROM {tag} WHERE name $tag_string ORDER BY name", $params)) {
         foreach ($rs as $record) {
             if ($return_value == TAG_RETURN_OBJECT) {
@@ -419,6 +420,17 @@ function tag_get_id($tags, $return_value=null) {
         }
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql("SELECT * FROM {tag} WHERE name $tag_string ORDER BY name", $params);
+    foreach ($rs as $record) {
+        if ($return_value == TAG_RETURN_OBJECT) {
+            $result[$record->name] = $record;
+        } else { // TAG_RETURN_ARRAY
+            $result[$record->name] = $record->id;
+        }
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     if ($return_an_int) {
         return array_pop($result);
@@ -599,7 +611,11 @@ function tag_display_name($tagobject, $html=TAG_RETURN_HTML) {
 
     global $CFG;
 
+<<<<<<< HEAD
     if(!isset($tagobject->name)) {
+=======
+    if (!isset($tagobject->name)) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         return '';
     }
 
@@ -612,6 +628,12 @@ function tag_display_name($tagobject, $html=TAG_RETURN_HTML) {
         $tagname = $tagobject->rawname;
     }
 
+<<<<<<< HEAD
+=======
+    // clean up a bit just in case the rules change again
+    $tagname = clean_param($tagname, PARAM_TAG);
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     if ($html == TAG_RETURN_TEXT) {
         return $tagname;
     } else { // TAG_RETURN_HTML

@@ -537,10 +537,17 @@ class navigation_node implements renderable {
      */
     public function find_expandable(array &$expandable) {
         foreach ($this->children as &$child) {
+<<<<<<< HEAD
             if ($child->nodetype == self::NODETYPE_BRANCH && $child->children->count()==0 && $child->display) {
                 $child->id = 'expandable_branch_'.(count($expandable)+1);
                 $this->add_class('canexpand');
                 $expandable[] = array('id'=>$child->id,'branchid'=>$child->key,'type'=>$child->type);
+=======
+            if ($child->nodetype == self::NODETYPE_BRANCH && $child->children->count() == 0 && $child->display) {
+                $child->id = 'expandable_branch_'.(count($expandable)+1);
+                $this->add_class('canexpand');
+                $expandable[] = array('id' => $child->id, 'key' => $child->key, 'type' => $child->type);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             }
             $child->find_expandable($expandable);
         }
@@ -1026,10 +1033,21 @@ class global_navigation extends navigation_node {
                 if ($course->id !== SITEID) {
                     // Find the section for the $CM associated with the page and collect
                     // its section number.
+<<<<<<< HEAD
                     foreach ($sections as $section) {
                         if ($section->id == $cm->section) {
                             $cm->sectionnumber = $section->section;
                             break;
+=======
+                    if (isset($cm->sectionnum)) {
+                        $cm->sectionnumber = $cm->sectionnum;
+                    } else {
+                        foreach ($sections as $section) {
+                            if ($section->id == $cm->section) {
+                                $cm->sectionnumber = $section->section;
+                                break;
+                            }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                         }
                     }
 
@@ -1429,10 +1447,17 @@ class global_navigation extends navigation_node {
      *
      * @param navigation_node $sectionnode
      * @param int $sectionnumber
+<<<<<<< HEAD
      * @param stdClass $modinfo Object returned from {@see get_fast_modinfo()}
      * @return array Array of activity nodes
      */
     protected function load_section_activities(navigation_node $sectionnode, $sectionnumber, $modinfo) {
+=======
+     * @param course_modinfo $modinfo Object returned from {@see get_fast_modinfo()}
+     * @return array Array of activity nodes
+     */
+    protected function load_section_activities(navigation_node $sectionnode, $sectionnumber, course_modinfo $modinfo) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (!array_key_exists($sectionnumber, $modinfo->sections)) {
             return true;
         }
@@ -1449,11 +1474,20 @@ class global_navigation extends navigation_node {
             } else {
                 $icon = new pix_icon('icon', get_string('modulename', $cm->modname), $cm->modname);
             }
+<<<<<<< HEAD
             $url = new moodle_url('/mod/'.$cm->modname.'/view.php', array('id'=>$cm->id));
             $activitynode = $sectionnode->add(format_string($cm->name), $url, navigation_node::TYPE_ACTIVITY, null, $cm->id, $icon);
             $activitynode->title(get_string('modulename', $cm->modname));
             $activitynode->hidden = (!$cm->visible);
             if ($cm->modname == 'label') {
+=======
+            $url = $cm->get_url();
+            $activitynode = $sectionnode->add(format_string($cm->name), $url, navigation_node::TYPE_ACTIVITY, null, $cm->id, $icon);
+            $activitynode->title(get_string('modulename', $cm->modname));
+            $activitynode->hidden = (!$cm->visible);
+            if (!$url) {
+                // Do not show activities that don't have links!
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 $activitynode->display = false;
             } else if ($this->module_extends_navigation($cm->modname)) {
                 $activitynode->nodetype = navigation_node::NODETYPE_BRANCH;
@@ -1482,11 +1516,20 @@ class global_navigation extends navigation_node {
         } else {
             $icon = new pix_icon('icon', get_string('modulename', $cm->modname), $cm->modname);
         }
+<<<<<<< HEAD
         $url = new moodle_url('/mod/'.$cm->modname.'/view.php', array('id'=>$cm->id));
         $activitynode = $coursenode->add(format_string($cm->name), $url, navigation_node::TYPE_ACTIVITY, null, $cm->id, $icon);
         $activitynode->title(get_string('modulename', $cm->modname));
         $activitynode->hidden = (!$cm->visible);
         if ($cm->modname == 'label') {
+=======
+        $url = $cm->get_url();
+        $activitynode = $coursenode->add(format_string($cm->name), $url, navigation_node::TYPE_ACTIVITY, null, $cm->id, $icon);
+        $activitynode->title(get_string('modulename', $cm->modname));
+        $activitynode->hidden = (!$cm->visible);
+        if (!$url) {
+            // Don't show activities that don't have links!
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $activitynode->display = false;
         } else if ($this->module_extends_navigation($cm->modname)) {
             $activitynode->nodetype = navigation_node::NODETYPE_BRANCH;
@@ -1509,7 +1552,11 @@ class global_navigation extends navigation_node {
      * @param navigation_node $activity
      * @return bool
      */
+<<<<<<< HEAD
     protected function load_activity(stdClass $cm, stdClass $course, navigation_node $activity) {
+=======
+    protected function load_activity($cm, stdClass $course, navigation_node $activity) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         global $CFG, $DB;
 
         $activity->make_active();
@@ -2537,7 +2584,11 @@ class settings_navigation extends navigation_node {
      *
      */
     public function initialise() {
+<<<<<<< HEAD
         global $DB;
+=======
+        global $DB, $SESSION;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         if (during_initial_install()) {
             return false;
@@ -2581,7 +2632,17 @@ class settings_navigation extends navigation_node {
         }
 
         $settings = $this->load_user_settings($this->page->course->id);
+<<<<<<< HEAD
         $admin = $this->load_administration_settings();
+=======
+
+        if (isloggedin() && !isguestuser() && (!property_exists($SESSION, 'load_navigation_admin') || $SESSION->load_navigation_admin)) {
+            $admin = $this->load_administration_settings();
+            $SESSION->load_navigation_admin = ($admin->has_children());
+        } else {
+            $admin = false;
+        }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         if ($context->contextlevel == CONTEXT_SYSTEM && $admin) {
             $admin->force_open();
@@ -2598,8 +2659,11 @@ class settings_navigation extends navigation_node {
             $this->add(get_string('returntooriginaluser', 'moodle', fullname($realuser, true)), $url, self::TYPE_SETTING, null, null, new pix_icon('t/left', ''));
         }
 
+<<<<<<< HEAD
         // Make sure the first child doesnt have proceed with hr set to true
 
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         foreach ($this->children as $key=>$node) {
             if ($node->nodetype != self::NODETYPE_BRANCH || $node->children->count()===0) {
                 $node->remove();
@@ -3699,7 +3763,11 @@ class navigation_json {
      */
     public function set_expandable($expandable) {
         foreach ($expandable as $node) {
+<<<<<<< HEAD
             $this->expandable[$node['branchid'].':'.$node['type']] = $node;
+=======
+            $this->expandable[$node['key'].':'.$node['type']] = $node;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
     }
     /**

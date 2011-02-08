@@ -33,6 +33,10 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once(dirname(__FILE__).'/lib.php');     // we extend this library here
 require_once($CFG->libdir . '/gradelib.php');   // we use some rounding and comparing routines here
+<<<<<<< HEAD
+=======
+require_once($CFG->libdir . '/filelib.php');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 /**
  * Full-featured workshop API

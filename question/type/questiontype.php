@@ -957,7 +957,11 @@ class default_questiontype {
         if (!empty($options->questioncommentlink)) {
             $strcomment = get_string('commentorgrade', 'quiz');
 
+<<<<<<< HEAD
             $link = new moodle_url("$options->questioncommentlink?attempt=$state->attempt&question=$actualquestionid");
+=======
+            $link = new moodle_url($options->questioncommentlink, array('question' => $actualquestionid));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $action = new popup_action('click', $link, 'commentquestion', array('height' => 480, 'width' => 750));
             $commentlink = $OUTPUT->container($OUTPUT->action_link($link, $strcomment, $action), 'commentlink');
         }
@@ -1087,12 +1091,20 @@ class default_questiontype {
             return '';
         }
 
+<<<<<<< HEAD
         $params = array('aid' => $state->attempt);
         if (isset($question->randomquestionid)) {
             $params['qid'] = $question->randomquestionid;
             $randomprefix = 'random' . $question->id . '-';
         } else {
             $params['qid'] = $question->id;
+=======
+        if (isset($question->randomquestionid)) {
+            $actualquestionid = $question->randomquestionid;
+            $randomprefix = 'random' . $question->id . '-';
+        } else {
+            $actualquestionid = $question->id;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $randomprefix = '';
         }
         if ($options->history == 'all') {
@@ -1101,7 +1113,12 @@ class default_questiontype {
             $eventtest = 'event IN (' . QUESTION_EVENTS_GRADED . ')';
         }
         $states = $DB->get_records_select('question_states',
+<<<<<<< HEAD
                 'attempt = :aid AND question = :qid AND ' . $eventtest, $params, 'seq_number ASC');
+=======
+                'attempt = :aid AND question = :qid AND ' . $eventtest,
+                array('aid' => $state->attempt, 'qid' => $actualquestionid), 'seq_number,id');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (count($states) <= 1) {
             return '';
         }
@@ -1131,7 +1148,11 @@ class default_questiontype {
                 $link = '<b>' . $st->seq_number . '</b>';
             } else if (isset($options->questionreviewlink)) {
                 $reviewlink = new moodle_url($options->questionreviewlink);
+<<<<<<< HEAD
                 $reviewlink->params(array('state'=>$st->id,'question'=>$question->id));
+=======
+                $reviewlink->params(array('state' => $st->id,'question' => $actualquestionid));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 $link = new moodle_url($reviewlink);
                 $action = new popup_action('click', $link, 'reviewquestion', array('height' => 450, 'width' => 650));
                 $link = $OUTPUT->action_link($link, $st->seq_number, $action, array('title'=>$strreviewquestion));

@@ -313,6 +313,12 @@ class grade_scale extends grade_object {
      * @return string
      */
     public function get_description() {
+<<<<<<< HEAD
+=======
+        global $CFG;
+        require_once($CFG->libdir . '/filelib.php');
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $systemcontext = get_context_instance(CONTEXT_SYSTEM);
         $options = new stdClass;
         $options->noclean = true;

@@ -274,7 +274,18 @@ abstract class grade_report {
 
         $groupsql      = "";
         $groupwheresql = "";
+<<<<<<< HEAD
         list($usql, $params) = $DB->get_in_or_equal(explode(',', $this->gradebookroles), SQL_PARAMS_NAMED, 'grbr0');
+=======
+
+        //limit to users with a gradeable role
+        list($gradebookrolessql, $gradebookrolesparams) = $DB->get_in_or_equal(explode(',', $this->gradebookroles), SQL_PARAMS_NAMED, 'grbr0');
+
+        //limit to users with an active enrollment
+        list($enrolledsql, $enrolledparams) = get_enrolled_sql($this->context);
+
+        $params = array_merge($gradebookrolesparams, $enrolledparams);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         if ($groups) {
             $groupsql      = $this->groupsql;
@@ -284,9 +295,19 @@ abstract class grade_report {
 
         $countsql = "SELECT COUNT(DISTINCT u.id)
                        FROM {user} u
+<<<<<<< HEAD
                             JOIN {role_assignments} ra ON u.id = ra.userid
                             $groupsql
                       WHERE ra.roleid $usql AND u.deleted = 0
+=======
+                       JOIN ($enrolledsql) je
+                            ON je.id = u.id
+                       JOIN {role_assignments} ra
+                            ON u.id = ra.userid
+                       $groupsql
+                      WHERE ra.roleid $gradebookrolessql
+                            AND u.deleted = 0
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                             $groupwheresql
                             AND ra.contextid ".get_related_contexts_string($this->context);
         return $DB->count_records_sql($countsql, $params);

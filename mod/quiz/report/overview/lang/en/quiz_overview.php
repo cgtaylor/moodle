@@ -48,8 +48,13 @@ $string['optonlyregradedattempts'] = 'that have been regraded / are marked as ne
 $string['overview'] = 'Grades';
 $string['overviewdownload'] = 'Overview download';
 $string['overviewreport'] = 'Grades report';
+<<<<<<< HEAD
 $string['overviewreportgraph'] = 'Overall Number of Students Achieving Grade Ranges';
 $string['overviewreportgraphgroup'] = 'Number of Students in Group \'{$a}\' Achieving Grade Ranges';
+=======
+$string['overviewreportgraph'] = 'Overall number of students achieving grade ranges';
+$string['overviewreportgraphgroup'] = 'Number of students in group \'{$a}\' achieving grade ranges';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['pagesize'] = 'Page size';
 $string['preferencespage'] = 'Preferences just for this page';
 $string['preferencessave'] = 'Show report';

@@ -63,7 +63,11 @@
 
     $modinfo = get_fast_modinfo($course);
 
+<<<<<<< HEAD
     $modules = $DB->get_records_select('modules', "visible = 1 AND name <> 'label'", null, 'name ASC');
+=======
+    $modules = $DB->get_records_select('modules', "visible = 1", null, 'name ASC');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     $instanceoptions = array();
     foreach ($modules as $module) {
@@ -72,8 +76,21 @@
         }
         $instances = array();
         foreach ($modinfo->instances[$module->name] as $cm) {
+<<<<<<< HEAD
             $instances[$cm->id] = format_string($cm->name);
         }
+=======
+            // Skip modules such as label which do not actually have links;
+            // this means there's nothing to participate in
+            if (!$cm->has_view()) {
+                continue;
+            }
+            $instances[$cm->id] = format_string($cm->name);
+        }
+        if (count($instances) == 0) {
+            continue;
+        }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $instanceoptions[] = array(get_string('modulenameplural', $module->name)=>$instances);
     }
 

@@ -32,6 +32,10 @@ $PAGE->set_url('/course/request.php');
 /// Where we came from. Used in a number of redirects.
 $returnurl = $CFG->wwwroot . '/course/index.php';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 /// Check permissions.
 require_login();
 if (isguestuser()) {
@@ -40,7 +44,13 @@ if (isguestuser()) {
 if (empty($CFG->enablecourserequests)) {
     print_error('courserequestdisabled', '', $returnurl);
 }
+<<<<<<< HEAD
 require_capability('moodle/course:request', get_context_instance(CONTEXT_SYSTEM));
+=======
+$context = get_context_instance(CONTEXT_SYSTEM);
+$PAGE->set_context($context);
+require_capability('moodle/course:request', $context);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 /// Set up the form.
 $data = course_request::prepare();
@@ -67,4 +77,8 @@ echo $OUTPUT->header();
 echo $OUTPUT->heading($strtitle);
 // Show the request form.
 $requestform->display();
+<<<<<<< HEAD
 echo $OUTPUT->footer();
+=======
+echo $OUTPUT->footer();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf

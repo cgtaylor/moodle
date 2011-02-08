@@ -425,12 +425,20 @@ function get_role_access($roleid, $accessdata = null) {
 
         if (!isset($ACCESSLIB_PRIVATE->croncache[$roleid])) {
             $ACCESSLIB_PRIVATE->croncache[$roleid] = array();
+<<<<<<< HEAD
             if ($rs = $DB->get_recordset_sql($sql, $params)) {
                 foreach ($rs as $rd) {
                     $ACCESSLIB_PRIVATE->croncache[$roleid][] = $rd;
                 }
                 $rs->close();
             }
+=======
+            $rs = $DB->get_recordset_sql($sql, $params);
+            foreach ($rs as $rd) {
+                $ACCESSLIB_PRIVATE->croncache[$roleid][] = $rd;
+            }
+            $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
 
         foreach ($ACCESSLIB_PRIVATE->croncache[$roleid] as $rd) {
@@ -439,14 +447,24 @@ function get_role_access($roleid, $accessdata = null) {
         }
 
     } else {
+<<<<<<< HEAD
         if ($rs = $DB->get_recordset_sql($sql, $params)) {
+=======
+        $rs = $DB->get_recordset_sql($sql, $params);
+        if ($rs->valid()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             foreach ($rs as $rd) {
                 $k = "{$rd->path}:{$roleid}";
                 $accessdata['rdef'][$k][$rd->capability] = $rd->permission;
             }
             unset($rd);
+<<<<<<< HEAD
             $rs->close();
         }
+=======
+        }
+        $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     return $accessdata;
@@ -480,14 +498,24 @@ function get_default_frontpage_role_access($roleid, $accessdata = null) {
           ORDER BY ctx.depth, ctx.path";
     $params = array($roleid, "$base/%");
 
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql, $params)) {
+=======
+    $rs = $DB->get_recordset_sql($sql, $params);
+    if ($rs->valid()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         foreach ($rs as $rd) {
             $k = "{$rd->path}:{$roleid}";
             $accessdata['rdef'][$k][$rd->capability] = $rd->permission;
         }
         unset($rd);
+<<<<<<< HEAD
         $rs->close();
     }
+=======
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     return $accessdata;
 }
@@ -1315,6 +1343,7 @@ function load_subcontext($userid, $context, &$accessdata) {
     $params = array($context->id, $context->path."/%");
 
     $newrdefs = array();
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql, $params)) {
         foreach ($rs as $rd) {
             $k = "{$rd->path}:{$rd->roleid}";
@@ -1327,6 +1356,17 @@ function load_subcontext($userid, $context, &$accessdata) {
     } else {
         debugging('Bad SQL encountered!');
     }
+=======
+    $rs = $DB->get_recordset_sql($sql, $params);
+    foreach ($rs as $rd) {
+        $k = "{$rd->path}:{$rd->roleid}";
+        if (!array_key_exists($k, $newrdefs)) {
+            $newrdefs[$k] = array();
+        }
+        $newrdefs[$k][$rd->capability] = $rd->permission;
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     compact_rdefs($newrdefs);
     foreach ($newrdefs as $key=>$value) {
@@ -1389,6 +1429,7 @@ function get_role_access_bycontext($roleid, $context, $accessdata = null) {
           ORDER BY ctx.depth ASC, ctx.path DESC, rc.roleid ASC ";
     $params = array($roleid, $context->path."/%");
 
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql, $params)) {
         foreach ($rs as $rd) {
             $k = "{$rd->path}:{$roleid}";
@@ -1396,6 +1437,14 @@ function get_role_access_bycontext($roleid, $context, $accessdata = null) {
         }
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($sql, $params);
+    foreach ($rs as $rd) {
+        $k = "{$rd->path}:{$roleid}";
+        $accessdata['rdef'][$k][$rd->capability] = $rd->permission;
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     return $accessdata;
 }
@@ -1615,6 +1664,7 @@ function load_temp_role($context, $roleid, array $accessdata) {
                    AND rc.roleid = ?
           ORDER BY ctx.depth, ctx.path";
     $params = array($context->path."/%", $roleid);
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql, $params)) {
         foreach ($rs as $rd) {
             $k = "{$rd->path}:{$roleid}";
@@ -1622,6 +1672,14 @@ function load_temp_role($context, $roleid, array $accessdata) {
         }
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($sql, $params);
+    foreach ($rs as $rd) {
+        $k = "{$rd->path}:{$roleid}";
+        $accessdata['rdef'][$k][$rd->capability] = $rd->permission;
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     //
     // Say we loaded everything for the course context
@@ -2132,12 +2190,20 @@ function cleanup_contexts() {
     // transactions used only for performance reasons here
     $transaction = $DB->start_delegated_transaction();
 
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql)) {
         foreach ($rs as $ctx) {
             delete_context($ctx->contextlevel, $ctx->instanceid);
         }
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($sql);
+    foreach ($rs as $ctx) {
+        delete_context($ctx->contextlevel, $ctx->instanceid);
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     $transaction->allow_commit();
     return true;
@@ -4459,7 +4525,11 @@ function get_user_roles($context, $userid = 0, $checkparentcontexts = true, $ord
  *
  * @param int $sroleid source roleid
  * @param int $troleid target roleid
+<<<<<<< HEAD
  * @return int id or false
+=======
+ * @return void
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  */
 function allow_override($sroleid, $troleid) {
     global $DB;
@@ -4475,7 +4545,11 @@ function allow_override($sroleid, $troleid) {
  *
  * @param int $sroleid source roleid
  * @param int $troleid target roleid
+<<<<<<< HEAD
  * @return int id or false
+=======
+ * @return void
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  */
 function allow_assign($fromroleid, $targetroleid) {
     global $DB;
@@ -4491,7 +4565,11 @@ function allow_assign($fromroleid, $targetroleid) {
  *
  * @param int $sroleid source roleid
  * @param int $troleid target roleid
+<<<<<<< HEAD
  * @return int id or false
+=======
+ * @return void
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  */
 function allow_switch($fromroleid, $targetroleid) {
     global $DB;
@@ -5335,6 +5413,7 @@ function get_user_capability_course($capability, $userid = null, $doanything = t
     // Note the result can be used directly as a context (we are going to), the course
     // fields are just appended.
 
+<<<<<<< HEAD
     if (!$rs = $DB->get_recordset_sql("SELECT x.*, c.id AS courseid $fieldlist
                                          FROM {course} c
                                         INNER JOIN {context} x
@@ -5345,6 +5424,15 @@ function get_user_capability_course($capability, $userid = null, $doanything = t
 
     // Check capability for each course in turn
     $courses = array();
+=======
+    $courses = array();
+    $rs = $DB->get_recordset_sql("SELECT x.*, c.id AS courseid $fieldlist
+                                    FROM {course} c
+                                   INNER JOIN {context} x
+                                         ON (c.id=x.instanceid AND x.contextlevel=".CONTEXT_COURSE.")
+                                $orderby");
+    // Check capability for each course in turn
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     foreach ($rs as $coursecontext) {
         if (has_capability($capability, $coursecontext, $userid, $doanything)) {
             // We've got the capability. Make the record look like a course record
@@ -5357,7 +5445,11 @@ function get_user_capability_course($capability, $userid = null, $doanything = t
         }
     }
     $rs->close();
+<<<<<<< HEAD
     return $courses;
+=======
+    return empty($courses) ? false : $courses;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 }
 
 /**
@@ -5526,18 +5618,45 @@ function get_users_from_role_on_context($role, $context) {
 }
 
 /**
+<<<<<<< HEAD
  * Simple function returning a boolean true if roles exist, otherwise false
  *
  * @param int $userid
  * @param int $roleid
  * @param int $contextid
+=======
+ * Simple function returning a boolean true if user has roles
+ * in context or parent contexts, otherwise false.
+ *
+ * @param int $userid
+ * @param int $roleid
+ * @param int $contextid empty means any context
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * @return bool
  */
 function user_has_role_assignment($userid, $roleid, $contextid = 0) {
     global $DB;
 
     if ($contextid) {
+<<<<<<< HEAD
         return $DB->record_exists('role_assignments', array('userid'=>$userid, 'roleid'=>$roleid, 'contextid'=>$contextid));
+=======
+        if (!$context = get_context_instance_by_id($contextid)) {
+            return false;
+        }
+        $parents = get_parent_contexts($context, true);
+        list($contexts, $params) = $DB->get_in_or_equal($parents, SQL_PARAMS_NAMED, 'r0000');
+        $params['userid'] = $userid;
+        $params['roleid'] = $roleid;
+
+        $sql = "SELECT COUNT(ra.id)
+                  FROM {role_assignments} ra
+                 WHERE ra.userid = :userid AND ra.roleid = :roleid AND ra.contextid $contexts";
+
+        $count = $DB->get_field_sql($sql, $params);
+        return ($count > 0);
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     } else {
         return $DB->record_exists('role_assignments', array('userid'=>$userid, 'roleid'=>$roleid));
     }

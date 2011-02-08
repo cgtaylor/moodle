@@ -26,6 +26,10 @@
 require_once("../config.php");
 require_once($CFG->dirroot.'/user/profile/lib.php');
 require_once($CFG->dirroot.'/tag/lib.php');
+<<<<<<< HEAD
+=======
+require_once($CFG->libdir . '/filelib.php');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 $id        = optional_param('id', 0, PARAM_INT);   // user id
 $courseid  = optional_param('course', SITEID, PARAM_INT);   // course id (defaults to Site)

@@ -33,6 +33,10 @@ $string['hostappname'] = 'Application';
 $string['hostname'] = 'Host name';
 $string['hosturl'] = 'Remote host URL';
 $string['nopublishers'] = 'No remote peers available.';
+<<<<<<< HEAD
+=======
+$string['noroamingusers'] = 'Users require the capability \'{$a}\' in the system context to be enrolled to remote courses, however there are currently no users with this capability. Click the continue button to assign the required capability to one or more roles on your site.';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['otherenrolledusers'] = 'Other enrolled users';
 $string['pluginname'] = 'Remote enrolment service';
 $string['refetch'] = 'Re-fetch up to date state from remote hosts';

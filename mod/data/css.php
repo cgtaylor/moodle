@@ -37,7 +37,11 @@ if ($data = $DB->get_record('data', array('id'=>$d))) {
     header('Expires: ' . gmdate("D, d M Y H:i:s", time() + $lifetime) . ' GMT');
     header('Cache-control: max_age = '. $lifetime);
     header('Pragma: ');
+<<<<<<< HEAD
     header('Content-type: text/css');  // Correct MIME type
+=======
+    header('Content-type: text/css; charset=utf-8');  // Correct MIME type
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     echo $data->csstemplate;
 }

@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,10 +18,20 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+<<<<<<< HEAD
 /**
  * Form for editing profile block settings
  *
  * @package    blocks
+=======
+defined('MOODLE_INTERNAL') || die();
+
+/**
+ * Form for editing profile block settings
+ *
+ * @package    block
+ * @subpackage myprofile
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * @copyright  2010 Remote-Learner.net
  * @author     Olav Jordan <olav.jordan@remote-learner.ca>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

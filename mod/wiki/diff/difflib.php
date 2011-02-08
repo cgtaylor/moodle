@@ -300,8 +300,14 @@ class ouwiki_line {
         $pos=0;
         while(true) {
             // Find a non-space
+<<<<<<< HEAD
             for(;$pos < strlen($data) && substr($data,$pos,1)===' ';$pos++) ;
             if($pos==strlen($data)) {
+=======
+            $strlendata = strlen($data);
+            for(;$pos < $strlendata && substr($data,$pos,1)===' ';$pos++) ;
+            if($pos==$strlendata) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 // No more content
                 break;
             }
@@ -527,7 +533,12 @@ class ouwiki_changes {
         //    resulting array will be -,-,3,3,3,-,0
         $squidges=array();
         $lowest=0;
+<<<<<<< HEAD
         for($index1=count($diff);$index1>=1;$index1--) {
+=======
+        $countdiff = count($diff);
+        for($index1=$countdiff;$index1>=1;$index1--) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $index2=$diff[$index1];
             if($index2===0) {
                 $squidges[$index1]=$lowest;

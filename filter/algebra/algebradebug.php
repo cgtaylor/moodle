@@ -183,7 +183,11 @@ function refineTeX($texexp) {
 }
 
 function outputText($texexp) {
+<<<<<<< HEAD
   header("Content-type: text/html");
+=======
+  header("Content-type: text/html; charset=utf-8");
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
   echo "<html><body><pre>\n";
   if ($texexp) {
     $texexp = str_replace('<','&lt;',$texexp);

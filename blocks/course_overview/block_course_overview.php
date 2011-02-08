@@ -64,7 +64,11 @@ class block_course_overview extends block_base {
             $courses_limit = $courses_limit + 1;
         }
 
+<<<<<<< HEAD
         $courses = enrol_get_my_courses('id, shortname', 'visible DESC,sortorder ASC', $courses_limit);
+=======
+        $courses = enrol_get_my_courses('id, shortname, modinfo', 'visible DESC,sortorder ASC', $courses_limit);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $site = get_site();
         $course = $site; //just in case we need the old global $course hack
 

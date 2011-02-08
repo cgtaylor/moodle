@@ -37,8 +37,13 @@ $string['cic'] = 'Coefficient of internal consistency (for {$a})';
 $string['count'] = 'Count';
 $string['coursename'] = 'Course name';
 $string['detailedanalysis'] = 'More detailed analysis of the responses to this question';
+<<<<<<< HEAD
 $string['discrimination_index'] = 'Discrimination Index';
 $string['discriminative_efficiency'] = 'Discriminative Efficiency';
+=======
+$string['discrimination_index'] = 'Discrimination index';
+$string['discriminative_efficiency'] = 'Discriminative efficiency';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['downloadeverything'] = 'Download full report as';
 $string['duration'] = 'Open for';
 $string['effective_weight'] = 'Effective weight';
@@ -70,10 +75,17 @@ $string['optiongrade'] = 'Partial credit';
 $string['position'] = 'Position';
 $string['positions'] = 'Position(s)';
 $string['questioninformation'] = 'Question information';
+<<<<<<< HEAD
 $string['questionname'] = 'Question Name';
 $string['questionnumber'] = 'Q#';
 $string['questionstatistics'] = 'Question statistics';
 $string['questiontype'] = 'Question Type';
+=======
+$string['questionname'] = 'Question name';
+$string['questionnumber'] = 'Q#';
+$string['questionstatistics'] = 'Question statistics';
+$string['questiontype'] = 'Question type';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['quizinformation'] = 'Quiz information';
 $string['quizname'] = 'Quiz name';
 $string['quizoverallstatistics'] = 'Quiz overall statistics';
@@ -90,4 +102,8 @@ $string['statistics:componentname'] = 'Quiz statistics report';
 $string['statisticsreport'] = 'Statistics report';
 $string['statisticsreportgraph'] = 'Statistics for question positions';
 $string['statistics:view'] = 'View statistics report';
+<<<<<<< HEAD
 $string['statsfor'] = 'Quiz Statistics (for {$a})';
+=======
+$string['statsfor'] = 'Quiz statistics (for {$a})';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf

@@ -49,10 +49,17 @@ function xmldb_assignment_upgrade($oldversion) {
 
         $count = $DB->count_records_sql("SELECT COUNT('x') $sqlfrom");
 
+<<<<<<< HEAD
         if ($rs = $DB->get_recordset_sql("SELECT s.id, s.userid, s.teacher, s.assignment, a.course, cm.id AS cmid $sqlfrom ORDER BY a.course, s.assignment")) {
 
             $pbar = new progress_bar('migrateassignmentfiles', 500, true);
 
+=======
+        $rs = $DB->get_recordset_sql("SELECT s.id, s.userid, s.teacher, s.assignment, a.course, cm.id AS cmid $sqlfrom ORDER BY a.course, s.assignment");
+
+        if ($rs->valid()) {
+            $pbar = new progress_bar('migrateassignmentfiles', 500, true);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $i = 0;
             foreach ($rs as $submission) {
                 $i++;
@@ -122,9 +129,14 @@ function xmldb_assignment_upgrade($oldversion) {
                 @rmdir("$CFG->dataroot/$submission->course/$CFG->moddata/assignment/$submission->assignment");
                 @rmdir("$CFG->dataroot/$submission->course/$CFG->moddata/assignment");
             }
+<<<<<<< HEAD
             $rs->close();
 
         }
+=======
+        }
+        $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         upgrade_mod_savepoint(true, 2008081900, 'assignment');
     }

@@ -212,7 +212,17 @@ class MoodleExcelWorksheet {
         $format = $this->MoodleExcelFormat2PearExcelFormat($format);
     /// Convert the date to Excel format
         $timezone = get_user_timezone_offset();
+<<<<<<< HEAD
         $value =  ((usertime($date) + (int)($timezone * HOURSECS * 2)) / 86400) + 25569;
+=======
+        if ($timezone == 99) {
+            // system timezone offset in seconds
+            $offset = (int)date('Z');
+        } else {
+            $offset = (int)($timezone * HOURSECS * 2);
+        }
+        $value = ((usertime($date) + $offset) / 86400) + 25569;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     /// Add  the date safely to the PEAR Worksheet
         $this->pear_excel_worksheet->writeNumber($row, $col, $value, $format);
     }

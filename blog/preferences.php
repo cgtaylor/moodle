@@ -73,6 +73,10 @@ require_capability('moodle/blog:view', $context);
 /// If data submitted, then process and store.
 
 $mform = new blog_preferences_form('preferences.php');
+<<<<<<< HEAD
+=======
+$mform->set_data(array('pagesize' => get_user_preferences('blogpagesize')));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 if (!$mform->is_cancelled() && $data = $mform->get_data()) {
     $pagesize = $data->pagesize;

@@ -51,6 +51,7 @@ function page_20_migrate() {
 
     $fs = get_file_storage();
 
+<<<<<<< HEAD
     if ($candidates = $DB->get_recordset('resource_old', array('type'=>'html', 'migrated'=>0))) {
         foreach ($candidates as $candidate) {
             page_20_migrate_candidate($candidate, $fs, FORMAT_HTML);
@@ -69,6 +70,24 @@ function page_20_migrate() {
         }
         $candidates->close();
     }
+=======
+    $candidates = $DB->get_recordset('resource_old', array('type'=>'html', 'migrated'=>0));
+    foreach ($candidates as $candidate) {
+        page_20_migrate_candidate($candidate, $fs, FORMAT_HTML);
+    }
+    $candidates->close();
+
+    $candidates = $DB->get_recordset('resource_old', array('type'=>'text', 'migrated'=>0));
+    foreach ($candidates as $candidate) {
+        //there might be some rubbish instead of format int value
+        $format = (int)$candidate->reference;
+        if ($format < 0 or $format > 4) {
+            $format = FORMAT_MOODLE;
+        }
+        page_20_migrate_candidate($candidate, $fs, $format);
+    }
+    $candidates->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     // clear all course modinfo caches
     rebuild_course_cache(0, true);

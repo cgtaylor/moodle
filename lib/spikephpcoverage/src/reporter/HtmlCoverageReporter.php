@@ -1,6 +1,10 @@
 <?php
     /*
+<<<<<<< HEAD
     *  $Id: HtmlCoverageReporter.php,v 1.3 2010/12/14 17:35:59 moodlerobot Exp $
+=======
+    *  $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     *  
     *  Copyright(c) 2004-2006, SpikeSource Inc. All Rights Reserved.
     *  Licensed under the Open Software License version 2.1
@@ -20,7 +24,11 @@
     * Class that implements HTML Coverage Reporter. 
     * 
     * @author Nimish Pachapurkar <npac@spikesource.com>
+<<<<<<< HEAD
     * @version $Revision: 1.3 $
+=======
+    * @version $Revision$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     * @package SpikePHPCoverage_Reporter
     */
     class HtmlCoverageReporter extends CoverageReporter {

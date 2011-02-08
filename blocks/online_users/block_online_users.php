@@ -43,8 +43,11 @@ class block_online_users extends block_base {
 
         $groupmembers = "";
         $groupselect  = "";
+<<<<<<< HEAD
         $rafrom       = "";
         $rawhere      = "";
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $params = array();
 
         //Add this to the SQL to show only group users
@@ -78,22 +81,38 @@ class block_online_users extends block_base {
             $params = array_merge($params, $eparams);
 
             $sql = "SELECT $userfields, MAX(ul.timeaccess) AS lastaccess
+<<<<<<< HEAD
                       FROM {user_lastaccess} ul, {user} u $groupmembers $rafrom
+=======
+                      FROM {user_lastaccess} ul $groupmembers, {user} u
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                       JOIN ($esqljoin) euj ON euj.id = u.id
                      WHERE ul.timeaccess > $timefrom
                            AND u.id = ul.userid
                            AND ul.courseid = :courseid
+<<<<<<< HEAD
                            $groupselect $rawhere
+=======
+                           $groupselect
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                   GROUP BY $userfields
                   ORDER BY lastaccess DESC";
 
            $csql = "SELECT u.id
+<<<<<<< HEAD
                       FROM {user_lastaccess} ul, {user} u $groupmembers $rafrom
+=======
+                      FROM {user_lastaccess} ul $groupmembers, {user} u
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                       JOIN ($esqljoin) euj ON euj.id = u.id
                      WHERE ul.timeaccess > $timefrom
                            AND u.id = ul.userid
                            AND ul.courseid = :courseid
+<<<<<<< HEAD
                            $groupselect $rawhere
+=======
+                           $groupselect
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                   GROUP BY u.id";
 
             $params['courseid'] = $this->page->course->id;

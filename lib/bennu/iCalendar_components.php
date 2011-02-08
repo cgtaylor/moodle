@@ -9,7 +9,11 @@
  *  See http://bennu.sourceforge.net/ for more information and downloads.
  *
  * @author Ioannis Papaioannou 
+<<<<<<< HEAD
  * @version $Id: iCalendar_components.php,v 1.4 2010/12/14 17:35:53 moodlerobot Exp $
+=======
+ * @version $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
 

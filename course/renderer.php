@@ -130,7 +130,11 @@ class core_course_renderer extends plugin_renderer_base {
                 $coursecount ++;
                 $classes[] = ($coursecount%2)?'odd':'even';
                 $content .= html_writer::start_tag('div', array('class'=>join(' ', $classes)));
+<<<<<<< HEAD
                 $content .= html_writer::link(new moodle_url('/course/view.php', array('id'=>$course->id)), format_text($course->fullname, FORMAT_HTML), array('class'=>$linkclass));
+=======
+                $content .= html_writer::link(new moodle_url('/course/view.php', array('id'=>$course->id)), format_string($course->fullname), array('class'=>$linkclass));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 $content .= html_writer::start_tag('div', array('class'=>'course_info clearfix'));
 
                 // print enrol info
@@ -152,4 +156,8 @@ class core_course_renderer extends plugin_renderer_base {
         $content .= html_writer::end_tag('div');
         return $content;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf

@@ -750,6 +750,12 @@ function setup_get_remote_url() {
 
     } else if (stripos($_SERVER['SERVER_SOFTWARE'], 'nginx') !== false) {
         //nginx - not officially supported
+<<<<<<< HEAD
+=======
+        if (!isset($_SERVER['SCRIPT_NAME'])) {
+            die('Invalid server configuration detected, please try to add "fastcgi_param SCRIPT_NAME $fastcgi_script_name;" to the nginx server configuration.');
+        }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $rurl['scheme']   = empty($_SERVER['HTTPS']) ? 'http' : 'https';
         $rurl['fullpath'] = $_SERVER['REQUEST_URI']; // TODO: verify this is always properly encoded
 
@@ -1268,7 +1274,11 @@ width: 80%; -moz-border-radius: 20px; padding: 15px">
                     $e->stacktrace = format_backtrace($backtrace, true);
                 }
             }
+<<<<<<< HEAD
             @header('Content-Type: application/json');
+=======
+            @header('Content-Type: application/json; charset=utf-8');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             echo json_encode($e);
             return;
         }

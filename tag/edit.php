@@ -55,7 +55,13 @@ $PAGE->set_context($systemcontext);
 $PAGE->set_blocks_editing_capability('moodle/tag:editblocks');
 $PAGE->set_pagelayout('base');
 
+<<<<<<< HEAD
 $PAGE->requires->yui2_lib('animation');
+=======
+$PAGE->requires->yui2_lib('connection');
+$PAGE->requires->yui2_lib('animation');
+$PAGE->requires->yui2_lib('datasource');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $PAGE->requires->yui2_lib('autocomplete');
 
 $tagname = tag_display_name($tag);

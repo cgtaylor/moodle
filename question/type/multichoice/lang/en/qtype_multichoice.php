@@ -51,7 +51,11 @@ $string['multichoice_link'] = 'question/type/multichoice';
 $string['multichoicesummary'] = 'Allows the selection of a single or multiple responses from a pre-defined list.';
 $string['notenoughanswers'] = 'This type of question requires at least {$a} choices';
 $string['overallcorrectfeedback'] = 'Feedback for any correct response';
+<<<<<<< HEAD
 $string['overallfeedback'] = 'Overall Feedback';
+=======
+$string['overallfeedback'] = 'Overall feedback';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['overallincorrectfeedback'] = 'Feedback for any incorrect response';
 $string['overallpartiallycorrectfeedback'] = 'Feedback for any partially correct response';
 $string['partiallycorrectfeedback'] = 'For any partially correct response';

@@ -64,6 +64,13 @@ class lesson_page_type_branchtable extends lesson_page {
                 }
                 $jumps[] = $this->get_jump_name($answer->jumpto);
             }
+<<<<<<< HEAD
+=======
+        } else {
+            // We get here is the lesson was created on a Moodle 1.9 site and
+            // the lesson contains question pages without any answers.
+            $jumps[] = $this->get_jump_name($this->properties->nextpageid);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
         return $jumps;
     }

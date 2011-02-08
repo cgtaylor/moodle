@@ -119,7 +119,11 @@
         }
 
         // Loop through all directory entries, and construct two temporary arrays containing files and sub directories
+<<<<<<< HEAD
         while(false !== ($entry = readdir($handle))) {
+=======
+        while (false !== ($entry = readdir($handle))) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             if (is_dir($dir. $slash .$entry) && $entry != ".." && $entry != "." && $entry != $excludeddir) {
                 $dir_subdirs[] = $dir. $slash .$entry;
             }
@@ -129,7 +133,12 @@
         }
 
         // Delete all files in the curent directory return false and halt if a file cannot be removed
+<<<<<<< HEAD
         for($i=0; $i<count($dir_files); $i++) {
+=======
+        $countdirfiles = count($dir_files);
+        for ($i=0; $i<$countdirfiles; $i++) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             chmod($dir_files[$i], $CFG->directorypermissions);
             if (((unlink($dir_files[$i]))) == FALSE) {
                 return false;
@@ -137,7 +146,12 @@
         }
 
         // Empty sub directories and then remove the directory
+<<<<<<< HEAD
         for($i=0; $i<count($dir_subdirs); $i++) {
+=======
+        $countdirsubdirs = count($dir_subdirs);
+        for($i=0; $i<$countdirsubdirs; $i++) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             chmod($dir_subdirs[$i], $CFG->directorypermissions);
             if (delete_dir_contents($dir_subdirs[$i]) == FALSE) {
                 return false;

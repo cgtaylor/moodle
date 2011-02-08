@@ -392,7 +392,11 @@ class qformat_gift extends qformat_default {
                 list($answer, $wrongfeedback, $rightfeedback) =
                         $this->split_truefalse_comment($answertext, $question->questiontextformat);
 
+<<<<<<< HEAD
                 if ($answer == "T" OR $answer == "TRUE") {
+=======
+                if ($answer['text'] == "T" OR $answer['text'] == "TRUE") {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                     $question->correctanswer = 1;
                     $question->feedbacktrue = $rightfeedback;
                     $question->feedbackfalse = $wrongfeedback;

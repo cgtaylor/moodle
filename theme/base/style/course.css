@@ -116,6 +116,13 @@
 
 .path-course .clearfloat {float:none; clear:both;height:0px;}
 
+<<<<<<< HEAD
+=======
+
+/*all courses view*/
+#page-course-index .categorylist .course.clearfloat { height: auto; }
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 /** 
 * Overide for RTL layout
 */

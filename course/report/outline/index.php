@@ -74,7 +74,11 @@
     foreach ($modinfo->sections as $sectionnum=>$section) {
         foreach ($section as $cmid) {
             $cm = $modinfo->cms[$cmid];
+<<<<<<< HEAD
             if ($cm->modname == 'label') {
+=======
+            if (!$cm->has_view()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 continue;
             }
             if (!$cm->uservisible) {

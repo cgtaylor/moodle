@@ -35,7 +35,11 @@
  * @author Marcus Bointon
  * @copyright 2004 - 2008 Andy Prevost
  * @license http://www.gnu.org/copyleft/lesser.html Distributed under the Lesser General Public License (LGPL)
+<<<<<<< HEAD
  * @version $Id: class.smtp.php,v 1.8 2010/12/14 17:35:42 moodlerobot Exp $
+=======
+ * @version $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  */
 
 /**

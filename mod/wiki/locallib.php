@@ -34,6 +34,10 @@
 
 require_once($CFG->dirroot . '/mod/wiki/lib.php');
 require_once($CFG->dirroot . '/mod/wiki/parser/parser.php');
+<<<<<<< HEAD
+=======
+require_once($CFG->libdir . '/filelib.php');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 define('WIKI_REFRESH_CACHE_TIME', 30); // @TODO: To be deleted.
 define('FORMAT_CREOLE', '37');
@@ -261,6 +265,12 @@ function wiki_refresh_cachedcontent($page, $newcontent = null) {
     global $DB;
 
     $version = wiki_get_current_version($page->id);
+<<<<<<< HEAD
+=======
+    if (empty($version)) {
+        return null;
+    }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     if (!isset($newcontent)) {
         $newcontent = $version->content;
     }
@@ -299,7 +309,15 @@ function wiki_refresh_page_links($page, $links) {
             $newlink->topageid = $linkinfo['pageid'];
         }
 
+<<<<<<< HEAD
         $DB->insert_record('wiki_links', $newlink);
+=======
+        try {
+            $DB->insert_record('wiki_links', $newlink);
+        } catch (dml_exception $e) {
+            debugging($e->getMessage());
+        }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     }
 }
@@ -1194,7 +1212,19 @@ function wiki_print_page_content($page, $context, $subwikiid) {
 
     if (!empty($CFG->usetags)) {
         $tags = tag_get_tags_array('wiki_pages', $page->id);
+<<<<<<< HEAD
         echo '<p class="wiki-tags"><span>Tags: </span>' . join($tags, ", ") . '</p>';
+=======
+        echo $OUTPUT->container_start('wiki-tags');
+        echo '<span class="wiki-tags-title">'.get_string('tags').': </span>';
+        $links = array();
+        foreach ($tags as $tagid=>$tag) {
+            $url = new moodle_url('/tag/index.php', array('tag'=>$tag));
+            $links[] = html_writer::link($url, $tag, array('title'=>get_string('tagtitle', 'wiki', $tag)));
+        }
+        echo join($links, ", ");
+        echo $OUTPUT->container_end();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     wiki_increment_pageviews($page);

@@ -155,7 +155,10 @@ $string['configcountry'] = 'If you set a country here, then this country will be
 $string['configcourserequestnotify'] = 'Type username of user to be notified when new course requested.';
 $string['configcourserequestnotify2'] = 'Users who will be notified when a course is requested. Only users who can approve course requests are listed here.';
 $string['configcoursesperpage'] = 'Enter the number of courses to be display per page in a course listing.';
+<<<<<<< HEAD
 $string['configcreatornewroleid'] = 'This role is automatically assigned to creators in new courses they created. This role is not assigned if creator already has needed capabilities in parent context.';
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['configcronclionly'] = 'If this is set, then the cron script can only be run from the command line instead of via the web.  This overrides the cron password setting below.';
 $string['configcronremotepassword'] = 'This means that the cron.php script cannot be run from a web browser without supplying the password using the following form of URL:<pre>
     http://site.example.com/admin/cron.php?password=opensesame
@@ -386,6 +389,10 @@ $string['courserequestspending'] = 'Pending course requests';
 $string['courses'] = 'Courses';
 $string['coursesperpage'] = 'Courses per page';
 $string['creatornewroleid'] = 'Creators\' role in new courses';
+<<<<<<< HEAD
+=======
+$string['creatornewroleid_help'] = 'If the user does not already have the permission to manage the new course, the user is automatically enrolled using this role.';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['cron'] = 'Cron';
 $string['cron_help'] = 'The cron.php maintenance script assists some of Moodle\'s modules to perform tasks on a scheduled basis, such as mailing out copies of new forum posts. A mechanism is required to run the script regularly e.g. every 5 minutes.';
 $string['cron_link'] = 'admin/cron';
@@ -735,6 +742,10 @@ $string['navigationupgrade'] = 'This upgrade introduces two new navigation block
 $string['navcourselimit'] = 'Course limit';
 $string['navshowallcourses'] = 'Show all courses';
 $string['navshowcategories'] = 'Show course categories';
+<<<<<<< HEAD
+=======
+$string['neverdeleteruns'] = 'Never delete runs';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['nobookmarksforuser'] = 'You do not have any bookmarks.';
 $string['nodatabase'] = 'No database';
 $string['nodefaultuserrolelists'] = 'Don\'t return all default role users';
@@ -766,6 +777,11 @@ $string['pathconvert'] = 'Path of <i>convert</i> binary';
 $string['pathdvips'] = 'Path of <i>dvips</i> binary';
 $string['pathlatex'] = 'Path of <i>latex</i> binary';
 $string['pathtoclam'] = 'clam AV path';
+<<<<<<< HEAD
+=======
+$string['pathtodot'] = 'Path to dot';
+$string['pathtodot_help'] = 'Path to dot. Probably something like /usr/bin/dot. To be able to generate graphics from DOT files, you must have installed the dot executable and point to it here. Note that, for now, this only used by the profiling features (Development->Profiling) built into Moodle.';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['pathtodu'] = 'Path to du';
 $string['pathtopgdump'] = 'Path to pg_dump';
 $string['pathtopgdumpdesc'] = 'This is only necessary to enter if you have more than one pg_dump on your system (for example if you have more than one version of postgresql installed)';
@@ -779,6 +795,10 @@ $string['perfdebug'] = 'Performance info';
 $string['performance'] = 'Performance';
 $string['pgcluster'] = 'PostgreSQL Cluster';
 $string['pgclusterdescription'] = 'PostgreSQL version/cluster parameter for command line operations. If you only have one postgresql on your system or you are not sure what this is, leave this blank.';
+<<<<<<< HEAD
+=======
+$string['php533warning'] = 'PHP 5.3.3 and upwards is recommended';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['phpfloatproblem'] = 'Detected unexpected problem in handling of PHP float numbers - {$a}';
 $string['php50restricted'] = 'PHP 5.0.x has a number of known problems, please upgrade to 5.1.x or downgrade to 4.3.x or 4.4.x';
 $string['pleaserefreshregistration'] = 'Your site has been registered with moodle.org, please consider updating the registration if significant changes happened since your last update, on {$a}';
@@ -801,6 +821,11 @@ $string['profiledefaultchecked'] = 'Checked by default';
 $string['profiledeletecategory'] = 'Deleting a category';
 $string['profiledeletefield'] = 'Deleting a field';
 $string['profiledescription'] = 'Description of the field';
+<<<<<<< HEAD
+=======
+$string['profiledscript'] = 'This script has been profiled';
+$string['profiledscriptview'] = 'View profiling information for this script';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['profileeditcategory'] = 'Editing category: {$a}';
 $string['profileeditfield'] = 'Editing profile field: {$a}';
 $string['profilefield'] = 'Profile field';
@@ -836,6 +861,24 @@ $string['profilevisible_help'] = '* Not visible - For private data only viewable
 $string['profilevisibleall'] = 'Visible to everyone';
 $string['profilevisiblenone'] = 'Not visible';
 $string['profilevisibleprivate'] = 'Visible to user';
+<<<<<<< HEAD
+=======
+$string['profiling'] = 'Profiling';
+$string['profilingallowall'] = 'Continuous profiling';
+$string['profilingallowall_help'] = 'If you enable this setting, then, at any moment, you can use the PROFILEALL parameter anywhere (PGC) to enable profiling for all the executed scripts along the Moodle session life. Analogously, you can use the PROFILEALLSTOP parameter to stop it.';
+$string['profilingallowme'] = 'Selective profiling';
+$string['profilingallowme_help'] = 'If you enable this setting, then, selectively, you can use the PROFILEME parameter anywhere (PGC) and profiling for that script will happen. Analogously, you can use the DONTPROFILEME parameter to prevent profiling to happen';
+$string['profilingautofrec'] = 'Automatic profiling';
+$string['profilingautofrec_help'] = 'By configuring this setting, some request (randomly, based on the frecuency specified - 1 of XXX) will be picked and automatically profiled, storing results for further analysis. Note that this way of profiling observes the include/exclude settings. Set it to 0 to disable automatic profiling.';
+$string['profilingenabled'] = 'Enable profiling';
+$string['profilingenabled_help'] = 'If you enable this setting, then profiling will be available in this site and you will be able to define its behavior by configuring the next options.';
+$string['profilingexcluded'] = 'Exclude profiling';
+$string['profilingexcluded_help'] = 'List of (comma separated, absolute skipping wwwroot, callable) URLs that will be excluded from being profiled from the ones defined by \'Profile these\' setting.';
+$string['profilingincluded'] = 'Profile these';
+$string['profilingincluded_help'] = 'List of (comma separated, absolute skipping wwwroot, callable) URLs that will be automatically profiled. Examples: /index.php, /course/view.php. Also accepts the * wildchar at any position. Examples: /mod/forum/*, /mod/*/view.php.';
+$string['profilinglifetime'] = 'Keep profiling runs';
+$string['profilinglifetime_help'] = 'Specify the time you want to keep information about old profiling runs. Older ones will be pruned periodically. Note that this excludes any profiling run marked as \'reference run\'.';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['protectusernames'] = 'Protect usernames';
 $string['proxybypass'] = 'Proxy bypass hosts';
 $string['proxyhost'] = 'Proxy host';

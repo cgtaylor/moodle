@@ -77,6 +77,13 @@ foreach ($modinfo->cms as $cm) {
     if (!array_key_exists($cm->modname, $modules)) {
         continue;
     }
+<<<<<<< HEAD
+=======
+    if (!$cm->has_view()) {
+        // Exclude label and similar
+        continue;
+    }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $cms[$cm->id] = $cm;
     $resources[$cm->modname][] = $cm->instance;
 }

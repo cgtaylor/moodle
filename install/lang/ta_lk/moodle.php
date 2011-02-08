@@ -31,3 +31,7 @@
 $string['language'] = 'மொழி';
 $string['next'] = 'அடுத்தது';
 $string['previous'] = 'முன்னைய';
+<<<<<<< HEAD
+=======
+$string['reload'] = 'மீள ஏற்றுக';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf

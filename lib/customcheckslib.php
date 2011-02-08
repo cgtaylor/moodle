@@ -54,3 +54,15 @@ function php_check_register_globals($result) {
 
     return $result;
 }
+<<<<<<< HEAD
+=======
+
+function php_check_php533($result) {
+    if (version_compare(phpversion(), '5.3.3') < 0) {
+        $result->status = false;
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf

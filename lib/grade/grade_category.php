@@ -481,7 +481,12 @@ class grade_category extends grade_object {
               ORDER BY g.userid";
 
         // group the results by userid and aggregate the grades for this user
+<<<<<<< HEAD
         if ($rs = $DB->get_recordset_sql($sql, $params)) {
+=======
+        $rs = $DB->get_recordset_sql($sql, $params);
+        if ($rs->valid()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $prevuser = 0;
             $grade_values = array();
             $excluded     = array();
@@ -506,9 +511,15 @@ class grade_category extends grade_object {
                     $oldgrade = $used;
                 }
             }
+<<<<<<< HEAD
             $rs->close();
             $this->aggregate_grades($prevuser, $items, $grade_values, $oldgrade, $excluded);//the last one
         }
+=======
+            $this->aggregate_grades($prevuser, $items, $grade_values, $oldgrade, $excluded);//the last one
+        }
+        $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         return true;
     }

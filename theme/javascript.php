@@ -95,7 +95,11 @@ function send_cached_js($jspath) {
     header('Expires: '. gmdate('D, d M Y H:i:s', time() + $lifetime) .' GMT');
     header('Pragma: ');
     header('Accept-Ranges: none');
+<<<<<<< HEAD
     header('Content-Type: application/javascript');
+=======
+    header('Content-Type: application/javascript; charset=utf-8');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     if (!min_enable_zlib_compression()) {
         header('Content-Length: '.filesize($jspath));
     }
@@ -110,7 +114,11 @@ function send_uncached_js($js) {
     header('Expires: '. gmdate('D, d M Y H:i:s', time() + 2) .' GMT');
     header('Pragma: ');
     header('Accept-Ranges: none');
+<<<<<<< HEAD
     header('Content-Type: application/javascript');
+=======
+    header('Content-Type: application/javascript; charset=utf-8');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     header('Content-Length: '.strlen($js));
 
     echo $js;

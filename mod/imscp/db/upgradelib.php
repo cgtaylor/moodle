@@ -49,7 +49,13 @@ function imscp_20_migrate() {
         return;
     }
 
+<<<<<<< HEAD
     if (!$candidates = $DB->get_recordset('resource_old', array('type'=>'ims', 'migrated'=>0))) {
+=======
+    $candidates = $DB->get_recordset('resource_old', array('type'=>'ims', 'migrated'=>0));
+    if (!$candidates->valid()) {
+        $candidates->close(); // Not going to iterate (but exit), close rs
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         return;
     }
 
@@ -133,7 +139,10 @@ function imscp_20_migrate() {
             fulldelete($root);
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $candidates->close();
 
     // clear all course modinfo caches

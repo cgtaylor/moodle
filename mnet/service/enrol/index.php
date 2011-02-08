@@ -40,6 +40,17 @@ if (!$service->is_available()) {
     die();
 }
 
+<<<<<<< HEAD
+=======
+$roamingusers = get_users_by_capability(get_system_context(), 'moodle/site:mnetlogintoremote', 'u.id');
+if (empty($roamingusers)) {
+    $capname = get_string('site:mnetlogintoremote', 'role');
+    $url = new moodle_url('/admin/roles/manage.php');
+    echo notice(get_string('noroamingusers', 'mnetservice_enrol', $capname), $url);
+}
+unset($roamingusers);
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 // remote hosts that may publish remote enrolment service and we are subscribed to it
 $hosts = $service->get_remote_publishers();
 

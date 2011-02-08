@@ -181,7 +181,11 @@ function label_reset_userdata($data) {
  *
  * @return array
  */
+<<<<<<< HEAD
 function lable_get_extra_capabilities() {
+=======
+function label_get_extra_capabilities() {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     return array('moodle/site:accessallgroups');
 }
 
@@ -209,6 +213,10 @@ function label_supports($feature) {
         case FEATURE_GRADE_OUTCOMES:          return false;
         case FEATURE_MOD_ARCHETYPE:           return MOD_ARCHETYPE_RESOURCE;
         case FEATURE_BACKUP_MOODLE2:          return true;
+<<<<<<< HEAD
+=======
+        case FEATURE_NO_VIEW_LINK:            return true;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         default: return null;
     }

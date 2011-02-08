@@ -1,9 +1,15 @@
 <?php
 
+<<<<<<< HEAD
 function scorm_get_toc($user,$scorm,$liststyle,$currentorg='',$scoid='',$mode='normal',$attempt='',$play=false, $tocheader=false) {
     global $CFG, $DB, $PAGE, $OUTPUT;
 
     $strexpand = get_string('expcoll','scorm');
+=======
+function scorm_get_toc($user,$scorm,$cmid,$toclink=TOCJSLINK,$currentorg='',$scoid='',$mode='normal',$attempt='',$play=false, $tocheader=false) {
+    global $CFG, $DB, $PAGE, $OUTPUT;
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $modestr = '';
     if ($mode == 'browse') {
         $modestr = '&amp;mode='.$mode;
@@ -84,11 +90,14 @@ function scorm_get_toc($user,$scorm,$liststyle,$currentorg='',$scoid='',$mode='n
                         $i--;
                     }
                     if (($i == 0) && ($sco->parent != $currentorg)) {
+<<<<<<< HEAD
                         $style = '';
                         if (isset($_COOKIE['hide:SCORMitem'.$sco->id])) {
                             $style = ' style="display: none;"';
                         }
                         //$result->toc .= "\t\t<li><ul id='s$sublist' class='$liststyle'$style>\n";
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                         $result->toc .= "\t\t><ul>\n";
                         $level++;
                     } else {
@@ -113,6 +122,7 @@ function scorm_get_toc($user,$scorm,$liststyle,$currentorg='',$scoid='',$mode='n
             if ($nextisvisible && ($nextsco !== false) && ($sco->parent != $nextsco->parent) &&
                (($level==0) || (($level>0) && ($nextsco->parent == $sco->identifier)))) {
                 $sublist++;
+<<<<<<< HEAD
                 $icon = 'minus';
                 if (isset($_COOKIE['hide:SCORMitem'.$nextsco->id])) {
                     $icon = 'plus';
@@ -121,14 +131,19 @@ function scorm_get_toc($user,$scorm,$liststyle,$currentorg='',$scoid='',$mode='n
 //                                '<img id="img'.$sublist.'" src="'.$OUTPUT->pix_url($icon, 'scorm').'" alt="'.$strexpand.'" title="'.$strexpand.'"/></a>';
             } else if ($isvisible) {
 //                $result->toc .= "\t\t".'<li><img src="'.$OUTPUT->pix_url('spacer', 'scorm').'" alt="" />';
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             }
             if (empty($sco->title)) {
                 $sco->title = $sco->identifier;
             }
             if (!empty($sco->launch)) {
                 if ($isvisible) {
+<<<<<<< HEAD
                     $startbold = '';
                     $endbold = '';
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                     $score = '';
                     if (empty($scoid) && ($mode != 'normal')) {
                         $scoid = $sco->id;
@@ -148,7 +163,11 @@ function scorm_get_toc($user,$scorm,$liststyle,$currentorg='',$scoid='',$mode='n
                                 $scoid = $sco->id;
                             }
                         }
+<<<<<<< HEAD
                         if ($usertrack->score_raw != '') {
+=======
+                        if ($usertrack->score_raw != '' && has_capability('mod/scorm:viewscores', get_context_instance(CONTEXT_MODULE,$cmid))) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                             $score = '('.get_string('score','scorm').':&nbsp;'.$usertrack->score_raw.')';
                         }
                         $strsuspended = get_string('suspended','scorm');
@@ -168,11 +187,15 @@ function scorm_get_toc($user,$scorm,$liststyle,$currentorg='',$scoid='',$mode='n
                     }
 
                     if ($sco->id == $scoid) {
+<<<<<<< HEAD
                         $startbold = '<b>';
                         $endbold = '</b>';
                         $findnext = true;
                         $shownext = isset($sco->next) ? $sco->next : 0;
                         $showprev = isset($sco->prev) ? $sco->prev : 0;
+=======
+                        $findnext = true;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                     }
 
                     if (($nextid == 0) && (scorm_count_launchable($scorm->id,$currentorg) > 1) && ($nextsco!==false) && (!$findnext)) {
@@ -185,6 +208,7 @@ function scorm_get_toc($user,$scorm,$liststyle,$currentorg='',$scoid='',$mode='n
                         if ($sco->id == $scoid) {
                             $result->prerequisites = true;
                         }
+<<<<<<< HEAD
                             $url = $CFG->wwwroot.'/mod/scorm/player.php?a='.$scorm->id.'&amp;currentorg='.$currentorg.$modestr.'&amp;scoid='.$sco->id;
                             $thisscoidstr = '&scoid='.$sco->id;
                             //$link = $CFG->wwwroot.'/mod/scorm/loadSCO.php?a='.$scorm->id.$thisscoidstr.$modestr;
@@ -198,16 +222,38 @@ function scorm_get_toc($user,$scorm,$liststyle,$currentorg='',$scoid='',$mode='n
                                 $result->toc .= '<span>'.$statusicon.'&nbsp;'.format_string($sco->title).'</span>';
                             }
                             $tocmenus[$sco->id] = scorm_repeater('&minus;',$level) . '&gt;' . format_string($sco->title);
+=======
+
+                        if ($toclink == TOCFULLURL) { //display toc with urls for structure page
+                            $url = $CFG->wwwroot.'/mod/scorm/player.php?a='.$scorm->id.'&amp;currentorg='.$currentorg.$modestr.'&amp;scoid='.$sco->id;
+                            $result->toc .= $statusicon.'&nbsp;<a href="'.$url.'">'.format_string($sco->title).'</a>'.$score."\n";
+                        } else {
+                            if ($sco->launch) {
+                                $link = 'a='.$scorm->id.'&scoid='.$sco->id.'&currentorg='.$currentorg.$modestr.'&attempt='.$attempt;
+                                $result->toc .= '<a title="'.$link.'">'.$statusicon.'&nbsp;'.format_string($sco->title).'&nbsp;'.$score.'</a>';
+                            } else {
+                                $result->toc .= '<span>'.$statusicon.'&nbsp;'.format_string($sco->title).'</span>';
+                            }
+                        }
+                        $tocmenus[$sco->id] = scorm_repeater('&minus;',$level) . '&gt;' . format_string($sco->title);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                     } else {
                         if ($sco->id == $scoid) {
                             $result->prerequisites = false;
                         }
+<<<<<<< HEAD
                         //$result->toc .= $statusicon.'&nbsp;'.format_string($sco->title)."\n";
                         if ($play) {
                             // should be disabled
                             $result->toc .= '<span>'.$statusicon.'&nbsp;'.format_string($sco->title).'</span>';
                         }
                         else {
+=======
+                        if ($play) {
+                            // should be disabled
+                            $result->toc .= '<span>'.$statusicon.'&nbsp;'.format_string($sco->title).'</span>';
+                        } else {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                             $result->toc .= $statusicon.'&nbsp;'.format_string($sco->title)."\n";
                         }
                     }
@@ -261,5 +307,8 @@ function scorm_get_toc($user,$scorm,$liststyle,$currentorg='',$scoid='',$mode='n
 
     return $result;
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf

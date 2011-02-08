@@ -139,7 +139,12 @@ class feedback_item_textfield extends feedback_item_base {
             // $worksheet->setFormat("<l><ro2><vo>");
             $worksheet->write_string($rowOffset, 2, $data[0], $xlsFormats->value_bold);
             $rowOffset++;
+<<<<<<< HEAD
             for($i = 1; $i < sizeof($data); $i++) {
+=======
+            $sizeofdata = sizeof($data);
+            for($i = 1; $i < $sizeofdata; $i++) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 // $worksheet->setFormat("<l><vo>");
                 $worksheet->write_string($rowOffset, 2, $data[$i], $xlsFormats->default);
                 $rowOffset++;

@@ -34,4 +34,11 @@
 .user-grade td.excluded {background-color: #666;}
 .user-grade td.hidden {color: #aaa;}
 .user-grade td.feedbacktext {max-width:600px;padding:0;}
+<<<<<<< HEAD
 .pagelayout-report .user-grade .feedbacktext .no-overflow {overflow:auto;padding:0.25em;}
+=======
+.pagelayout-report .user-grade .feedbacktext .no-overflow {overflow:auto;padding:0.25em;}
+
+table.user-grade td.feedbacktext {text-align:left;width: 40%;font-size: 0.8em;white-space:normal;}
+table.user-grade td.itemcenter {text-align:center;}
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf

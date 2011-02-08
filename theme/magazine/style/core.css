@@ -36,7 +36,11 @@ a:focus {
     width: 100%;
 }
 
+<<<<<<< HEAD
 #header {
+=======
+div#header {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     width: 91%;
     min-width: 910px;
     height: 30px;

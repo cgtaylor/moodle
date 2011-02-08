@@ -1,6 +1,10 @@
 <?php
 /*
+<<<<<<< HEAD
  *  $Id: driver.php,v 1.2 2010/12/14 17:35:49 moodlerobot Exp $
+=======
+ *  $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  *  
  *  Copyright(c) 2004-2006, SpikeSource Inc. All Rights Reserved.
  *  Licensed under the Open Software License version 2.1

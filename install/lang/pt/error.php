@@ -29,7 +29,11 @@
  */
 
 $string['cannotcreatelangdir'] = 'Não é possível criar o directório para pacotes linguísticos';
+<<<<<<< HEAD
 $string['cannotcreatetempdir'] = 'Não é possível criar o directório temporal';
+=======
+$string['cannotcreatetempdir'] = 'Não é possível criar o directório temporário';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['cannotdownloadcomponents'] = 'Não é possível descarregar a cópia dos componentes';
 $string['cannotdownloadzipfile'] = 'Não é possível descarregar a cópia do ficheiro ZIP';
 $string['cannotfindcomponent'] = 'Não foi encontrado um componente';

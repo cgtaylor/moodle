@@ -28,8 +28,13 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+<<<<<<< HEAD
 $string['cannotcreatelangdir'] = 'மொழிக் கோப்புறையை உருவாக்க முடியவில்லை.';
 $string['cannotcreatetempdir'] = 'தற்காலிகக் கோப்புறையை உருவாக்க முடியவில்லை.';
+=======
+$string['cannotcreatelangdir'] = 'மொழி அடைவை உருவாக்க முடியவில்லை';
+$string['cannotcreatetempdir'] = 'தற்காலிக அடைவை உருவாக்க முடியவில்லை';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['cannotdownloadcomponents'] = 'கூறுகளைப் பதிவிறக்க முடியவில்லை.';
 $string['cannotdownloadzipfile'] = 'ZIP கோப்பைப் பதிவிறக்க முடியவில்லை.';
 $string['cannotfindcomponent'] = 'கூறைக் காணவில்லை.';

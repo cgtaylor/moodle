@@ -180,7 +180,11 @@ class enrol_meta_handler {
         $plugin = enrol_get_plugin('meta');
         foreach ($enrols as $enrol) {
             //unenrol all users
+<<<<<<< HEAD
             $ues = $DB->get_records_sql('user_enrolments', array('courseid'=>$enrol->courseid, 'enrolid'=>$enrol->id));
+=======
+            $ues = $DB->get_recordset('user_enrolments', array('enrolid'=>$enrol->id));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             foreach ($ues as $ue) {
                 $plugin->unenrol_user($enrol, $ue->userid);
             }

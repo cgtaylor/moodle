@@ -29,7 +29,11 @@
  * @package Smarty
  */
 
+<<<<<<< HEAD
 /* $Id: Config_File.class.php,v 1.4 2010/12/14 17:35:50 moodlerobot Exp $ */
+=======
+/* $Id$ */
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 /**
  * Config file reading class

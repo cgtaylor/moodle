@@ -92,8 +92,13 @@
                 SELECT qg.quiz, qg.grade
                 FROM {quiz_grades} qg
                 JOIN {quiz} q ON q.id = qg.quiz
+<<<<<<< HEAD
                 WHERE q.course = ?',
                 $course->id);
+=======
+                WHERE q.course = ? AND qg.userid = ?',
+                array($course->id, $USER->id));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     $table = new html_table();

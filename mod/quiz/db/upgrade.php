@@ -116,50 +116,86 @@ function xmldb_quiz_upgrade($oldversion) {
 
     /// Changing the type of all the columns that store grades to be NUMBER(10, 5) or similar.
     if ($oldversion < 2008081501) {
+<<<<<<< HEAD
         $table = new xmldb_table('quiz');
         $field = new xmldb_field('sumgrades', XMLDB_TYPE_NUMBER, '10, 5', null, null, null, null, 'questions');
+=======
+        // First set all quiz.sumgrades to 0 if they are null. This should never
+        // happen however some users have encountered a null value there.
+        $DB->execute('UPDATE {quiz} SET sumgrades=0 WHERE sumgrades IS NULL');
+        $table = new xmldb_table('quiz');
+        $field = new xmldb_field('sumgrades', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'questions');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $dbman->change_field_type($table, $field);
         upgrade_mod_savepoint(true, 2008081501, 'quiz');
     }
 
     if ($oldversion < 2008081502) {
         $table = new xmldb_table('quiz');
+<<<<<<< HEAD
         $field = new xmldb_field('grade', XMLDB_TYPE_NUMBER, '10, 5', null, null, null, null, 'sumgrades');
+=======
+        $field = new xmldb_field('grade', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'sumgrades');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $dbman->change_field_type($table, $field);
         upgrade_mod_savepoint(true, 2008081502, 'quiz');
     }
 
     if ($oldversion < 2008081503) {
+<<<<<<< HEAD
         $table = new xmldb_table('quiz_attempts');
         $field = new xmldb_field('sumgrades', XMLDB_TYPE_NUMBER, '10, 5', null, null, null, null, 'attempt');
+=======
+        // First set all quiz.sumgrades to 0 if they are null. This should never
+        // happen however some users have encountered a null value there.
+        $DB->execute('UPDATE {quiz_attempts} SET sumgrades=0 WHERE sumgrades IS NULL');
+        $table = new xmldb_table('quiz_attempts');
+        $field = new xmldb_field('sumgrades', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'attempt');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $dbman->change_field_type($table, $field);
         upgrade_mod_savepoint(true, 2008081503, 'quiz');
     }
 
     if ($oldversion < 2008081504) {
         $table = new xmldb_table('quiz_feedback');
+<<<<<<< HEAD
         $field = new xmldb_field('mingrade', XMLDB_TYPE_NUMBER, '10, 5', null, null, null, null, 'feedbacktext');
+=======
+        $field = new xmldb_field('mingrade', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'feedbacktext');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $dbman->change_field_type($table, $field);
         upgrade_mod_savepoint(true, 2008081504, 'quiz');
     }
 
     if ($oldversion < 2008081505) {
         $table = new xmldb_table('quiz_feedback');
+<<<<<<< HEAD
         $field = new xmldb_field('maxgrade', XMLDB_TYPE_NUMBER, '10, 5', null, null, null, null, 'mingrade');
+=======
+        $field = new xmldb_field('maxgrade', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'mingrade');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $dbman->change_field_type($table, $field);
         upgrade_mod_savepoint(true, 2008081505, 'quiz');
     }
 
     if ($oldversion < 2008081506) {
         $table = new xmldb_table('quiz_grades');
+<<<<<<< HEAD
         $field = new xmldb_field('grade', XMLDB_TYPE_NUMBER, '10, 5', null, null, null, null, 'userid');
+=======
+        $field = new xmldb_field('grade', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'userid');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $dbman->change_field_type($table, $field);
         upgrade_mod_savepoint(true, 2008081506, 'quiz');
     }
 
     if ($oldversion < 2008081507) {
         $table = new xmldb_table('quiz_question_instances');
+<<<<<<< HEAD
         $field = new xmldb_field('grade', XMLDB_TYPE_NUMBER, '12, 7', null, null, null, null, 'question');
+=======
+        $field = new xmldb_field('grade', XMLDB_TYPE_NUMBER, '12, 7', null, XMLDB_NOTNULL, null, '0', 'question');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $dbman->change_field_type($table, $field);
         upgrade_mod_savepoint(true, 2008081507, 'quiz');
     }
@@ -251,7 +287,11 @@ function xmldb_quiz_upgrade($oldversion) {
     if ($oldversion < 2009031000) {
     /// Add new questiondecimaldigits setting, separate form the overall decimaldigits one.
         $table = new xmldb_table('quiz');
+<<<<<<< HEAD
         $field = new xmldb_field('questiondecimalpoints', XMLDB_TYPE_INTEGER, '4', null, XMLDB_NOTNULL, null, '2', 'decimalpoints');
+=======
+        $field = new xmldb_field('questiondecimalpoints', XMLDB_TYPE_INTEGER, '4', null, XMLDB_NOTNULL, null, '-2', 'decimalpoints');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
@@ -374,6 +414,122 @@ function xmldb_quiz_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2010102000, 'quiz');
     }
 
+<<<<<<< HEAD
+=======
+    if ($oldversion < 2010122300) {
+        // Fix quiz in the post table after upgrade from 1.9
+        $table = new xmldb_table('quiz');
+        $columns = $DB->get_columns('quiz');
+
+        // quiz.questiondecimalpoints should be int (4) not null default -2
+        if (array_key_exists('questiondecimalpoints', $columns) && $columns['questiondecimalpoints']->default_value != '-2') {
+            $field = new xmldb_field('questiondecimalpoints', XMLDB_TYPE_INTEGER, '4', null, XMLDB_NOTNULL, null, -2, 'decimalpoints');
+            if ($dbman->field_exists($table, $field)) {
+                $dbman->change_field_default($table, $field);
+            }
+        }
+
+        // quiz.sumgrades should be decimal(10,5) not null default 0
+        if (array_key_exists('sumgrades', $columns) && empty($columns['sumgrades']->not_null)) {
+            // First set all quiz.sumgrades to 0 if they are null. This should never
+            // happen however some users have encountered a null value there.
+            $DB->execute('UPDATE {quiz} SET sumgrades=0 WHERE sumgrades IS NULL');
+
+            $field = new xmldb_field('sumgrades', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'questions');
+            if ($dbman->field_exists($table, $field)) {
+                $dbman->change_field_default($table, $field);
+            }
+        }
+
+        // quiz.grade should be decimal(10,5) not null default 0
+        if (array_key_exists('grade', $columns) && empty($columns['grade']->not_null)) {
+            $field = new xmldb_field('grade', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'sumgrades');
+            if ($dbman->field_exists($table, $field)) {
+                $dbman->change_field_default($table, $field);
+            }
+        }
+
+        upgrade_mod_savepoint(true, 2010122300, 'quiz');
+    }
+
+    if ($oldversion < 2010122301) {
+        // Fix quiz_attempts in the post table after upgrade from 1.9
+        $table = new xmldb_table('quiz_attempts');
+        $columns = $DB->get_columns('quiz_attempts');
+
+        // quiz_attempts.sumgrades should be decimal(10,5) not null default 0
+        if (array_key_exists('sumgrades', $columns) && empty($columns['sumgrades']->not_null)) {
+            // First set all quiz.sumgrades to 0 if they are null. This should never
+            // happen however some users have encountered a null value there.
+            $DB->execute('UPDATE {quiz_attempts} SET sumgrades=0 WHERE sumgrades IS NULL');
+
+            $field = new xmldb_field('sumgrades', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'attempt');
+            if ($dbman->field_exists($table, $field)) {
+                $dbman->change_field_default($table, $field);
+            }
+        }
+
+        upgrade_mod_savepoint(true, 2010122301, 'quiz');
+    }
+
+    if ($oldversion < 2010122302) {
+        // Fix quiz_feedback in the post table after upgrade from 1.9
+        $table = new xmldb_table('quiz_feedback');
+        $columns = $DB->get_columns('quiz_feedback');
+
+        // quiz_feedback.mingrade should be decimal(10,5) not null default 0
+        if (array_key_exists('mingrade', $columns) && empty($columns['mingrade']->not_null)) {
+            $field = new xmldb_field('mingrade', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'feedbacktextformat');
+            if ($dbman->field_exists($table, $field)) {
+                $dbman->change_field_default($table, $field);
+            }
+        }
+
+        // quiz_feedback.maxgrade should be decimal(10,5) not null default 0
+        if (array_key_exists('maxgrade', $columns) && empty($columns['maxgrade']->not_null)) {
+            // Fixed in earlier upgrade code
+            $field = new xmldb_field('maxgrade', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'mingrade');
+            if ($dbman->field_exists($table, $field)) {
+                $dbman->change_field_default($table, $field);
+            }
+        }
+
+        upgrade_mod_savepoint(true, 2010122302, 'quiz');
+    }
+
+    if ($oldversion < 2010122303) {
+        // Fix quiz_grades in the post table after upgrade from 1.9
+        $table = new xmldb_table('quiz_grades');
+        $columns = $DB->get_columns('quiz_grades');
+
+        // quiz_grades.grade should be decimal(10,5) not null default 0
+        if (array_key_exists('grade', $columns) && empty($columns['grade']->not_null)) {
+            $field = new xmldb_field('grade', XMLDB_TYPE_NUMBER, '10, 5', null, XMLDB_NOTNULL, null, '0', 'userid');
+            if ($dbman->field_exists($table, $field)) {
+                $dbman->change_field_default($table, $field);
+            }
+        }
+
+        upgrade_mod_savepoint(true, 2010122303, 'quiz');
+    }
+
+    if ($oldversion < 2010122304) {
+        // Fix quiz_question_instances in the post table after upgrade from 1.9
+        $table = new xmldb_table('quiz_question_instances');
+        $columns = $DB->get_columns('quiz_question_instances');
+
+        // quiz_question_instances.grade should be decimal(12,7) not null default 0
+        if (array_key_exists('grade', $columns) && empty($columns['grade']->not_null)) {
+            $field = new xmldb_field('grade', XMLDB_TYPE_NUMBER, '12, 7', null, XMLDB_NOTNULL, null, '0', 'question');
+            if ($dbman->field_exists($table, $field)) {
+                $dbman->change_field_default($table, $field);
+            }
+        }
+
+        upgrade_mod_savepoint(true, 2010122304, 'quiz');
+    }
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     return true;
 }
 

@@ -51,9 +51,14 @@ define('LASTACCESS_UPDATE_SECS', 60);
  * Returns $user object of the main admin user
  * primary admin = admin with lowest role_assignment id among admins
  *
+<<<<<<< HEAD
  * @global object
  * @static object $myadmin
  * @return object An associative array representing the admin user.
+=======
+ * @static stdClass $mainadmin
+ * @return stdClass {@link $USER} record from DB, false if not found
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  */
 function get_admin() {
     static $mainadmin = null;
@@ -66,7 +71,12 @@ function get_admin() {
         //      for now return the first assigned admin
         $mainadmin = reset($admins);
     }
+<<<<<<< HEAD
     return $mainadmin;
+=======
+    // we must clone this otherwise code outside can break the static var
+    return clone($mainadmin);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 }
 
 /**
@@ -438,6 +448,15 @@ function get_courses_page($categoryid="all", $sort="c.sortorder ASC", $fields="c
 
     list($ccselect, $ccjoin) = context_instance_preload_sql('c.id', CONTEXT_COURSE, 'ctx');
 
+<<<<<<< HEAD
+=======
+    $totalcount = 0;
+    if (!$limitfrom) {
+        $limitfrom = 0;
+    }
+    $visiblecourses = array();
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $sql = "SELECT $fields $ccselect
               FROM {course} c
               $ccjoin
@@ -445,6 +464,7 @@ function get_courses_page($categoryid="all", $sort="c.sortorder ASC", $fields="c
           ORDER BY $sort";
 
     // pull out all course matching the cat
+<<<<<<< HEAD
     if (!$rs = $DB->get_recordset_sql($sql, $params)) {
         return array();
     }
@@ -456,6 +476,10 @@ function get_courses_page($categoryid="all", $sort="c.sortorder ASC", $fields="c
 
     // iteration will have to be done inside loop to keep track of the limitfrom and limitnum
     $visiblecourses = array();
+=======
+    $rs = $DB->get_recordset_sql($sql, $params);
+    // iteration will have to be done inside loop to keep track of the limitfrom and limitnum
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     foreach($rs as $course) {
         context_instance_preload($course);
         if ($course->visible <= 0) {
@@ -764,12 +788,23 @@ function get_courses_search($searchterms, $sort='fullname ASC', $page=0, $record
 
     $searchcond = implode(" AND ", $searchcond);
 
+<<<<<<< HEAD
+=======
+    $courses = array();
+    $c = 0; // counts how many visible courses we've seen
+
+    // Tiki pagination
+    $limitfrom = $page * $recordsperpage;
+    $limitto   = $limitfrom + $recordsperpage;
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     list($ccselect, $ccjoin) = context_instance_preload_sql('c.id', CONTEXT_COURSE, 'ctx');
     $sql = "SELECT c.* $ccselect
               FROM {course} c
            $ccjoin
              WHERE $searchcond AND c.id <> ".SITEID."
           ORDER BY $sort";
+<<<<<<< HEAD
     $courses = array();
     $c = 0; // counts how many visible courses we've seen
 
@@ -793,6 +828,24 @@ function get_courses_search($searchterms, $sort='fullname ASC', $page=0, $record
         }
         $rs->close();
     }
+=======
+
+    $rs = $DB->get_recordset_sql($sql, $params);
+    foreach($rs as $course) {
+        context_instance_preload($course);
+        $coursecontext = get_context_instance(CONTEXT_COURSE, $course->id);
+        if ($course->visible || has_capability('moodle/course:viewhiddencourses', $coursecontext)) {
+            // Don't exit this loop till the end
+            // we need to count all the visible courses
+            // to update $totalcount
+            if ($c >= $limitfrom && $c < $limitto) {
+                $courses[$course->id] = $course;
+            }
+            $c++;
+        }
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     // our caller expects 2 bits of data - our return
     // array, and an updated $totalcount
@@ -857,6 +910,7 @@ function get_categories($parent='none', $sort=NULL, $shallow=true) {
     }
     $categories = array();
 
+<<<<<<< HEAD
     if( $rs = $DB->get_recordset_sql($sql, $params) ){
         foreach($rs as $cat) {
             context_instance_preload($cat);
@@ -867,6 +921,17 @@ function get_categories($parent='none', $sort=NULL, $shallow=true) {
         }
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($sql, $params);
+    foreach($rs as $cat) {
+        context_instance_preload($cat);
+        $catcontext = get_context_instance(CONTEXT_COURSECAT, $cat->id);
+        if ($cat->visible || has_capability('moodle/category:viewhiddencategories', $catcontext)) {
+            $categories[$cat->id] = $cat;
+        }
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     return $categories;
 }
 
@@ -1039,11 +1104,28 @@ function fix_course_sortorder() {
             HAVING cc.coursecount <> COUNT(c.id)";
 
     if ($updatecounts = $DB->get_records_sql($sql)) {
+<<<<<<< HEAD
         foreach ($updatecounts as $cat) {
             $cat->coursecount = $cat->newcount;
             unset($cat->newcount);
             $DB->update_record_raw('course_categories', $cat, true);
         }
+=======
+        // categories with more courses than MAX_COURSES_IN_CATEGORY
+        $categories = array();
+        foreach ($updatecounts as $cat) {
+            $cat->coursecount = $cat->newcount;
+            if ($cat->coursecount >= MAX_COURSES_IN_CATEGORY) {
+                $categories[] = $cat->id;
+            }
+            unset($cat->newcount);
+            $DB->update_record_raw('course_categories', $cat, true);
+        }
+        if (!empty($categories)) {
+            $str = implode(', ', $categories);
+            debugging("The number of courses (category id: $str) has reached MAX_COURSES_IN_CATEGORY (" . MAX_COURSES_IN_CATEGORY . "), it will cause a sorting performance issue, please increase the value of MAX_COURSES_IN_CATEGORY in lib/datalib.php file. See tracker issue: MDL-25669", DEBUG_DEVELOPER);
+        }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     // now make sure that sortorders in course table are withing the category sortorder ranges
@@ -1695,6 +1777,10 @@ function add_to_log($courseid, $module, $action, $url='', $info='', $cm=0, $user
 
             $lasttime = get_config('admin', 'lastloginserterrormail');
             if(empty($lasttime) || time() - $lasttime > 60*60*24) { // limit to 1 email per day
+<<<<<<< HEAD
+=======
+                //using email directly rather than messaging as they may not be able to log in to access a message
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 mail($CFG->supportemail, $subject, $message);
                 set_config('lastloginserterrormail', time(), 'admin');
             }

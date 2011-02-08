@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php // $Id: _parse_proppatch.php,v 1.2 2010/12/14 17:36:02 moodlerobot Exp $
+=======
+<?php // $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 /*
    +----------------------------------------------------------------------+
    | Copyright (c) 2002-2007 Christian Stocker, Hartmut Holzgraefe        |

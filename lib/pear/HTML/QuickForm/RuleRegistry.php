@@ -18,7 +18,11 @@
 // |          Bertrand Mansion <bmansion@mamasam.com>                     |
 // +----------------------------------------------------------------------+
 //
+<<<<<<< HEAD
 // $Id: RuleRegistry.php,v 1.3 2010/12/14 17:35:24 moodlerobot Exp $
+=======
+// $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 /**
 * Registers rule objects and uses them for validation

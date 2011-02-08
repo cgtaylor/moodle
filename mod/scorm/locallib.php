@@ -23,6 +23,12 @@ define('AVERAGEATTEMPT', '1');
 define('FIRSTATTEMPT', '2');
 define('LASTATTEMPT', '3');
 
+<<<<<<< HEAD
+=======
+define('TOCJSLINK', 1);
+define('TOCFULLURL', 2);
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 /// Local Library of functions for module scorm
 
 /**
@@ -585,7 +591,10 @@ function scorm_grade_user($scorm, $userid) {
         break;
         case HIGHESTATTEMPT:
             $maxscore = 0;
+<<<<<<< HEAD
             $attempttime = 0;
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             for ($attempt = 1; $attempt <= $lastattempt; $attempt++) {
                 $attemptscore = scorm_grade_user_attempt($scorm, $userid, $attempt);
                 $maxscore = $attemptscore > $maxscore ? $attemptscore: $maxscore;
@@ -658,7 +667,10 @@ function scorm_course_format_display($user,$course) {
     global $CFG, $DB, $PAGE, $OUTPUT;
 
     $strupdate = get_string('update');
+<<<<<<< HEAD
     $strmodule = get_string('modulename','scorm');
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $context = get_context_instance(CONTEXT_COURSE,$course->id);
 
     echo '<div class="mod-scorm">';
@@ -690,10 +702,16 @@ function scorm_course_format_display($user,$course) {
             }
             $colspan = ' colspan="2"';
         }
+<<<<<<< HEAD
         $options = (object)array('noclean'=>true);
         $headertext .= '</td></tr><tr><td'.$colspan.'>'.get_string('summary').':<br />'.format_module_intro('scorm', $scorm, $scorm->coursemodule).'</td></tr></table>';
         echo $OUTPUT->box($headertext,'generalbox boxwidthwide');
         scorm_view_display($user, $scorm, 'view.php?id='.$course->id, $cm, '100%');
+=======
+        $headertext .= '</td></tr><tr><td'.$colspan.'>'.get_string('summary').':<br />'.format_module_intro('scorm', $scorm, $scorm->coursemodule).'</td></tr></table>';
+        echo $OUTPUT->box($headertext,'generalbox boxwidthwide');
+        scorm_view_display($user, $scorm, 'view.php?id='.$course->id, $cm);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     } else {
         if (has_capability('moodle/course:update', $context)) {
             // Create a new activity
@@ -705,7 +723,11 @@ function scorm_course_format_display($user,$course) {
     echo '</div>';
 }
 
+<<<<<<< HEAD
 function scorm_view_display ($user, $scorm, $action, $cm, $boxwidth='') {
+=======
+function scorm_view_display ($user, $scorm, $action, $cm) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     global $CFG, $DB, $PAGE, $OUTPUT;
 
     if ($scorm->updatefreq == UPDATE_EVERYTIME) {
@@ -715,7 +737,11 @@ function scorm_view_display ($user, $scorm, $action, $cm, $boxwidth='') {
     $organization = optional_param('organization', '', PARAM_INT);
 
     if($scorm->displaycoursestructure == 1) {
+<<<<<<< HEAD
         echo $OUTPUT->box_start('generalbox boxaligncenter');
+=======
+        echo $OUTPUT->box_start('generalbox boxaligncenter toc');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 ?>
         <div class="structurehead"><?php print_string('contents','scorm') ?></div>
 <?php
@@ -723,13 +749,21 @@ function scorm_view_display ($user, $scorm, $action, $cm, $boxwidth='') {
     if (empty($organization)) {
         $organization = $scorm->launch;
     }
+<<<<<<< HEAD
     if ($orgs = $DB->get_records_select('scorm_scoes', 'scorm = ? AND '.
+=======
+    if ($orgs = $DB->get_records_select_menu('scorm_scoes', 'scorm = ? AND '.
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                                          $DB->sql_isempty('scorm_scoes', 'launch', false, true).' AND '.
                                          $DB->sql_isempty('scorm_scoes', 'organization', false, false),
                                          array($scorm->id),'id','id,title')) {
         if (count($orgs) > 1) {
             $select = new single_select(new moodle_url($action), 'organization', $orgs, $organization, null);
+<<<<<<< HEAD
             $select->lable = get_string('organizations','scorm');
+=======
+            $select->label = get_string('organizations','scorm');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $select->class = 'scorm-center';
             echo $OUTPUT->render($select);
         }
@@ -743,6 +777,7 @@ function scorm_view_display ($user, $scorm, $action, $cm, $boxwidth='') {
         }
     }
 
+<<<<<<< HEAD
 /*
  $orgidentifier = '';
     if ($org = $DB->get_record('scorm_scoes', array('id'=>$organization))) {
@@ -753,13 +788,19 @@ function scorm_view_display ($user, $scorm, $action, $cm, $boxwidth='') {
         }
     }*/
 
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $scorm->version = strtolower(clean_param($scorm->version, PARAM_SAFEDIR));   // Just to be safe
     if (!file_exists($CFG->dirroot.'/mod/scorm/datamodels/'.$scorm->version.'lib.php')) {
         $scorm->version = 'scorm_12';
     }
     require_once($CFG->dirroot.'/mod/scorm/datamodels/'.$scorm->version.'lib.php');
 
+<<<<<<< HEAD
     $result = scorm_get_toc($user,$scorm,'structlist',$orgidentifier);
+=======
+    $result = scorm_get_toc($user,$scorm,$cm->id,TOCFULLURL,$orgidentifier);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $incomplete = $result->incomplete;
 
     // do we want the TOC to be displayed?
@@ -1025,8 +1066,11 @@ function scorm_get_attempt_status($user, $scorm) {
     }
     $result .= get_string('noattemptsmade', 'scorm').': ' . $attemptcount . '<BR>';
 
+<<<<<<< HEAD
     $gradereported = 0;
     $gradesum = 0;
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     if ($scorm->maxattempt == 1) {
         switch ($scorm->grademethod) {
             case GRADEHIGHEST:
@@ -1216,8 +1260,11 @@ function scorm_format_duration($duration) {
         // then convert in the same way as SCORM 2004
         $pattern = array( '#T0+H#', '#([A-Z])0+M#', '#([A-Z])[0.]+S#', '#\.0+S#', '#0*(\d+)H#', '#0*(\d+)M#', '#0+\.(\d+)S#', '#0*([\d.]+)S#', '#T#' );
         $replace = array( 'T', '$1', '$1', 'S', '$1 '.$strhours.' ', '$1 '.$strminutes.' ', '0.$1 '.$strseconds, '$1 '.$strseconds, '' );
+<<<<<<< HEAD
         //$pattern = '##';
         //$replace = '';
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     $result = preg_replace($pattern, $replace, $duration);

@@ -254,6 +254,10 @@ function enrol_category_sync_full() {
                 $plugin->delete_instance($instance);
             }
         }
+<<<<<<< HEAD
+=======
+        return;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     list($roleids, $params) = $DB->get_in_or_equal(array_keys($roles), SQL_PARAMS_NAMED, 'r000');

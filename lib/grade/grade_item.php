@@ -1722,7 +1722,12 @@ class grade_item extends grade_object {
         $return = true;
 
         // group the grades by userid and use formula on the group
+<<<<<<< HEAD
         if ($rs = $DB->get_recordset_sql($sql, $params)) {
+=======
+        $rs = $DB->get_recordset_sql($sql, $params);
+        if ($rs->valid()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $prevuser = 0;
             $grade_records   = array();
             $oldgrade    = null;
@@ -1740,11 +1745,18 @@ class grade_item extends grade_object {
                 }
                 $grade_records['gi'.$used->itemid] = $used->finalgrade;
             }
+<<<<<<< HEAD
             $rs->close();
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             if (!$this->use_formula($prevuser, $grade_records, $useditems, $oldgrade)) {
                 $return = false;
             }
         }
+<<<<<<< HEAD
+=======
+        $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         return $return;
     }

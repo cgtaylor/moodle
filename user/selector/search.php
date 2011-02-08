@@ -35,7 +35,11 @@ if (debugging('', DEBUG_DEVELOPER) && optional_param('debug', false, PARAM_BOOL)
     header('Content-type: text/plain; charset=UTF-8');
     $debugmode = true;
 } else {
+<<<<<<< HEAD
     header('Content-type: application/json');
+=======
+    header('Content-type: application/json; charset=utf-8');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $debugmode = false;
 }
 

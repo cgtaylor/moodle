@@ -3,7 +3,11 @@
  *    base include file for SimpleTest
  *    @package    SimpleTest
  *    @subpackage    UnitTester
+<<<<<<< HEAD
  *    @version    $Id: expectation.php,v 1.5 2010/12/14 17:35:45 moodlerobot Exp $
+=======
+ *    @version    $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  */
 
 /**#@+

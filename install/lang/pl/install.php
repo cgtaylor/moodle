@@ -32,6 +32,11 @@ $string['admindirname'] = 'Katalog admin';
 $string['availablelangs'] = 'Dostępne paczki językowe';
 $string['chooselanguagehead'] = 'Wybierz język';
 $string['chooselanguagesub'] = 'Proszę wybrać język TYLKO do instalacji. Stronę i języki dla użytkowników będzie można wybrać na następnym ekranie.';
+<<<<<<< HEAD
+=======
+$string['databasehost'] = 'Host bazy danych';
+$string['databasename'] = 'Nazwa bazy danych';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['dataroot'] = 'Katalog z danymi';
 $string['dbprefix'] = 'prefiksy tabel';
 $string['dirroot'] = 'Katalog Moodle';

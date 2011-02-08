@@ -1214,6 +1214,11 @@ class file_storage {
         foreach ($rs as $dir) {
             $this->delete_area_files($dir->contextid, $dir->component, $dir->filearea, $dir->itemid);
         }
+<<<<<<< HEAD
+=======
+        $rs->close();
+        mtrace('done.');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         // remove trash pool files once a day
         // if you want to disable purging of trash put $CFG->fileslastcleanup=time(); into config.php
@@ -1225,12 +1230,21 @@ class file_storage {
                     FROM {files} f
                     LEFT OUTER JOIN {context} c ON f.contextid = c.id
                     WHERE c.id IS NULL";
+<<<<<<< HEAD
             if ($rs = $DB->get_recordset_sql($sql)) {
+=======
+            $rs = $DB->get_recordset_sql($sql);
+            if ($rs->valid()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 $fs = get_file_storage();
                 foreach ($rs as $ctx) {
                     $fs->delete_area_files($ctx->contextid);
                 }
             }
+<<<<<<< HEAD
+=======
+            $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             mtrace('done.');
 
             mtrace('Deleting trash files... ', '');

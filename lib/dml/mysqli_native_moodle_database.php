@@ -264,15 +264,30 @@ class mysqli_native_moodle_database extends moodle_database {
         }
 
         $this->store_settings($dbhost, $dbuser, $dbpass, $dbname, $prefix, $dboptions);
+<<<<<<< HEAD
         unset($this->dboptions['dbsocket']);
 
+=======
+
+        // dbsocket is used ONLY if host is NULL or 'localhost',
+        // you can not disable it because it is always tried if dbhost is 'localhost'
+        if (!empty($this->dboptions['dbsocket']) and strpos($this->dboptions['dbsocket'], '/') !== false) {
+            $dbsocket = $this->dboptions['dbsocket'];
+        } else {
+            $dbsocket = ini_get('mysqli.default_socket');
+        }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (empty($this->dboptions['dbport'])) {
             $dbport = ini_get('mysqli.default_port');
         } else {
             $dbport = (int)$this->dboptions['dbport'];
         }
         ob_start();
+<<<<<<< HEAD
         $this->mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbname, $dbport);
+=======
+        $this->mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbsocket);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $dberr = ob_get_contents();
         ob_end_clean();
         $errorno = @$this->mysqli->connect_errno;

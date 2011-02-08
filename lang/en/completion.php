@@ -62,7 +62,10 @@ $string['completionusegrade_desc'] = 'Student must receive a grade to complete t
 $string['completionview'] = 'Require view';
 $string['completionview_desc'] = 'Student must view this activity to complete it';
 $string['configenablecompletion'] = 'When enabled, this lets you turn on completion tracking (progress) features at course level.';
+<<<<<<< HEAD
 $string['configprogresstrackedroles'] = 'Roles that are displayed in the progress-tracking screen. (Usually includes just students and equivalent roles.)';
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['csvdownload'] = 'Download in spreadsheet format (UTF-8 .csv)';
 $string['deletecoursecompletiondata'] = 'Delete course completion data';
 $string['enablecompletion'] = 'Enable completion tracking';
@@ -130,7 +133,10 @@ $string['pending']='Pending';
 $string['periodpostenrolment']='Period post enrolment';
 $string['prerequisites']='Prerequisites';
 $string['prerequisitescompleted']='Prerequisites completed';
+<<<<<<< HEAD
 $string['progresstrackedroles']='Progress-tracked roles';
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['recognitionofpriorlearning']='Recognition of prior learning';
 $string['remainingenroledfortime']='Remaining enrolled for a specified period of time';
 $string['remainingenroleduntildate']='Remaining enrolled until a specified date';

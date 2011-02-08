@@ -183,6 +183,14 @@ define('PARAM_PERMISSION',   'permission');
 define('PARAM_RAW', 'raw');
 
 /**
+<<<<<<< HEAD
+=======
+ * PARAM_RAW_TRIMMED like PARAM_RAW but leading and trailing whitespace is stripped.
+ */
+define('PARAM_RAW_TRIMMED', 'raw_trimmed');
+
+/**
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * PARAM_SAFEDIR - safe directory name, suitable for include() and require()
  */
 define('PARAM_SAFEDIR',  'safedir');
@@ -347,6 +355,11 @@ define('FEATURE_COMPLETION_TRACKS_VIEWS', 'completion_tracks_views');
 /** True if module has custom completion rules */
 define('FEATURE_COMPLETION_HAS_RULES', 'completion_has_rules');
 
+<<<<<<< HEAD
+=======
+/** True if module has no 'view' page (like label) */
+define('FEATURE_NO_VIEW_LINK', 'viewlink');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 /** True if module supports outcomes */
 define('FEATURE_IDNUMBER', 'idnumber');
 /** True if module supports groups */
@@ -553,6 +566,12 @@ function clean_param($param, $type) {
         case PARAM_RAW:          // no cleaning at all
             return $param;
 
+<<<<<<< HEAD
+=======
+        case PARAM_RAW_TRIMMED:         // no cleaning, but strip leading and trailing whitespace.
+            return trim($param);
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         case PARAM_CLEAN:        // General HTML cleaning, try to use more specific type if possible
             // this is deprecated!, please use more specific type instead
             if (is_numeric($param)) {
@@ -784,10 +803,16 @@ function clean_param($param, $type) {
             }
 
         case PARAM_TAG:
+<<<<<<< HEAD
             //as long as magic_quotes_gpc is used, a backslash will be a
             //problem, so remove *all* backslash.
             //$param = str_replace('\\', '', $param);
             //remove some nasties
+=======
+            // Please note it is not safe to use the tag name directly anywhere,
+            // it must be processed with s(), urlencode() before embedding anywhere.
+            // remove some nasties
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $param = preg_replace('~[[:cntrl:]]|[<>`]~u', '', $param);
             //convert many whitespace chars into one
             $param = preg_replace('/\s+/', ' ', $param);
@@ -795,7 +820,10 @@ function clean_param($param, $type) {
             $param = $textlib->substr(trim($param), 0, TAG_MAX_LENGTH);
             return $param;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         case PARAM_TAGLIST:
             $tags = explode(',', $param);
             $result = array();
@@ -2306,6 +2334,17 @@ function require_login($courseorid = NULL, $autologinguest = true, $cm = NULL, $
             if ($cm->course != $course->id) {
                 throw new coding_exception('course and cm parameters in require_login() call do not match!!');
             }
+<<<<<<< HEAD
+=======
+            // make sure we have a $cm from get_fast_modinfo as this contains activity access details
+            if (!($cm instanceof cm_info)) {
+                // note: nearly all pages call get_fast_modinfo anyway and it does not make any
+                // db queries so this is not really a performance concern, however it is obviously
+                // better if you use get_fast_modinfo to get the cm before calling this.
+                $modinfo = get_fast_modinfo($course);
+                $cm = $modinfo->get_cm($cm->id);
+            }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $PAGE->set_cm($cm, $course); // set's up global $COURSE
             $PAGE->set_pagelayout('incourse');
         } else {
@@ -2577,14 +2616,21 @@ function require_login($courseorid = NULL, $autologinguest = true, $cm = NULL, $
         }
     }
 
+<<<<<<< HEAD
     // test visibility
     if ($cm && !$cm->visible && !has_capability('moodle/course:viewhiddenactivities', $cmcontext)) {
+=======
+    // Check visibility of activity to current user; includes visible flag, groupmembersonly,
+    // conditional availability, etc
+    if ($cm && !$cm->uservisible) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if ($preventredirect) {
             throw new require_login_exception('Activity is hidden');
         }
         redirect($CFG->wwwroot, get_string('activityiscurrentlyhidden'));
     }
 
+<<<<<<< HEAD
     // groupmembersonly access control
     if (!empty($CFG->enablegroupmembersonly) and $cm and $cm->groupmembersonly and !has_capability('moodle/site:accessallgroups', get_context_instance(CONTEXT_MODULE, $cm->id))) {
         if (isguestuser() or !groups_has_membership($cm)) {
@@ -2618,6 +2664,8 @@ function require_login($courseorid = NULL, $autologinguest = true, $cm = NULL, $
         }
     }
 
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     // Finally access granted, update lastaccess times
     user_accesstime_log($course->id);
 }
@@ -2668,16 +2716,41 @@ function require_logout() {
  */
 function require_course_login($courseorid, $autologinguest = true, $cm = NULL, $setwantsurltome = true, $preventredirect = false) {
     global $CFG, $PAGE, $SITE;
+<<<<<<< HEAD
+=======
+    $issite = (is_object($courseorid) and $courseorid->id == SITEID)
+          or (!is_object($courseorid) and $courseorid == SITEID);
+    if ($issite && !empty($cm) && !($cm instanceof cm_info)) {
+        // note: nearly all pages call get_fast_modinfo anyway and it does not make any
+        // db queries so this is not really a performance concern, however it is obviously
+        // better if you use get_fast_modinfo to get the cm before calling this.
+        if (is_object($courseorid)) {
+            $course = $courseorid;
+        } else {
+            $course = clone($SITE);
+        }
+        $modinfo = get_fast_modinfo($course);
+        $cm = $modinfo->get_cm($cm->id);
+    }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     if (!empty($CFG->forcelogin)) {
         // login required for both SITE and courses
         require_login($courseorid, $autologinguest, $cm, $setwantsurltome, $preventredirect);
 
+<<<<<<< HEAD
     } else if (!empty($cm) and !$cm->visible) {
         // always login for hidden activities
         require_login($courseorid, $autologinguest, $cm, $setwantsurltome, $preventredirect);
 
     } else if ((is_object($courseorid) and $courseorid->id == SITEID)
           or (!is_object($courseorid) and $courseorid == SITEID)) {
+=======
+    } else if ($issite && !empty($cm) and !$cm->uservisible) {
+        // always login for hidden activities
+        require_login($courseorid, $autologinguest, $cm, $setwantsurltome, $preventredirect);
+
+    } else if ($issite) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
               //login for SITE not required
         if ($cm and empty($cm->visible)) {
             // hidden activities are not accessible without login
@@ -3001,6 +3074,7 @@ function reset_login_count() {
 }
 
 /**
+<<<<<<< HEAD
  * Returns reference to full info about modules in course (including visibility).
  * Cached and as fast as possible (0 or 1 db query).
  *
@@ -3198,6 +3272,8 @@ function &get_fast_modinfo(&$course, $userid=0) {
 }
 
 /**
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * Determines if the currently logged in user is in editing mode.
  * Note: originally this function had $userid parameter - it was not usable anyway
  *
@@ -5024,6 +5100,10 @@ function setnew_password_and_mail($user) {
 
     $subject = format_string($site->fullname) .': '. get_string('newusernewpasswordsubj');
 
+<<<<<<< HEAD
+=======
+    //directly email rather than using the messaging system to ensure its not routed to a popup or jabber
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     return email_to_user($user, $supportuser, $subject, $message);
 
 }
@@ -5066,6 +5146,10 @@ function reset_password_and_mail($user) {
 
     $subject  = format_string($site->fullname) .': '. get_string('changedpassword');
 
+<<<<<<< HEAD
+=======
+    //directly email rather than using the messaging system to ensure its not routed to a popup or jabber
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     return email_to_user($user, $supportuser, $subject, $message);
 
 }
@@ -5096,6 +5180,10 @@ function reset_password_and_mail($user) {
 
     $user->mailformat = 1;  // Always send HTML version as well
 
+<<<<<<< HEAD
+=======
+    //directly email rather than using the messaging system to ensure its not routed to a popup or jabber
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     return email_to_user($user, $supportuser, $subject, $message, $messagehtml);
 
 }
@@ -5123,6 +5211,10 @@ function send_password_change_confirmation_email($user) {
     $message = get_string('emailpasswordconfirmation', '', $data);
     $subject = get_string('emailpasswordconfirmationsubject', '', format_string($site->fullname));
 
+<<<<<<< HEAD
+=======
+    //directly email rather than using the messaging system to ensure its not routed to a popup or jabber
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     return email_to_user($user, $supportuser, $subject, $message);
 
 }
@@ -5152,6 +5244,10 @@ function send_password_change_info($user) {
     if (!is_enabled_auth($user->auth) or $user->auth == 'nologin') {
         $message = get_string('emailpasswordchangeinfodisabled', '', $data);
         $subject = get_string('emailpasswordchangeinfosubject', '', format_string($site->fullname));
+<<<<<<< HEAD
+=======
+        //directly email rather than using the messaging system to ensure its not routed to a popup or jabber
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         return email_to_user($user, $supportuser, $subject, $message);
     }
 
@@ -5172,6 +5268,10 @@ function send_password_change_info($user) {
         $subject = get_string('emailpasswordchangeinfosubject', '', format_string($site->fullname));
     }
 
+<<<<<<< HEAD
+=======
+    //directly email rather than using the messaging system to ensure its not routed to a popup or jabber
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     return email_to_user($user, $supportuser, $subject, $message);
 
 }
@@ -7320,6 +7420,51 @@ function get_plugin_list($plugintype) {
 }
 
 /**
+<<<<<<< HEAD
+=======
+ * Gets a list of all plugin API functions for given plugin type, function
+ * name, and filename.
+ * @param string $plugintype Plugin type, e.g. 'mod' or 'report'
+ * @param string $function Name of function after the frankenstyle prefix;
+ *   e.g. if the function is called report_courselist_hook then this value
+ *   would be 'hook'
+ * @param string $file Name of file that includes function within plugin,
+ *   default 'lib.php'
+ * @return Array of plugin frankenstyle (e.g. 'report_courselist', 'mod_forum')
+ *   to valid, existing plugin function name (e.g. 'report_courselist_hook',
+ *   'forum_hook')
+ */
+function get_plugin_list_with_function($plugintype, $function, $file='lib.php') {
+    global $CFG; // mandatory in case it is referenced by include()d PHP script
+
+    $result = array();
+    // Loop through list of plugins with given type
+    $list = get_plugin_list($plugintype);
+    foreach($list as $plugin => $dir) {
+        $path = $dir . '/' . $file;
+        // If file exists, require it and look for function
+        if (file_exists($path)) {
+            include_once($path);
+            $fullfunction = $plugintype . '_' . $plugin . '_' . $function;
+            if (function_exists($fullfunction)) {
+                // Function exists with standard name. Store, indexed by
+                // frankenstyle name of plugin
+                $result[$plugintype . '_' . $plugin] = $fullfunction;
+            } else if ($plugintype === 'mod') {
+                // For modules, we also allow plugin without full frankenstyle
+                // but just starting with the module name
+                $shortfunction = $plugin . '_' . $function;
+                if (function_exists($shortfunction)) {
+                    $result[$plugintype . '_' . $plugin] = $shortfunction;
+                }
+            }
+        }
+    }
+    return $result;
+}
+
+/**
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * Lists plugin-like directories within specified directory
  *
  * This function was originally used for standard Moodle plugins, please use
@@ -7954,6 +8099,7 @@ function notify_login_failures() {
           GROUP BY ip
             HAVING COUNT(*) >= ?";
     $params = array($CFG->lastnotifyfailure, $CFG->notifyloginthreshold);
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql, $params)) {
         foreach ($rs as $iprec) {
             if (!empty($iprec->ip)) {
@@ -7962,6 +8108,15 @@ function notify_login_failures() {
         }
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($sql, $params);
+    foreach ($rs as $iprec) {
+        if (!empty($iprec->ip)) {
+            set_cache_flag('login_failure_by_ip', $iprec->ip, '1', 0);
+        }
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 /// Get all the INFOs with more than notifyloginthreshold failures since lastnotifyfailure
 /// and insert them into the cache_flags temp table
@@ -7972,6 +8127,7 @@ function notify_login_failures() {
           GROUP BY info
             HAVING count(*) >= ?";
     $params = array($CFG->lastnotifyfailure, $CFG->notifyloginthreshold);
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql, $params)) {
         foreach ($rs as $inforec) {
             if (!empty($inforec->info)) {
@@ -7980,6 +8136,15 @@ function notify_login_failures() {
         }
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($sql, $params);
+    foreach ($rs as $inforec) {
+        if (!empty($inforec->info)) {
+            set_cache_flag('login_failure_by_info', $inforec->info, '1', 0);
+        }
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 /// Now, select all the login error logged records belonging to the ips and infos
 /// since lastnotifyfailure, that we have stored in the cache_flags table
@@ -8005,6 +8170,7 @@ function notify_login_failures() {
     $count = 0;
     $messages = '';
 /// Iterate over the logs recordset
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($sql, $params)) {
         foreach ($rs as $log) {
             $log->time = userdate($log->time);
@@ -8013,6 +8179,15 @@ function notify_login_failures() {
         }
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($sql, $params);
+    foreach ($rs as $log) {
+        $log->time = userdate($log->time);
+        $messages .= get_string('notifyloginfailuresmessage','',$log)."\n";
+        $count++;
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 /// If we haven't run in the last hour and
 /// we have something useful to report and we
@@ -8029,6 +8204,10 @@ function notify_login_failures() {
     /// For each destination, send mail
         mtrace('Emailing admins about '. $count .' failed login attempts');
         foreach ($recip as $admin) {
+<<<<<<< HEAD
+=======
+            //emailing the admins directly rather than putting these through the messaging system
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             email_to_user($admin,get_admin(), $subject, $body);
         }
 

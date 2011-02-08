@@ -57,8 +57,13 @@ function completion_cron_mark_started() {
         mtrace('Marking users as started');
     }
 
+<<<<<<< HEAD
     if (!empty($CFG->progresstrackedroles)) {
         $roles = ' AND ra.roleid IN ('.$CFG->progresstrackedroles.')';
+=======
+    if (!empty($CFG->gradebookroles)) {
+        $roles = ' AND ra.roleid IN ('.$CFG->gradebookroles.')';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     } else {
         // This causes it to default to everyone (if there is no student role)
         $roles = '';
@@ -118,9 +123,18 @@ function completion_cron_mark_started() {
             userid
     ";
 
+<<<<<<< HEAD
     // Check if result is empty
     $now = time();
     if (!$rs = $DB->get_recordset_sql($sql, array($now, $now, $now, $now))) {
+=======
+    $now = time();
+    $rs = $DB->get_recordset_sql($sql, array($now, $now, $now, $now));
+
+    // Check if result is empty
+    if (!$rs->valid()) {
+        $rs->close(); // Not going to iterate (but exit), close rs
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         return;
     }
 
@@ -267,8 +281,16 @@ function completion_cron_completions() {
             userid
     ';
 
+<<<<<<< HEAD
     // Check if result is empty
     if (!$rs = $DB->get_recordset_sql($sql, array('timestarted' => $timestarted))) {
+=======
+    $rs = $DB->get_recordset_sql($sql, array('timestarted' => $timestarted));
+
+    // Check if result is empty
+    if (!$rs->valid()) {
+        $rs->close(); // Not going to iterate (but exit), close rs
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         return;
     }
 

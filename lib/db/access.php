@@ -727,7 +727,10 @@ $capabilities = array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => array(
+<<<<<<< HEAD
             'editingteacher' => CAP_ALLOW,
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             'manager' => CAP_ALLOW
         )
     ),

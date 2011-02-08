@@ -968,6 +968,7 @@ class oci_native_moodle_database extends moodle_database {
         $strictness = (int)$strictness;
         if ($strictness == IGNORE_MULTIPLE) {
             // do not limit here - ORA does not like that
+<<<<<<< HEAD
             if (!$rs = $this->get_recordset_sql($sql, $params)) {
                 return false;
             }
@@ -977,6 +978,16 @@ class oci_native_moodle_database extends moodle_database {
             }
             $rs->close();
             return false;
+=======
+            $rs = $this->get_recordset_sql($sql, $params);
+            $result = false;
+            foreach ($rs as $rec) {
+                $result = $rec;
+                break;
+            }
+            $rs->close();
+            return $result;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
         return parent::get_record_sql($sql, $params, $strictness);
     }

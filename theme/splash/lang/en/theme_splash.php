@@ -36,6 +36,11 @@ $string['loginhere'] = "Login here!";
 $string['logo'] = 'Logo';
 $string['logodesc'] = 'Enter the URL to an image to use as the logo for this site. E.g: http://www.yoursite.com/path/to/logo.png. The logo should be max 230px wide.';
 $string['pluginname'] = 'Splash';
+<<<<<<< HEAD
+=======
+$string['region-side-post'] = 'Right';
+$string['region-side-pre'] = 'Left';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['tagline'] = 'Tagline';
 $string['taglinedesc'] = 'The content from this textarea will be displayed under the Site logo on the Homepage';
 $string['usergreeting'] = 'Hi {$a}!';

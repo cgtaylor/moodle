@@ -74,12 +74,21 @@ class enrol_database_plugin extends enrol_plugin {
 
         $localrolefield   = $this->get_config('localrolefield');
         $localuserfield   = $this->get_config('localuserfield');
-        $localcoursefiled = $this->get_config('localcoursefield');
+        $localcoursefield = $this->get_config('localcoursefield');
 
         $unenrolaction    = $this->get_config('unenrolaction');
         $defaultrole      = $this->get_config('defaultrole');
 
         $ignorehidden     = $this->get_config('ignorehiddencourses');
+
+        if (!is_object($user) or !property_exists($user, 'id')) {
+            throw new coding_exception('Invalid $user parameter in sync_user_enrolments()');
+        }
+
+        if (!property_exists($user, $localuserfield)) {
+            debugging('Invalid $user parameter in sync_user_enrolments(), missing '.$localuserfield);
+            $user = $DB->get_record('user', array('id'=>$user->id));
+        }
 
         // create roles mapping
         $allroles = get_all_roles();
@@ -108,7 +117,7 @@ class enrol_database_plugin extends enrol_plugin {
                         // missing course info
                         continue;
                     }
-                    if (!$course = $DB->get_record('course', array($localcoursefiled=>$fields[$coursefield]), 'id,visible')) {
+                    if (!$course = $DB->get_record('course', array($localcoursefield=>$fields[$coursefield]), 'id,visible')) {
                         continue;
                     }
                     if (!$course->visible and $ignorehidden) {
@@ -256,7 +265,7 @@ class enrol_database_plugin extends enrol_plugin {
 
         $localrolefield   = $this->get_config('localrolefield');
         $localuserfield   = $this->get_config('localuserfield');
-        $localcoursefiled = $this->get_config('localcoursefield');
+        $localcoursefield = $this->get_config('localcoursefield');
 
         $unenrolaction    = $this->get_config('unenrolaction');
         $defaultrole      = $this->get_config('defaultrole');
@@ -299,7 +308,7 @@ class enrol_database_plugin extends enrol_plugin {
 
         // first find all existing courses with enrol instance
         $existing = array();
-        $sql = "SELECT c.id, c.visible, c.$localcoursefiled AS mapping, e.id AS enrolid
+        $sql = "SELECT c.id, c.visible, c.$localcoursefield AS mapping, e.id AS enrolid
                   FROM {course} c
                   JOIN {enrol} e ON (e.courseid = c.id AND e.enrol = 'database')";
         $rs = $DB->get_recordset_sql($sql); // watch out for idnumber duplicates
@@ -312,11 +321,17 @@ class enrol_database_plugin extends enrol_plugin {
         $rs->close();
 
         // add necessary enrol instances that are not present yet
-        $sql = "SELECT c.id, c.visible, c.$localcoursefiled AS mapping
+        $params = array();
+        $localnotempty = "";
+        if ($localcoursefield !== 'id') {
+            $localnotempty =  "AND c.$localcoursefield <> :lcfe";
+            $params['lcfe'] = $DB->sql_empty();
+        }
+        $sql = "SELECT c.id, c.visible, c.$localcoursefield AS mapping
                   FROM {course} c
              LEFT JOIN {enrol} e ON (e.courseid = c.id AND e.enrol = 'database')
-                 WHERE e.id IS NULL AND c.$localcoursefiled <> ?";
-        $rs = $DB->get_recordset_sql($sql, array($DB->sql_empty()));
+                 WHERE e.id IS NULL $localnotempty";
+        $rs = $DB->get_recordset_sql($sql, $params);
         foreach ($rs as $course) {
             if (empty($course->mapping)) {
                 continue;
@@ -421,8 +436,8 @@ class enrol_database_plugin extends enrol_plugin {
             unset($user_mapping);
 
             // enrol all users and sync roles
-            foreach ($requested_roles as $userid=>$roles) {
-                foreach ($roles as $roleid) {
+            foreach ($requested_roles as $userid=>$userroles) {
+                foreach ($userroles as $roleid) {
                     if (empty($current_roles[$userid])) {
                         $this->enrol_user($instance, $userid, $roleid);
                         $current_roles[$userid][$roleid] = $roleid;
@@ -432,7 +447,7 @@ class enrol_database_plugin extends enrol_plugin {
 
                 // unassign removed roles
                 foreach($current_roles[$userid] as $cr) {
-                    if (empty($roles[$cr])) {
+                    if (empty($userroles[$cr])) {
                         role_unassign($cr, $userid, $context->id, 'enrol_database', $instance->id);
                         unset($current_roles[$userid][$cr]);
                     }

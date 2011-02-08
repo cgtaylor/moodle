@@ -50,9 +50,18 @@ $CFG->dboptions = array(
                                 //  used? set to 'false' for the most stable
                                 //  setting, 'true' can improve performance
                                 //  sometimes
+<<<<<<< HEAD
     'dbsocket'  => false,       // should connection via UNIX socket be
                                 //  used? if you set it to 'true' here,
                                 //  set dbhost to 'localhost'
+=======
+    'dbsocket'  => false,       // should connection via UNIX socket be used?
+                                //  if you set it to 'true' or custom path
+                                //  here set dbhost to 'localhost',
+                                //  (please note mysql is always using socket
+                                //  if dbhost is 'localhost' - if you need
+                                //  local port connection use '127.0.0.1')
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     'dbport'    => '',          // the TCP port number to use when connecting
                                 //  to the server. keep empty string for the
                                 //  default port
@@ -233,7 +242,10 @@ $CFG->admin = 'admin';
 // like AOL.
 //      $CFG->tracksessionip = true;
 //
+<<<<<<< HEAD
 //
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 // The following lines are for handling email bounces.
 //      $CFG->handlebounces = true;
 //      $CFG->minbounces = 10;
@@ -356,7 +368,10 @@ $CFG->admin = 'admin';
 //
 //     $CFG->extramemorylimit = 1G;
 //
+<<<<<<< HEAD
 //
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 //=========================================================================
 // 8. SETTINGS FOR DEVELOPMENT SERVERS - not intended for production use!!!
 //=========================================================================
@@ -378,7 +393,12 @@ $CFG->admin = 'admin';
 // Prevent core_string_manager on-disk cache
 // $CFG->langstringcache = false; // NOT FOR PRODUCTION SERVERS!
 //
+<<<<<<< HEAD
 // When working with production data on test servers, no emails should ever be send to real users
+=======
+// When working with production data on test servers, no emails or other messages
+// should ever be send to real users
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 // $CFG->noemailever = true;    // NOT FOR PRODUCTION SERVERS!
 //
 // Divert all outgoing emails to this address to test and debug emailing features

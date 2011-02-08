@@ -66,8 +66,12 @@ class user_filter_globalrole extends user_filter_type {
 
         $sql = "id IN (SELECT userid
                          FROM {role_assignments} a
+<<<<<<< HEAD
                         WHERE a.contextid=".SYSCONTEXTID." AND a.roleid=$value AND a.timestart<$timenow
                               AND (a.timeend=0 OR a.timeend>$timenow))";
+=======
+                        WHERE a.contextid=".SYSCONTEXTID." AND a.roleid=$value)";
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         return array($sql, array());
     }
 

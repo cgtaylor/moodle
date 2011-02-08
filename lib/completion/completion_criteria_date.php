@@ -178,6 +178,7 @@ class completion_criteria_date extends completion_criteria {
         ';
 
         // Loop through completions, and mark as complete
+<<<<<<< HEAD
         if ($rs = $DB->get_recordset_sql($sql, array(time()))) {
             foreach ($rs as $record) {
 
@@ -187,6 +188,14 @@ class completion_criteria_date extends completion_criteria {
 
             $rs->close();
         }
+=======
+        $rs = $DB->get_recordset_sql($sql, array(time()));
+        foreach ($rs as $record) {
+            $completion = new completion_criteria_completion((array)$record);
+            $completion->mark_complete($record->timeend);
+        }
+        $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     /**

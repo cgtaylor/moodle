@@ -4,6 +4,10 @@
 
     require_once('../config.php');
     require_once($CFG->libdir.'/tablelib.php');
+<<<<<<< HEAD
+=======
+    require_once($CFG->libdir.'/filelib.php');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     define('USER_SMALL_CLASS', 20);   // Below this is considered small
     define('USER_LARGE_CLASS', 200);  // Above this is considered large

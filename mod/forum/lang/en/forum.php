@@ -96,6 +96,11 @@ $string['configreplytouser'] = 'When a forum post is mailed out, should it conta
 $string['configshortpost'] = 'Any post under this length (in characters not including HTML) is considered short (see below).';
 $string['configtrackreadposts'] = 'Set to \'yes\' if you want to track read/unread for each user.';
 $string['configusermarksread'] = 'If \'yes\', the user must manually mark a post as read. If \'no\', when the post is viewed it is marked as read.';
+<<<<<<< HEAD
+=======
+$string['confirmsubscribe'] = 'Do you really want to subscribe to forum \'{$a}\'?';
+$string['confirmunsubscribe'] = 'Do you really want to unsubscribe from forum \'{$a}\'?';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['couldnotadd'] = 'Could not add your post due to an unknown error';
 $string['couldnotdeletereplies'] = 'Sorry, that cannot be deleted as people have already responded to it';
 $string['couldnotupdate'] = 'Could not update your post due to an unknown error';

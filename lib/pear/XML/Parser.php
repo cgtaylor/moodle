@@ -45,7 +45,11 @@
  * @author    Stephan Schmidt <schst@php.net>
  * @copyright 2002-2008 The PHP Group
  * @license   http://opensource.org/licenses/bsd-license New BSD License
+<<<<<<< HEAD
  * @version   CVS: $Id: Parser.php,v 1.3 2010/12/14 17:35:47 moodlerobot Exp $
+=======
+ * @version   CVS: $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * @link      http://pear.php.net/package/XML_Parser
  */
 

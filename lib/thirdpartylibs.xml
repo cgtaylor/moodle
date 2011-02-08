@@ -295,6 +295,16 @@
     <licenseversion></licenseversion>
   </library>
   <library>
+<<<<<<< HEAD
+=======
+    <location>xhprof</location>
+    <name>XHProf</name>
+    <license>Apache</license>
+    <version>0.9.2</version>
+    <licenseversion>2.0</licenseversion>
+  </library>
+  <library>
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     <location>xmlize.php</location>
     <name>XMLize</name>
     <license>GPL</license>

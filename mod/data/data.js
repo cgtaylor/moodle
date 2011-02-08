@@ -3,6 +3,7 @@
  * Used when editing a data template
  */
 function insert_field_tags(selectlist) {
+<<<<<<< HEAD
   if (typeof(currEditor) != 'undefined' && currEditor._editMode == 'wysiwyg') {
     // HTMLArea-specific
      currEditor.insertHTML(selectlist.options[selectlist.selectedIndex].value);
@@ -10,6 +11,17 @@ function insert_field_tags(selectlist) {
     // For inserting when in HTMLArea code view or for normal textareas
      insertAtCursor(currTextarea, selectlist.options[selectlist.selectedIndex].value);
   }
+=======
+    var value = selectlist.options[selectlist.selectedIndex].value;
+    var editorname = 'template';
+    if (typeof tinyMCE == 'undefined') {
+        var element = document.getElementsByName(editorname)[0];
+        // For inserting when in normal textareas
+        insertAtCursor(element, value);
+    } else {
+        tinyMCE.execInstanceCommand(editorname, 'mceInsertContent', false, value);
+    }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 }
 
 /**

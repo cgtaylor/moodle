@@ -1,6 +1,10 @@
 <?php
     /*
+<<<<<<< HEAD
     *  $Id: XdebugTraceReader.php,v 1.2 2010/12/14 17:36:05 moodlerobot Exp $
+=======
+    *  $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     *  
     *  Copyright(c) 2004-2006, SpikeSource Inc. All Rights Reserved.
     *  Licensed under the Open Software License version 2.1
@@ -13,7 +17,11 @@
     * Reader that parses Xdebug Trace data. 
     * 
     * @author Nimish Pachapurkar <npac@spikesource.com>
+<<<<<<< HEAD
     * @version $Revision: 1.2 $
+=======
+    * @version $Revision$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     * @package SpikePHPCoverage_Parser
     */
     class XdebugTraceReader {

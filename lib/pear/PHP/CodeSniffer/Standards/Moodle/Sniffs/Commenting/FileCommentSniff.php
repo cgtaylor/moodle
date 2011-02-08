@@ -165,7 +165,11 @@ class moodle_sniffs_commenting_filecommentsniff implements php_codesniffer_sniff
         // Find the next non whitespace token.
         $commentstart = $phpcsfile->findnext(T_WHITESPACE, ($stackptr + 1), null, true);
 
+<<<<<<< HEAD
         // Look for $Id: FileCommentSniff.php,v 1.8 2010/12/14 17:36:07 moodlerobot Exp $ and boilerplate
+=======
+        // Look for $Id$ and boilerplate
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if ($tokens[$commentstart]['code'] != T_COMMENT) {
             $phpcsfile->adderror('File must begin with License boilerplate', ($stackptr + 1));
             return;

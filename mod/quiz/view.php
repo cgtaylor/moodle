@@ -339,7 +339,11 @@
 /// or a button to go back to the course page.
     echo $OUTPUT->box_start('quizattempt');
     $buttontext = ''; // This will be set something if as start/continue attempt button should appear.
+<<<<<<< HEAD
     if (!$quiz->questions) {
+=======
+    if (!quiz_clean_layout($quiz->questions, true)) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         echo $OUTPUT->heading(get_string("noquestions", "quiz"));
     } else {
         if ($unfinished) {

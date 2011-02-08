@@ -3,6 +3,10 @@ define('AJAX_SCRIPT', true);
 
 require_once('../../config.php');
 require_once('lib.php');
+<<<<<<< HEAD
+=======
+require_once($CFG->libdir . '/filelib.php');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 $concept  = optional_param('concept', '', PARAM_CLEAN);
 $courseid = optional_param('courseid', 0, PARAM_INT);
@@ -66,7 +70,11 @@ if ($entries) {
         $options = new stdClass();
         $options->para = false;
         $options->trusted = $entry->definitiontrust;
+<<<<<<< HEAD
         $options->context = $context; 
+=======
+        $options->context = $context;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         $entries[$key]->definition = format_text($definition, $entry->definitionformat, $options);
 
         $entries[$key]->footer = "<p style=\"text-align:right\">&raquo;&nbsp;<a href=\"$CFG->wwwroot/mod/glossary/view.php?g=$entry->glossaryid\">".format_string($entry->glossaryname,true)."</a></p>";

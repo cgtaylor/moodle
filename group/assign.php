@@ -115,6 +115,12 @@ $straddgroupstogroupings = get_string('addgroupstogroupings', 'group');
 
 $groupingname = format_string($grouping->name);
 
+<<<<<<< HEAD
+=======
+navigation_node::override_active_url(new moodle_url('/group/index.php', array('id'=>$course->id)));
+$PAGE->set_pagelayout('standard');
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $PAGE->navbar->add($strparticipants, new moodle_url('/user/index.php', array('id'=>$courseid)));
 $PAGE->navbar->add($strgroups, new moodle_url('/group/index.php', array('id'=>$courseid)));
 $PAGE->navbar->add($straddgroupstogroupings);

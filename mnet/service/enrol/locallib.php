@@ -334,11 +334,20 @@ class mnetservice_enrol {
 
             // prune stale enrolment records
             if (empty($list)) {
+<<<<<<< HEAD
                 $DB->delete_records('mnetservice_enrol_enrolments', array('hostid'=>$mnethostid));
             } else {
                 list($isql, $params) = $DB->get_in_or_equal(array_keys($list), SQL_PARAMS_NAMED, 'param0000', false);
                 $params['hostid'] = $mnethostid;
                 $select = "hostid = :hostid AND id $isql";
+=======
+                $DB->delete_records('mnetservice_enrol_enrolments', array('hostid'=>$mnethostid, 'remotecourseid'=>$remotecourseid));
+            } else {
+                list($isql, $params) = $DB->get_in_or_equal(array_keys($list), SQL_PARAMS_NAMED, 'param0000', false);
+                $params['hostid'] = $mnethostid;
+                $params['remotecourseid'] = $remotecourseid;
+                $select = "hostid = :hostid AND remotecourseid = :remotecourseid AND id $isql";
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 $DB->delete_records_select('mnetservice_enrol_enrolments', $select, $params);
             }
 
@@ -551,6 +560,13 @@ class mnetservice_enrol_potential_users_selector extends user_selector_base {
         $systemcontext = get_system_context();
         $userids = get_users_by_capability($systemcontext, 'moodle/site:mnetlogintoremote', 'u.id');
 
+<<<<<<< HEAD
+=======
+        if (empty($userids)) {
+            return array();
+        }
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         list($usql, $uparams) = $DB->get_in_or_equal(array_keys($userids), SQL_PARAMS_NAMED, 'uid0000');
 
         list($wherecondition, $params) = $this->search_sql($search, 'u');

@@ -36,6 +36,13 @@
         $url->param('organization', $organization);
     }
     $PAGE->set_url($url);
+<<<<<<< HEAD
+=======
+    $forcejs = get_config('scorm','forcejavascript');
+    if (!empty($forcejs)) {
+        $PAGE->add_body_class('forcejavascript');
+    }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     require_login($course->id, false, $cm);
 
@@ -88,5 +95,11 @@
     if ($scormopen) {
         scorm_view_display($USER, $scorm, 'view.php?id='.$cm->id, $cm);
     }
+<<<<<<< HEAD
+=======
+    if (!empty($forcejs)) {
+        echo $OUTPUT->box(get_string("forcejavascriptmessage", "scorm"), "generalbox boxaligncenter forcejavascriptmessage");
+    }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     echo $OUTPUT->footer();
 

@@ -22,6 +22,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+<<<<<<< HEAD
+=======
+define('AJAX_SCRIPT', true);
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 require_once('../config.php');
 require_once('lib.php');
 
@@ -35,6 +40,10 @@ $query = optional_param('query', '', PARAM_RAW);
 
 if ($similar_tags = tag_autocomplete($query)) {
     foreach ($similar_tags as $tag) {
+<<<<<<< HEAD
         echo $tag->name . "\t" . tag_display_name($tag) . "\n";
+=======
+        echo clean_param($tag->name, PARAM_TAG) . "\t" . tag_display_name($tag) . "\n";
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 }

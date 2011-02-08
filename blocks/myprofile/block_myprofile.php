@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -16,16 +19,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+<<<<<<< HEAD
  * Displays the user's profile information.
  *
  * @package    blocks
+=======
+ * Block displaying information about current logged-in user.
+ *
+ * This block can be used as anti cheating measure, you
+ * can easily check the logged-in user matches the person
+ * operating the computer.
+ *
+ * @package    block
+ * @subpackage myprofile
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * @copyright  2010 Remote-Learner.net
  * @author     Olav Jordan <olav.jordan@remote-learner.ca>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+<<<<<<< HEAD
 /**
  * Displays the user's profile information.
+=======
+defined('MOODLE_INTERNAL') || die();
+
+/**
+ * Displays the current user's profile information.
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  *
  * @copyright  2010 Remote-Learner.net
  * @author     Olav Jordan <olav.jordan@remote-learner.ca>
@@ -51,8 +72,13 @@ class block_myprofile extends block_base {
             return $this->content;
         }
 
+<<<<<<< HEAD
         if (!isloggedin()){
             return '';      // Never useful unless you are logged in
+=======
+        if (!isloggedin() or isguestuser()) {
+            return '';      // Never useful unless you are logged in as real users
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
 
         $this->content = new stdClass;
@@ -60,6 +86,7 @@ class block_myprofile extends block_base {
         $this->content->footer = '';
 
         $course = $this->page->course;
+<<<<<<< HEAD
         if ($PAGE->context->contextlevel == CONTEXT_USER) {
             $user = $DB->get_record('user', array('id' => $PAGE->context->instanceid));
         } else {
@@ -92,18 +119,39 @@ class block_myprofile extends block_base {
             if (isset($countries[$user->country])) {
                 $this->content->text .= '<div class="myprofileitem country">';
                 $this->content->text .= get_string('country') . ': ' . $countries[$user->country];
+=======
+
+        if (!isset($this->config->display_picture) || $this->config->display_picture == 1) {
+            $this->content->text .= '<div class="myprofileitem picture">';
+            $this->content->text .= $OUTPUT->user_picture($USER, array('courseid'=>$course->id, 'size'=>'100', 'class'=>'profilepicture'));  // The new class makes CSS easier
+            $this->content->text .= '</div>';
+        }
+
+        $this->content->text .= '<div class="myprofileitem fullname">'.fullname($USER).'</div>';
+
+        if(!isset($this->config->display_country) || $this->config->display_country == 1) {
+            $countries = get_string_manager()->get_list_of_countries();
+            if (isset($countries[$USER->country])) {
+                $this->content->text .= '<div class="myprofileitem country">';
+                $this->content->text .= get_string('country') . ': ' . $countries[$USER->country];
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 $this->content->text .= '</div>';
             }
         }
 
         if(!isset($this->config->display_city) || $this->config->display_city == 1) {
             $this->content->text .= '<div class="myprofileitem city">';
+<<<<<<< HEAD
             $this->content->text .= get_string('city') . ': ' . $user->city;
+=======
+            $this->content->text .= get_string('city') . ': ' . format_string($USER->city);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $this->content->text .= '</div>';
         }
 
         if(!isset($this->config->display_email) || $this->config->display_email == 1) {
             $this->content->text .= '<div class="myprofileitem email">';
+<<<<<<< HEAD
             $this->content->text .= obfuscate_mailto($user->email, '');
             $this->content->text .= '</div>';
         }
@@ -223,6 +271,90 @@ class block_myprofile extends block_base {
         }
 
 
+=======
+            $this->content->text .= obfuscate_mailto($USER->email, '');
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_icq) && !empty($USER->icq)) {
+            $this->content->text .= '<div class="myprofileitem icq">';
+            $this->content->text .= 'ICQ: ' . s($USER->icq);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_skype) && !empty($USER->skype)) {
+            $this->content->text .= '<div class="myprofileitem skype">';
+            $this->content->text .= 'Skype: ' . s($USER->skype);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_yahoo) && !empty($USER->yahoo)) {
+            $this->content->text .= '<div class="myprofileitem yahoo">';
+            $this->content->text .= 'Yahoo: ' . s($USER->yahoo);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_aim) && !empty($USER->aim)) {
+            $this->content->text .= '<div class="myprofileitem aim">';
+            $this->content->text .= 'AIM: ' . s($USER->aim);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_msn) && !empty($USER->msn)) {
+            $this->content->text .= '<div class="myprofileitem msn">';
+            $this->content->text .= 'MSN: ' . s($USER->msn);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_phone1) && !empty($USER->phone1)) {
+            $this->content->text .= '<div class="myprofileitem phone1">';
+            $this->content->text .= get_string('phone').': ' . s($USER->phone1);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_phone2) && !empty($USER->phone2)) {
+            $this->content->text .= '<div class="myprofileitem phone2">';
+            $this->content->text .= get_string('phone').': ' . s($USER->phone2);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_institution) && !empty($USER->institution)) {
+            $this->content->text .= '<div class="myprofileitem institution">';
+            $this->content->text .= format_string($USER->institution);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_address) && !empty($USER->address)) {
+            $this->content->text .= '<div class="myprofileitem address">';
+            $this->content->text .= format_string($USER->address);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_firstaccess) && !empty($USER->firstaccess)) {
+            $this->content->text .= '<div class="myprofileitem firstaccess">';
+            $this->content->text .= get_string('firstaccess').': ' . userdate($USER->firstaccess);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_lastaccess) && !empty($USER->lastaccess)) {
+            $this->content->text .= '<div class="myprofileitem lastaccess">';
+            $this->content->text .= get_string('lastaccess').': ' . userdate($USER->lastaccess);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_currentlogin) && !empty($USER->currentlogin)) {
+            $this->content->text .= '<div class="myprofileitem currentlogin">';
+            $this->content->text .= get_string('login').': ' . userdate($USER->currentlogin);
+            $this->content->text .= '</div>';
+        }
+
+        if(!empty($this->config->display_lastip) && !empty($USER->lastip)) {
+            $this->content->text .= '<div class="myprofileitem lastip">';
+            $this->content->text .= 'IP: ' . $USER->lastip;
+            $this->content->text .= '</div>';
+        }
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         return $this->content;
     }
 
@@ -304,4 +436,7 @@ class block_myprofile extends block_base {
     }
 
 }
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf

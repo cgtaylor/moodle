@@ -273,7 +273,11 @@ function calendar_get_mini($courses, $groups, $users, $cal_month = false, $cal_y
                 $dayhref->set_anchor('event_'.$event->id);
 
                 $popupcontent .= html_writer::start_tag('div');
+<<<<<<< HEAD
                 $popupcontent .= $OUTPUT->pix_icon($popupicon, $popupalt);
+=======
+                $popupcontent .= $OUTPUT->pix_icon($popupicon, $popupalt, $component);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 $popupcontent .= html_writer::link($dayhref, format_string($event->name, true));
                 $popupcontent .= html_writer::end_tag('div');
             }
@@ -1874,7 +1878,14 @@ class calendar_event {
      * @return string
      */
     protected function get_description() {
+<<<<<<< HEAD
        global $USER;
+=======
+        global $USER, $CFG;
+
+        require_once($CFG->libdir . '/filelib.php');
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if ($this->_description === null) {
             // Check if we have already resolved the context for this event
             if ($this->editorcontext === null) {

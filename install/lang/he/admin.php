@@ -30,7 +30,18 @@
 
 $string['clianswerno'] = 'n';
 $string['cliansweryes'] = 'y';
+<<<<<<< HEAD
 $string['cliincorrectvalueretry'] = 'ערך שגוי, נסה שנית';
+=======
+$string['cliincorrectvalueerror'] = 'שגיאה: ערך לא תקין
+"{$a->value}" עבור "{$a->option}"';
+$string['cliincorrectvalueretry'] = 'ערך שגוי, נסה שנית';
+$string['clitypevalue'] = 'סוג הערך';
+$string['clitypevaluedefault'] = 'סוג הערך, הקש Enter לשימוש בערך ברירת מחדל ({$a})';
+$string['cliunknowoption'] = 'אפשרויות לא מוכרות : 
+{$a}
+אנא השתמש באפשרות העזרה.';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['cliyesnoprompt'] = 'רשום y (שפרושו כן) או n (שפרושו לא)';
 $string['environmentrequireinstall'] = 'נדרש להתקין/לאפשר זאת';
 $string['environmentrequireversion'] = 'גירסת {$a->needed} נדרשת ואתה מריץ {$a->current}';

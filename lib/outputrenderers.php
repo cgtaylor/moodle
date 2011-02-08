@@ -324,7 +324,11 @@ class core_renderer extends renderer_base {
             $output .= html_writer::empty_tag('link', array('rel' => 'alternate',
                     'type' => $type, 'title' => $alt->title, 'href' => $alt->url));
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if (!empty($CFG->additionalhtmlhead)) {
             $output .= "\n".$CFG->additionalhtmlhead;
         }
@@ -353,7 +357,11 @@ class core_renderer extends renderer_base {
      * @return string HTML fragment.
      */
     public function standard_footer_html() {
+<<<<<<< HEAD
         global $CFG;
+=======
+        global $CFG, $SCRIPT;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         // This function is normally called from a layout.php file in {@link header()}
         // but some of the content won't be known until later, so we return a placeholder
@@ -367,6 +375,17 @@ class core_renderer extends renderer_base {
             $output .= '<div class="performanceinfo pageinfo">This page is: ' . $this->page->debug_summary() . '</div>';
         }
         if (debugging(null, DEBUG_DEVELOPER) and has_capability('moodle/site:config', get_context_instance(CONTEXT_SYSTEM))) {  // Only in developer mode
+<<<<<<< HEAD
+=======
+            // Add link to profiling report if necessary
+            if (function_exists('profiling_is_running') && profiling_is_running()) {
+                $txt = get_string('profiledscript', 'admin');
+                $title = get_string('profiledscriptview', 'admin');
+                $url = $CFG->wwwroot . '/admin/report/profiling/index.php?script=' . urlencode($SCRIPT);
+                $link= '<a title="' . $title . '" href="' . $url . '">' . $txt . '</a>';
+                $output .= '<div class="profilingfooter">' . $link . '</div>';
+            }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $output .= '<div class="purgecaches"><a href="'.$CFG->wwwroot.'/admin/purgecaches.php?confirm=1&amp;sesskey='.sesskey().'">'.get_string('purgecaches', 'admin').'</a></div>';
         }
         if (!empty($CFG->debugvalidators)) {
@@ -2711,9 +2730,15 @@ class core_renderer_ajax extends core_renderer {
     public function header() {
         // unfortunately YUI iframe upload does not support application/json
         if (!empty($_FILES)) {
+<<<<<<< HEAD
             @header('Content-type: text/plain');
         } else {
             @header('Content-type: application/json');
+=======
+            @header('Content-type: text/plain; charset=utf-8');
+        } else {
+            @header('Content-type: application/json; charset=utf-8');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
 
         /// Headers to make it not cacheable and json

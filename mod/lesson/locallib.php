@@ -31,6 +31,10 @@ defined('MOODLE_INTERNAL') || die();
 /** Include the files that are required by this module */
 require_once($CFG->dirroot.'/course/moodleform_mod.php');
 require_once($CFG->dirroot . '/mod/lesson/lib.php');
+<<<<<<< HEAD
+=======
+require_once($CFG->libdir . '/filelib.php');
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
 /** This page */
 define('LESSON_THISPAGE', 0);
@@ -411,23 +415,39 @@ function lesson_displayleftif($lesson) {
  * @param $page
  * @return unknown_type
  */
+<<<<<<< HEAD
 function lesson_add_pretend_blocks($page, $cm, $lesson, $timer = null) {
+=======
+function lesson_add_fake_blocks($page, $cm, $lesson, $timer = null) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $bc = lesson_menu_block_contents($cm->id, $lesson);
     if (!empty($bc)) {
         $regions = $page->blocks->get_regions();
         $firstregion = reset($regions);
+<<<<<<< HEAD
         $page->blocks->add_pretend_block($bc, $firstregion);
+=======
+        $page->blocks->add_fake_block($bc, $firstregion);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     $bc = lesson_mediafile_block_contents($cm->id, $lesson);
     if (!empty($bc)) {
+<<<<<<< HEAD
         $page->blocks->add_pretend_block($bc, $page->blocks->get_default_region());
+=======
+        $page->blocks->add_fake_block($bc, $page->blocks->get_default_region());
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     if (!empty($timer)) {
         $bc = lesson_clock_block_contents($cm->id, $lesson, $timer, $page);
         if (!empty($bc)) {
+<<<<<<< HEAD
             $page->blocks->add_pretend_block($bc, $page->blocks->get_default_region());
+=======
+            $page->blocks->add_fake_block($bc, $page->blocks->get_default_region());
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
     }
 }
@@ -1881,7 +1901,13 @@ abstract class lesson_page extends lesson_base {
             $this->answers = array();
             $answers = $DB->get_records('lesson_answers', array('pageid'=>$this->properties->id, 'lessonid'=>$this->lesson->id), 'id');
             if (!$answers) {
+<<<<<<< HEAD
                 debugging(get_string('cannotfindanswer', 'lesson'));
+=======
+                // It is possible that a lesson upgraded from Moodle 1.9 still
+                // contains questions without any answers [MDL-25632].
+                // debugging(get_string('cannotfindanswer', 'lesson'));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 return array();
             }
             foreach ($answers as $answer) {
@@ -1913,6 +1939,10 @@ abstract class lesson_page extends lesson_base {
      * Records an attempt at this page
      *
      * @final
+<<<<<<< HEAD
+=======
+     * @global moodle_database $DB
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
      * @param stdClass $context
      * @return stdClass Returns the result of the attempt
      */
@@ -1958,7 +1988,11 @@ abstract class lesson_page extends lesson_base {
                 if (!$result->correctanswer && ($result->newpageid == 0)) {
                     // wrong answer and student is stuck on this page - check how many attempts
                     // the student has had at this page/question
+<<<<<<< HEAD
                     $nattempts = $DB->count_records("lesson_attempts", array("pageid"=>$this->properties->id, "userid"=>$USER->id),"retry", $nretakes);
+=======
+                    $nattempts = $DB->count_records("lesson_attempts", array("pageid"=>$this->properties->id, "userid"=>$USER->id, "retry" => $nretakes));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                     // retreive the number of attempts left counter for displaying at bottom of feedback page
                     if ($nattempts >= $this->lesson->maxattempts) {
                         if ($this->lesson->maxattempts > 1) { // don't bother with message if only one attempt
@@ -2133,6 +2167,7 @@ abstract class lesson_page extends lesson_base {
                 $this->answers[$i]->pageid = $this->id;
                 $this->answers[$i]->timecreated = $this->timecreated;
             }
+<<<<<<< HEAD
             if (!empty($properties->answer_editor[$i])) {
                 $this->answers[$i]->answer = $properties->answer_editor[$i]['text'];
                 $this->answers[$i]->answerformat = $properties->answer_editor[$i]['format'];
@@ -2140,6 +2175,19 @@ abstract class lesson_page extends lesson_base {
                     $this->answers[$i]->response = $properties->response_editor[$i]['text'];
                     $this->answers[$i]->responseformat = $properties->response_editor[$i]['format'];
                 }
+=======
+
+            if (!empty($properties->answer_editor[$i]) && is_array($properties->answer_editor[$i])) {
+                $this->answers[$i]->answer = $properties->answer_editor[$i]['text'];
+                $this->answers[$i]->answerformat = $properties->answer_editor[$i]['format'];
+            }
+            if (!empty($properties->response_editor[$i]) && is_array($properties->response_editor[$i])) {
+                $this->answers[$i]->response = $properties->response_editor[$i]['text'];
+                $this->answers[$i]->responseformat = $properties->response_editor[$i]['format'];
+            }
+
+            if (!empty($this->answers[$i]->answer)) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 if (isset($properties->jumpto[$i])) {
                     $this->answers[$i]->jumpto = $properties->jumpto[$i];
                 }
@@ -2152,8 +2200,14 @@ abstract class lesson_page extends lesson_base {
                     $DB->update_record("lesson_answers", $this->answers[$i]->properties());
                 }
 
+<<<<<<< HEAD
             } else {
                 break;
+=======
+            } else if (isset($this->answers[$i]->id)) {
+                $DB->delete_records('lesson_answers', array('id'=>$this->answers[$i]->id));
+                unset($this->answers[$i]);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             }
         }
         return true;
@@ -2221,6 +2275,7 @@ abstract class lesson_page extends lesson_base {
 
         for ($i = 0; $i < $this->lesson->maxanswers; $i++) {
             $answer = clone($newanswer);
+<<<<<<< HEAD
             if (!empty($properties->answer_editor[$i])) {
                 $answer->answer = $properties->answer_editor[$i]['text'];
                 $answer->answerformat = $properties->answer_editor[$i]['format'];
@@ -2228,6 +2283,19 @@ abstract class lesson_page extends lesson_base {
                     $answer->response = $properties->response_editor[$i]['text'];
                     $answer->responseformat = $properties->response_editor[$i]['format'];
                 }
+=======
+
+            if (!empty($properties->answer_editor[$i]) && is_array($properties->answer_editor[$i])) {
+                $answer->answer = $properties->answer_editor[$i]['text'];
+                $answer->answerformat = $properties->answer_editor[$i]['format'];
+            }
+            if (!empty($properties->response_editor[$i]) && is_array($properties->response_editor[$i])) {
+                $answer->response = $properties->response_editor[$i]['text'];
+                $answer->responseformat = $properties->response_editor[$i]['format'];
+            }
+
+            if (!empty($answer->answer)) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                 if (isset($properties->jumpto[$i])) {
                     $answer->jumpto = $properties->jumpto[$i];
                 }
@@ -2470,6 +2538,11 @@ abstract class lesson_page extends lesson_base {
             foreach ($answers as $answer) {
                 $jumps[] = $this->get_jump_name($answer->jumpto);
             }
+<<<<<<< HEAD
+=======
+        } else {
+            $jumps[] = $this->get_jump_name($this->properties->nextpageid);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
         return $jumps;
     }

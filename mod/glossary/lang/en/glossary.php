@@ -79,6 +79,11 @@ $string['commentdeleted'] = 'The comment has been deleted.';
 $string['comments'] = 'Comments';
 $string['commentson'] = 'Comments on';
 $string['commentupdated'] = 'The comment has been updated.';
+<<<<<<< HEAD
+=======
+$string['completionentries'] = 'Student must create entries:';
+$string['completionentriesgroup'] = 'Require entries';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['concept'] = 'Concept';
 $string['concepts'] = 'Concepts';
 $string['configenablerssfeeds'] = 'This switch will enable the possibility of RSS feeds for all glossaries.  You will still need to turn feeds on manually in the settings for each glossary.';

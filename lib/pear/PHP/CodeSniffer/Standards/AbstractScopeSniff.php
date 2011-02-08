@@ -11,7 +11,11 @@
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
+<<<<<<< HEAD
  * @version   CVS: $Id: AbstractScopeSniff.php,v 1.2 2010/12/14 17:36:05 moodlerobot Exp $
+=======
+ * @version   CVS: $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
 

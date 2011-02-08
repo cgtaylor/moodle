@@ -50,7 +50,13 @@ function url_20_migrate() {
         return;
     }
 
+<<<<<<< HEAD
     if (!$candidates = $DB->get_recordset('resource_old', array('type'=>'file', 'migrated'=>0))) {
+=======
+    $candidates = $DB->get_recordset('resource_old', array('type'=>'file', 'migrated'=>0));
+    if (!$candidates->valid()) {
+        $candidates->close(); // Not going to iterate (but exit), close rs
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         return;
     }
 
@@ -135,4 +141,8 @@ function url_20_migrate() {
 
     // clear all course modinfo caches
     rebuild_course_cache(0, true);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf

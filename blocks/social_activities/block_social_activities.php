@@ -42,6 +42,7 @@ class block_social_activities extends block_list {
                     if (!$cm->uservisible) {
                         continue;
                     }
+<<<<<<< HEAD
                     if ($cm->modname == 'label') {
                         $this->content->items[] = format_text($cm->extra, FORMAT_HTML, $options);
                         $this->content->icons[] = '';
@@ -57,6 +58,21 @@ class block_social_activities extends block_list {
                         $icon = '<img src="'.$icon.'" class="icon" alt="" />&nbsp;';
                         $this->content->items[] = '<a title="'.$cm->modplural.'" '.$linkcss.' '.$cm->extra.
                             ' href="'.$CFG->wwwroot.'/mod/'.$cm->modname.'/view.php?id='.$cm->id.'">'.$icon.$instancename.'</a>';
+=======
+
+                    list($content, $instancename) =
+                            get_print_section_cm_text($cm, $course);
+
+                    if (!($url = $cm->get_url())) {
+                        $this->content->items[] = $content;
+                        $this->content->icons[] = '';
+                    } else {
+                        $linkcss = $cm->visible ? '' : ' class="dimmed" ';
+                        //Accessibility: incidental image - should be empty Alt text
+                        $icon = '<img src="' . $cm->get_icon_url() . '" class="icon" alt="" />&nbsp;';
+                        $this->content->items[] = '<a title="'.$cm->modplural.'" '.$linkcss.' '.$cm->extra.
+                                ' href="' . $url . '">' . $icon . $instancename . '</a>';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                     }
                 }
             }
@@ -123,6 +139,7 @@ class block_social_activities extends block_list {
                             '<img style="height:16px; width:80px; border:0px" src="'.$OUTPUT->pix_url('movehere') . '" alt="'.$strmovehere.'" /></a>';
                         $this->content->icons[] = '';
                     }
+<<<<<<< HEAD
                     $instancename = $modinfo->cms[$modnumber]->name;
                     $instancename = format_string($instancename, true, $course->id);
                     $linkcss = $mod->visible ? '' : ' class="dimmed" ';
@@ -145,6 +162,21 @@ class block_social_activities extends block_list {
                         $icon = '<img src="'.$icon.'" class="icon" alt="" />&nbsp;';
                         $this->content->items[] = '<a title="'.$mod->modfullname.'" '.$linkcss.' '.$extra.
                             ' href="'.$CFG->wwwroot.'/mod/'.$mod->modname.'/view.php?id='.$mod->id.'">'.$icon.$instancename.'</a>'.$editbuttons;
+=======
+                    list($content, $instancename) =
+                                get_print_section_cm_text($modinfo->cms[$modnumber], $course);
+
+                    $linkcss = $mod->visible ? '' : ' class="dimmed" ';
+
+                    if (!($url = $mod->get_url())) {
+                        $this->content->items[] = $content . $editbuttons;
+                        $this->content->icons[] = '';
+                    } else {
+                        //Accessibility: incidental image - should be empty Alt text
+                        $icon = '<img src="' . $mod->get_icon_url() . '" class="icon" alt="" />&nbsp;';
+                        $this->content->items[] = '<a title="' . $mod->modfullname . '" ' . $linkcss . ' ' . $mod->extra .
+                            ' href="' . $url . '">' . $icon . $instancename . '</a>' . $editbuttons;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                     }
                 }
             }

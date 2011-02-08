@@ -10,9 +10,15 @@
  * build a database on any ADOdb-supported platform using a simple
  * XML schema.
  *
+<<<<<<< HEAD
  * Last Editor: $Author: moodlerobot $
  * @author Richard Tango-Lowy & Dan Cech
  * @version $Revision: 1.24 $
+=======
+ * Last Editor: $Author$
+ * @author Richard Tango-Lowy & Dan Cech
+ * @version $Revision$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  *
  * @package axmls
  * @tutorial getting_started.pkg
@@ -1211,7 +1217,11 @@ class dbQuerySet extends dbObject {
 * @tutorial getting_started.pkg
 *
 * @author Richard Tango-Lowy & Dan Cech
+<<<<<<< HEAD
 * @version $Revision: 1.24 $
+=======
+* @version $Revision$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 *
 * @package axmls
 */

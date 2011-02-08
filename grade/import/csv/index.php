@@ -79,8 +79,18 @@ if ($id) {
                 continue;
             }
 
+<<<<<<< HEAD
             // this was idnumber
             $gradeitems[$grade_item->id] = $grade_item->get_name();
+=======
+            $displaystring = null;
+            if (!empty($grade_item->itemmodule)) {
+                $displaystring = get_string('modulename', $grade_item->itemmodule).': '.$grade_item->get_name();
+            } else {
+                $displaystring = $grade_item->get_name();
+            }
+            $gradeitems[$grade_item->id] = $displaystring;
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
     }
 }
@@ -88,7 +98,13 @@ if ($id) {
 if ($importcode = optional_param('importcode', '', PARAM_FILE)) {
     $filename = $CFG->dataroot.'/temp/gradeimport/cvs/'.$USER->id.'/'.$importcode;
     $fp = fopen($filename, "r");
+<<<<<<< HEAD
     $header = explode($csv_delimiter, fgets($fp,GRADE_CSV_LINE_LENGTH), PARAM_RAW);
+=======
+    $headers = fgets($fp, GRADE_CSV_LINE_LENGTH);
+    $header = explode($csv_delimiter, $headers);
+    fclose($fp);
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 }
 
 $mform2 = new grade_import_mapping_form(null, array('gradeitems'=>$gradeitems, 'header'=>$header));
@@ -122,7 +138,11 @@ if ($formdata = $mform->get_data()) {
     $fp = fopen($filename, "r");
 
     // --- get header (field names) ---
+<<<<<<< HEAD
     $header = explode($csv_delimiter, fgets($fp,GRADE_CSV_LINE_LENGTH));
+=======
+    $header = explode($csv_delimiter, fgets($fp, GRADE_CSV_LINE_LENGTH));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     // print some preview
     $numlines = 0; // 0 preview lines displayed
@@ -136,10 +156,17 @@ if ($formdata = $mform->get_data()) {
     }
     echo '</tr>';
     while (!feof ($fp) && $numlines <= $formdata->previewrows) {
+<<<<<<< HEAD
         $lines = explode($csv_delimiter, fgets($fp,GRADE_CSV_LINE_LENGTH));
         echo '<tr>';
         foreach ($lines as $line) {
             echo '<td>'.$line.'</td>';;
+=======
+        $lines = explode($csv_delimiter, fgets($fp, GRADE_CSV_LINE_LENGTH));
+        echo '<tr>';
+        foreach ($lines as $line) {
+            echo '<td>'.$line.'</td>';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         }
         $numlines ++;
         echo '</tr>';
@@ -177,7 +204,13 @@ if ($formdata = $mform->get_data()) {
     $map = array();
     // loops mapping_0, mapping_1 .. mapping_n and construct $map array
     foreach ($header as $i => $head) {
+<<<<<<< HEAD
         $map[$i] = $formdata->{'mapping_'.$i};
+=======
+        if (isset($formdata->{'mapping_'.$i})) {
+            $map[$i] = $formdata->{'mapping_'.$i};
+        }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     // if mapping information is supplied
@@ -185,7 +218,11 @@ if ($formdata = $mform->get_data()) {
 
     // check for mapto collisions
     $maperrors = array();
+<<<<<<< HEAD
     foreach ($map as $i=>$j) {
+=======
+    foreach ($map as $i => $j) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if ($j == 0) {
             // you can have multiple ignores
             continue;
@@ -211,14 +248,22 @@ if ($formdata = $mform->get_data()) {
     if ($fp = fopen($filename, "r")) {
 
         // read the first line makes sure this doesn't get read again
+<<<<<<< HEAD
         $header = explode($csv_delimiter, fgets($fp,GRADE_CSV_LINE_LENGTH));
+=======
+        $header = explode($csv_delimiter, fgets($fp, GRADE_CSV_LINE_LENGTH));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
         $newgradeitems = array(); // temporary array to keep track of what new headers are processed
         $status = true;
 
         while (!feof ($fp)) {
             // add something
+<<<<<<< HEAD
             $line = explode($csv_delimiter, fgets($fp,GRADE_CSV_LINE_LENGTH));
+=======
+            $line = explode($csv_delimiter, fgets($fp, GRADE_CSV_LINE_LENGTH));
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
             if(count($line) <= 1){
                 // there is no data on this line, move on
@@ -303,6 +348,7 @@ if ($formdata = $mform->get_data()) {
                             $newgradeitem->importcode = $importcode;
                             $newgradeitem->importer   = $USER->id;
 
+<<<<<<< HEAD
                             // failed to insert into new grade item buffer
                             $newgradeitems[$key] = $DB->insert_record('grade_import_newitem', $newgradeitem);
                             // add this to grade_import_newitem table
@@ -315,6 +361,21 @@ if ($formdata = $mform->get_data()) {
 
                         // if not, put it in
                         // else, insert grade into the table
+=======
+                            // insert into new grade item buffer
+                            $newgradeitems[$key] = $DB->insert_record('grade_import_newitem', $newgradeitem);
+                        }
+                        $newgrade = new stdClass();
+                        $newgrade->newgradeitem = $newgradeitems[$key];
+
+                        // if the user has a grade for this grade item
+                        if (trim($value) != '-') {
+                            // instead of omitting the grade we could insert one with finalgrade set to 0
+                            // we do not have access to grade item min grade
+                            $newgrade->finalgrade   = $value;
+                            $newgrades[] = $newgrade;
+                        }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
                     break;
                     case 'feedback':
                         if ($t1) {

@@ -24,10 +24,17 @@
  */
 
 $string['addingcalculated'] = 'Adding a calculated question';
+<<<<<<< HEAD
 $string['additem'] = 'Add Item';
 $string['addmoreanswerblanks'] = 'Add another answer blank.';
 $string['addmoreunitblanks'] = 'Blanks for {$a} More Units';
 $string['addsets'] = 'Add Set(s)';
+=======
+$string['additem'] = 'Add item';
+$string['addmoreanswerblanks'] = 'Add another answer blank.';
+$string['addmoreunitblanks'] = 'Blanks for {$a} more units';
+$string['addsets'] = 'Add set(s)';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['answerhdr'] = 'Answer';
 $string['answerstoleranceparam'] = 'Answers tolerance parameters';
 $string['atleastoneanswer'] = 'You need to provide at least one answer.';
@@ -48,8 +55,13 @@ $string['correctanswershowsformat'] = 'Format';
 $string['correctfeedback'] = 'For any correct response';
 $string['dataitemdefined']='with {$a} numerical values already defined is available';
 $string['datasetrole']= ' The wild cards <strong>{x..}</strong> will be substituted by a numerical value from their dataset';
+<<<<<<< HEAD
 $string['deleteitem'] = 'Delete Item';
 $string['deletelastitem'] = 'Delete Last Item';
+=======
+$string['deleteitem'] = 'Delete item';
+$string['deletelastitem'] = 'Delete last item';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['editingcalculated'] = 'Editing a Calculated question';
 $string['editdatasets'] = 'Edit the wildcards datasets';
 $string['editdatasets_help'] = 'Wildcard values may be created by entering a number in each wild card field then clicking the add button. To automatically generate 10 or more values, select the number of values required before clicking the add button. A uniform distribution means any value between the limits is equally likely to be generated; a loguniform distribution means that values towards the lower limit are more likely.';
@@ -60,13 +72,21 @@ $string['existingcategory3'] = 'a link from an already existing set of links tha
 $string['forceregeneration'] = 'force regeneration';
 $string['forceregenerationall'] = 'forceregeneration of all wildcards';
 $string['forceregenerationshared'] = 'forceregeneration of only non-shared wildcards';
+<<<<<<< HEAD
 $string['getnextnow'] = 'Get New \'Item to Add\' Now';
+=======
+$string['getnextnow'] = 'Get new \'Item to Add\' now';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['hexanotallowed'] = 'Dataset <strong>{$a->name}</strong> hexadecimal format value $a->value is not allowed' ;
 $string['incorrectfeedback'] = 'For any incorrect response';
 $string['item(s)'] = 'item(s)';
 $string['itemno'] = 'Item {$a}';
 $string['itemscount']='Items<br />Count';
+<<<<<<< HEAD
 $string['itemtoadd'] = 'Item To Add';
+=======
+$string['itemtoadd'] = 'Item to add';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['keptcategory1'] = 'will use the same existing shared dataset as before';
 $string['keptcategory2'] = 'a file from the same category reusable set of files as before';
 $string['keptcategory3'] = 'a link from the same category reusable set of links as before';
@@ -75,7 +95,11 @@ $string['keptlocal2'] = 'a file from the same question private set of files as b
 $string['keptlocal3'] = 'a link from the same question private set of links as before';
 $string['lastitem(s)'] = 'last items(s)';
 $string['loguniform'] = 'Loguniform';
+<<<<<<< HEAD
 $string['makecopynextpage'] = 'Next Page (new question)';
+=======
+$string['makecopynextpage'] = 'Next page (new question)';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['mandatoryhdr'] = 'Mandatory wild cards present in answers';
 $string['minmax'] = 'Range of Values';
 $string['mustbenumeric'] = 'You must enter a number here.';
@@ -87,7 +111,11 @@ $string['newlocal1'] = 'will use a new private dataset';
 $string['newlocal2'] = 'a file  from a new set of files that will only be used by this question';
 $string['newlocal3'] = 'a link from a new set of links that will only be used by this question';
 $string['nextitemtoadd'] = 'Next \'Item to Add\'';
+<<<<<<< HEAD
 $string['nextpage'] = 'Next Page';
+=======
+$string['nextpage'] = 'Next page';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 $string['nocoherencequestionsdatyasetcategory'] = 'For question id {$a->qid}, the category id {$a->qcat} is not identical with the shared wild card {$a->name} category id {$a->sharedcat}. Edit the question.';
 $string['nocommaallowed'] = 'The , cannot be used, use . as in 0.013 or 1.3e-2' ;
 $string['nodataset'] = 'nothing - it is not a wild card';

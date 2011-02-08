@@ -138,8 +138,16 @@ class pgsql_native_moodle_database extends moodle_database {
         // Unix socket connections should have lower overhead
         if (!empty($this->dboptions['dbsocket']) and ($this->dbhost === 'localhost' or $this->dbhost === '127.0.0.1')) {
             $connection = "user='$this->dbuser' password='$pass' dbname='$this->dbname'";
+<<<<<<< HEAD
         } else {
             $this->dboptions['dbsocket'] = 0;
+=======
+            if (strpos($this->dboptions['dbsocket'], '/') !== false) {
+                $connection = $connection." host='".$this->dboptions['dbsocket']."'";
+            }
+        } else {
+            $this->dboptions['dbsocket'] = '';
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             if (empty($this->dbname)) {
                 // probably old style socket connection - do not add port
                 $port = "";
@@ -1115,7 +1123,13 @@ class pgsql_native_moodle_database extends moodle_database {
         if ($s === '') {
             return " '' ";
         }
+<<<<<<< HEAD
         return " $s ";
+=======
+        // Add always empty string element so integer-exclusive concats
+        // will work without needing to cast each element explicity
+        return " '' || $s ";
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     public function sql_concat_join($separator="' '", $elements=array()) {

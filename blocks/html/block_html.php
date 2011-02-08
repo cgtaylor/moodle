@@ -42,6 +42,13 @@ class block_html extends block_base {
     }
 
     function get_content() {
+<<<<<<< HEAD
+=======
+        global $CFG;
+
+        require_once($CFG->libdir . '/filelib.php');
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         if ($this->content !== NULL) {
             return $this->content;
         }

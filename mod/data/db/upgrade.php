@@ -55,6 +55,7 @@ function xmldb_data_upgrade($oldversion) {
     }
 
     if ($oldversion < 2008081400) {
+<<<<<<< HEAD
         if ($rs = $DB->get_recordset('data')) {
             $pattern = '/\#\#delete\#\#(\s+)\#\#approve\#\#/';
             $replacement = '##delete##$1##approve##$1##export##';
@@ -65,6 +66,18 @@ function xmldb_data_upgrade($oldversion) {
             }
             $rs->close();
         }
+=======
+        $pattern = '/\#\#delete\#\#(\s+)\#\#approve\#\#/';
+        $replacement = '##delete##$1##approve##$1##export##';
+        $rs = $DB->get_recordset('data');
+        foreach ($rs as $data) {
+            $data->listtemplate = preg_replace($pattern, $replacement, $data->listtemplate);
+            $data->singletemplate = preg_replace($pattern, $replacement, $data->singletemplate);
+            $DB->update_record('data', $data);
+        }
+        $rs->close();
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         upgrade_mod_savepoint(true, 2008081400, 'data');
     }
 
@@ -89,8 +102,14 @@ function xmldb_data_upgrade($oldversion) {
 
         $count = $DB->count_records_sql("SELECT COUNT('x') $sqlfrom");
 
+<<<<<<< HEAD
         if ($rs = $DB->get_recordset_sql("SELECT c.id, f.type, r.dataid, c.recordid, f.id AS fieldid, r.userid, c.content, c.content1, d.course, r.userid, cm.id AS cmid $sqlfrom ORDER BY d.course, d.id")) {
 
+=======
+        $rs = $DB->get_recordset_sql("SELECT c.id, f.type, r.dataid, c.recordid, f.id AS fieldid, r.userid, c.content, c.content1, d.course, r.userid, cm.id AS cmid $sqlfrom ORDER BY d.course, d.id");
+
+        if ($rs->valid()) {
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             $pbar = new progress_bar('migratedatafiles', 500, true);
 
             $i = 0;
@@ -142,8 +161,14 @@ function xmldb_data_upgrade($oldversion) {
                 @rmdir("$CFG->dataroot/$content->course/$CFG->moddata/data");
                 @rmdir("$CFG->dataroot/$content->course/$CFG->moddata");
             }
+<<<<<<< HEAD
             $rs->close();
         }
+=======
+        }
+        $rs->close();
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
         upgrade_mod_savepoint(true, 2008091400, 'data');
     }
 
@@ -218,6 +243,7 @@ function xmldb_data_upgrade($oldversion) {
             $lastdataid = null;
             $lastcourseid = null;
             $modcontext = null;
+<<<<<<< HEAD
             if ($rs = $DB->get_recordset_sql($sql)) {
                 foreach($rs as $res) {
                     if ($res->dataid != $lastdataid || $res->courseid != $lastcourseid) {
@@ -243,6 +269,33 @@ function xmldb_data_upgrade($oldversion) {
                     }
                 }
             }
+=======
+            $rs = $DB->get_recordset_sql($sql);
+            foreach($rs as $res) {
+                if ($res->dataid != $lastdataid || $res->courseid != $lastcourseid) {
+                    $cm = get_coursemodule_from_instance('data', $res->dataid, $res->courseid);
+                    if ($cm) {
+                        $modcontext = get_context_instance(CONTEXT_MODULE, $cm->id);
+                    }
+                    $lastdataid = $res->dataid;
+                    $lastcourseid = $res->courseid;
+                }
+                $cmt = new stdClass();
+                $cmt->contextid   = $modcontext->id;
+                $cmt->commentarea = 'database_entry';
+                $cmt->itemid      = $res->itemid;
+                $cmt->content     = $res->commentcontent;
+                $cmt->format      = $res->format;
+                $cmt->userid      = $res->userid;
+                $cmt->timecreated = $res->timecreated;
+                // comments class will throw an exception if error occurs
+                $cmt_id = $DB->insert_record('comments', $cmt);
+                if (!empty($cmt_id)) {
+                    $DB->delete_records('data_comments', array('id'=>$res->commentid));
+                }
+            }
+            $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
             // the default exception handler will stop the script if error occurs before
             $dbman->drop_table($table);
         }

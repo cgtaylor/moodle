@@ -3,7 +3,11 @@
  *  base include file for eclipse plugin  
  *  @package    SimpleTest
  *  @subpackage Eclipse
+<<<<<<< HEAD
  *  @version    $Id: eclipse.php,v 1.4 2010/12/14 17:35:44 moodlerobot Exp $
+=======
+ *  @version    $Id$
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
  */
 /**#@+
  * simpletest include files

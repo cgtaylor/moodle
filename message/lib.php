@@ -140,7 +140,11 @@ function message_print_participants($context, $courseid, $contactselecturl=null,
 
     $countparticipants = count_enrolled_users($context);
     $participants = get_enrolled_users($context, '', 0, 'u.*', '', $page*MESSAGE_CONTACTS_PER_PAGE, MESSAGE_CONTACTS_PER_PAGE);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $pagingbar = new paging_bar($countparticipants, $page, MESSAGE_CONTACTS_PER_PAGE, $PAGE->url, 'page');
     echo $OUTPUT->render($pagingbar);
 
@@ -269,6 +273,7 @@ function message_get_contacts($user1=null, &$user2=null) {
                  GROUP BY $userfields
                  ORDER BY u.firstname ASC";
 
+<<<<<<< HEAD
     if ($rs = $DB->get_recordset_sql($contactsql, array($user1->id, $user1->id))){
         foreach($rs as $rd){
 
@@ -287,6 +292,23 @@ function message_get_contacts($user1=null, &$user2=null) {
         unset($rd);
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($contactsql, array($user1->id, $user1->id));
+    foreach ($rs as $rd) {
+        if ($rd->lastaccess >= $timefrom) {
+            // they have been active recently, so are counted online
+            $onlinecontacts[] = $rd;
+
+        } else {
+            $offlinecontacts[] = $rd;
+        }
+
+        if (!empty($user2) && $user2->id==$rd->id) {
+            $user2->iscontact = true;
+        }
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     // get messages from anyone who isn't in our contact list and count the number
     // of messages we have from each of them
@@ -298,6 +320,7 @@ function message_get_contacts($user1=null, &$user2=null) {
                   GROUP BY $userfields
                   ORDER BY u.firstname ASC";
 
+<<<<<<< HEAD
     if($rs = $DB->get_recordset_sql($strangersql, array($USER->id))){
         foreach($rs as $rd){
             $strangers[] = $rd;
@@ -305,6 +328,13 @@ function message_get_contacts($user1=null, &$user2=null) {
         unset($rd);
         $rs->close();
     }
+=======
+    $rs = $DB->get_recordset_sql($strangersql, array($USER->id));
+    foreach ($rs as $rd) {
+        $strangers[] = $rd;
+    }
+    $rs->close();
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
 
     return array($onlinecontacts, $offlinecontacts, $strangers);
 }
@@ -527,7 +557,15 @@ function message_print_search($advancedsearch = false, $user1=null) {
 
     $doingsearch = false;
     if ($frm) {
+<<<<<<< HEAD
         $doingsearch = !empty($frm->combinedsubmit) || !empty($frm->keywords) || (!empty($frm->personsubmit) and !empty($frm->name));
+=======
+        if (confirm_sesskey()) {
+            $doingsearch = !empty($frm->combinedsubmit) || !empty($frm->keywords) || (!empty($frm->personsubmit) and !empty($frm->name));
+        } else {
+            $frm = false;
+        }
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     }
 
     if (!empty($frm->combinedsearch)) {
@@ -1568,7 +1606,11 @@ function message_post_message($userfrom, $userto, $message, $format, $messagetyp
         $eventdata->fullmessage      = $message;
         $eventdata->fullmessagehtml  = '';
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $eventdata->fullmessageformat = $format;
     $eventdata->smallmessage     = strip_tags($message);//strip just in case there are is any html that would break the popup notification
 
@@ -1583,7 +1625,11 @@ function message_post_message($userfrom, $userto, $message, $format, $messagetyp
     if (!empty($eventdata->fullmessagehtml)) {
         $eventdata->fullmessagehtml .= "<br /><br />---------------------------------------------------------------------<br />".$emailtagline;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $eventdata->timecreated     = time();
     return message_send($eventdata);
 }
@@ -1769,7 +1815,11 @@ function message_mark_messages_read($touserid, $fromuserid){
 */
 function message_mark_message_read($message, $timeread, $messageworkingempty=false) {
     global $DB;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 54b7b5993fbd4386eb4eadb4f97da8d41dfa16bf
     $message->timeread = $timeread;
 
     $messageid = $message->id;
